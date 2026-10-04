@@ -41,18 +41,10 @@ export default function CountryQuiz({ onSelectCountryForCatalog, onNavigateHome 
   };
 
   const calculateResults = () => {
-    // Accumulate weights
-    const scores = {
-      germany: 0,
-      netherlands: 0,
-      italy: 0,
-      france: 0,
-      spain: 0,
-      czechia: 0,
-      austria: 0,
-      sweden: 0,
-      poland: 0
-    };
+    const scores = {};
+    countries.forEach((c) => {
+      scores[c.id] = 0;
+    });
 
     countryQuizQuestions.forEach((q, qIndex) => {
       const chosenOptIndex = selectedAnswers[qIndex];
@@ -66,7 +58,6 @@ export default function CountryQuiz({ onSelectCountryForCatalog, onNavigateHome 
       }
     });
 
-    // Rank top 3
     const sorted = Object.entries(scores)
       .sort((a, b) => b[1] - a[1])
       .slice(0, 3);
@@ -75,7 +66,7 @@ export default function CountryQuiz({ onSelectCountryForCatalog, onNavigateHome 
 
     const topCountries = sorted.map(([id, score], index) => {
       const countryData = countries.find((c) => c.id === id) || countries[0];
-      const percentage = Math.min(98, Math.max(65, Math.round((score / maxScore) * 96) - index * 6));
+      const percentage = Math.min(98, Math.max(68, Math.round((score / maxScore) * 96) - index * 5));
       return {
         ...countryData,
         score,
@@ -85,14 +76,6 @@ export default function CountryQuiz({ onSelectCountryForCatalog, onNavigateHome 
 
     setResults(topCountries);
 
-    // Save result to localStorage
-    try {
-      localStorage.setItem('euro_country_quiz_result', JSON.stringify(topCountries));
-    } catch (e) {
-      // ignore
-    }
-
-    // Launch celebratory confetti
     try {
       confetti({
         particleCount: 80,
@@ -110,19 +93,18 @@ export default function CountryQuiz({ onSelectCountryForCatalog, onNavigateHome 
     setResults(null);
   };
 
-  // If results are calculated, show Results View
   if (results) {
     return (
       <div className="max-w-4xl mx-auto px-4 py-8 sm:py-12 animate-fadeIn text-left">
         <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-wider mb-3">
-            <Sparkles className="w-4 h-4 text-emerald-600" />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#8B0000] text-[#EFE0CD] text-xs font-bold uppercase tracking-wider mb-3 shadow-xs">
+            <Sparkles className="w-4 h-4 text-[#EFE0CD]" />
             Ваш персональный маршрут готов
           </div>
-          <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight">
+          <h2 className="text-2xl sm:text-4xl font-black text-[#8B0000] tracking-tight">
             Страны, которые идеально подходят вам
           </h2>
-          <p className="text-slate-600 text-sm sm:text-base mt-2 max-w-xl mx-auto">
+          <p className="text-[#2D1810]/80 text-sm sm:text-base mt-2 max-w-xl mx-auto font-medium">
             На основе ваших ответов по бюджету, языку, климату и карьерным целям мы подобрали 3 лучших направления.
           </p>
         </div>
@@ -132,10 +114,10 @@ export default function CountryQuiz({ onSelectCountryForCatalog, onNavigateHome 
           {results.map((rc, idx) => (
             <div
               key={rc.id}
-              className={`p-6 rounded-3xl border transition-all ${
+              className={`p-6 rounded-3xl border-2 transition-all ${
                 idx === 0
-                  ? 'bg-gradient-to-r from-blue-50/80 via-white to-indigo-50/50 border-blue-300 shadow-md ring-2 ring-blue-500/20'
-                  : 'bg-white border-slate-200 shadow-xs'
+                  ? 'bg-[#FAF5EE] border-[#8B0000] shadow-md ring-2 ring-[#8B0000]/20'
+                  : 'bg-white border-[#8B0000]/20 shadow-xs'
               }`}
             >
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
@@ -143,15 +125,15 @@ export default function CountryQuiz({ onSelectCountryForCatalog, onNavigateHome 
                   <span className="text-4xl">{rc.flag}</span>
                   <div>
                     <div className="flex items-center gap-2">
-                      <h3 className="text-xl font-bold text-slate-900">{rc.name}</h3>
+                      <h3 className="text-xl font-black text-[#8B0000]">{rc.name}</h3>
                       {idx === 0 && (
-                        <span className="text-xs font-bold bg-blue-600 text-white px-2.5 py-0.5 rounded-full flex items-center gap-1">
+                        <span className="text-xs font-bold bg-[#8B0000] text-[#EFE0CD] px-2.5 py-0.5 rounded-full flex items-center gap-1">
                           <Award className="w-3.5 h-3.5" />
-                          Топ #1 выбор
+                          Топ выбор
                         </span>
                       )}
                     </div>
-                    <p className="text-xs text-slate-500 mt-0.5">
+                    <p className="text-xs text-[#2D1810]/70 mt-0.5">
                       {rc.landmark} ({rc.landmarkCity}) • {rc.vibe}
                     </p>
                   </div>
@@ -159,37 +141,37 @@ export default function CountryQuiz({ onSelectCountryForCatalog, onNavigateHome 
 
                 <div className="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-end">
                   <div className="text-right">
-                    <span className="text-2xl font-black text-blue-600">
+                    <span className="text-2xl font-black text-[#8B0000]">
                       {rc.percentage}%
                     </span>
-                    <span className="block text-[10px] uppercase font-bold text-slate-400">
+                    <span className="block text-[10px] uppercase font-bold text-[#8B0000]/70">
                       Совместимость
                     </span>
                   </div>
 
                   <button
                     onClick={() => onSelectCountryForCatalog(rc.id)}
-                    className="inline-flex items-center gap-1.5 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-bold rounded-xl shadow-xs transition-all"
+                    className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#8B0000] hover:bg-[#630000] text-[#EFE0CD] text-xs sm:text-sm font-black rounded-xl shadow-xs transition-all"
                   >
-                    <span>Университеты</span>
+                    <span>Выбрать {rc.name}</span>
                     <ArrowRight className="w-4 h-4" />
                   </button>
                 </div>
               </div>
 
-              {/* Highlights row */}
-              <div className="mt-4 pt-4 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs text-slate-600">
+              {/* Highlights */}
+              <div className="mt-4 pt-4 border-t border-[#8B0000]/10 grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs text-[#2D1810]">
                 <div>
-                  <span className="text-slate-400 block font-semibold">Обучение:</span>
-                  <span className="font-bold text-slate-800">{rc.tuitionSummary}</span>
+                  <span className="text-[#8B0000]/70 block font-bold text-[10px] uppercase">Обучение:</span>
+                  <span className="font-extrabold">{rc.tuitionSummary}</span>
                 </div>
                 <div>
-                  <span className="text-slate-400 block font-semibold">Жизнь:</span>
-                  <span className="font-bold text-slate-800">{rc.avgLivingCost}</span>
+                  <span className="text-[#8B0000]/70 block font-bold text-[10px] uppercase">Жизнь:</span>
+                  <span className="font-extrabold">{rc.avgLivingCost}</span>
                 </div>
                 <div>
-                  <span className="text-slate-400 block font-semibold">Виза после учебы:</span>
-                  <span className="font-bold text-slate-800">{rc.postStudyVisa}</span>
+                  <span className="text-[#8B0000]/70 block font-bold text-[10px] uppercase">Виза после учебы:</span>
+                  <span className="font-extrabold">{rc.postStudyVisa}</span>
                 </div>
               </div>
             </div>
@@ -200,14 +182,14 @@ export default function CountryQuiz({ onSelectCountryForCatalog, onNavigateHome 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <button
             onClick={handleRestart}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-100 text-xs sm:text-sm font-semibold transition-colors"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-[#8B0000]/25 text-[#8B0000] bg-white hover:bg-[#FAF5EE] text-xs sm:text-sm font-bold transition-colors"
           >
             <RotateCcw className="w-4 h-4" />
             <span>Пройти тест заново</span>
           </button>
           <button
             onClick={onNavigateHome}
-            className="inline-flex items-center gap-2 px-6 py-2.5 bg-slate-900 hover:bg-slate-800 text-white text-xs sm:text-sm font-bold rounded-xl shadow-xs transition-colors"
+            className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#8B0000] hover:bg-[#630000] text-[#EFE0CD] text-xs sm:text-sm font-bold rounded-xl shadow-xs transition-colors"
           >
             <span>На главную страницу</span>
           </button>
@@ -216,16 +198,15 @@ export default function CountryQuiz({ onSelectCountryForCatalog, onNavigateHome 
     );
   }
 
-  // Active Quiz Step
   const isAnswered = selectedAnswers[currentStep] !== undefined;
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-8 sm:py-12 animate-fadeIn text-left">
-      <div className="bg-white rounded-3xl border border-slate-200 shadow-lg p-6 sm:p-8">
+      <div className="bg-[#FAF5EE] rounded-3xl border-2 border-[#8B0000]/20 shadow-lg p-6 sm:p-8">
         {/* Progress bar */}
         <div className="mb-6">
-          <div className="flex justify-between items-center text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">
-            <span className="flex items-center gap-1.5 text-indigo-600">
+          <div className="flex justify-between items-center text-xs font-bold text-[#8B0000] uppercase tracking-wider mb-2">
+            <span className="flex items-center gap-1.5">
               <Compass className="w-4 h-4" />
               Тест: Какая страна тебе подходит?
             </span>
@@ -233,9 +214,9 @@ export default function CountryQuiz({ onSelectCountryForCatalog, onNavigateHome 
               Вопрос {currentStep + 1} из {countryQuizQuestions.length}
             </span>
           </div>
-          <div className="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+          <div className="w-full bg-[#EFE0CD] h-2.5 rounded-full overflow-hidden border border-[#8B0000]/15">
             <div
-              className="bg-indigo-600 h-full transition-all duration-300 rounded-full"
+              className="bg-[#8B0000] h-full transition-all duration-300 rounded-full"
               style={{
                 width: `${((currentStep + 1) / countryQuizQuestions.length) * 100}%`
               }}
@@ -245,10 +226,10 @@ export default function CountryQuiz({ onSelectCountryForCatalog, onNavigateHome 
 
         {/* Question Header */}
         <div className="mb-6">
-          <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight mb-1">
+          <h3 className="text-xl sm:text-2xl font-black text-[#8B0000] tracking-tight mb-1">
             {question.question}
           </h3>
-          <p className="text-xs sm:text-sm text-slate-500">
+          <p className="text-xs sm:text-sm text-[#2D1810]/70 font-medium">
             {question.subtitle}
           </p>
         </div>
@@ -261,23 +242,23 @@ export default function CountryQuiz({ onSelectCountryForCatalog, onNavigateHome 
               <div
                 key={oIdx}
                 onClick={() => handleSelectOption(oIdx)}
-                className={`p-4 rounded-2xl border transition-all cursor-pointer flex items-center justify-between gap-3 ${
+                className={`p-4 rounded-2xl border-2 transition-all cursor-pointer flex items-center justify-between gap-3 ${
                   isSelected
-                    ? 'border-indigo-600 bg-indigo-50/70 shadow-xs ring-1 ring-indigo-500'
-                    : 'border-slate-200 hover:border-indigo-300 hover:bg-slate-50/70'
+                    ? 'border-[#8B0000] bg-[#EFE0CD] shadow-xs'
+                    : 'border-[#8B0000]/15 bg-white hover:border-[#8B0000]/40'
                 }`}
               >
                 <div className="flex items-center gap-3">
                   <span className="text-2xl">{opt.icon}</span>
-                  <span className="text-xs sm:text-sm font-semibold text-slate-800">
+                  <span className="text-xs sm:text-sm font-bold text-[#2D1810]">
                     {opt.text}
                   </span>
                 </div>
                 <div
                   className={`w-5 h-5 rounded-full border flex items-center justify-center transition-colors ${
                     isSelected
-                      ? 'border-indigo-600 bg-indigo-600 text-white'
-                      : 'border-slate-300'
+                      ? 'border-[#8B0000] bg-[#8B0000] text-[#EFE0CD]'
+                      : 'border-[#8B0000]/30'
                   }`}
                 >
                   {isSelected && <CheckCircle2 className="w-4 h-4" />}
@@ -288,14 +269,14 @@ export default function CountryQuiz({ onSelectCountryForCatalog, onNavigateHome 
         </div>
 
         {/* Navigation Step Buttons */}
-        <div className="flex items-center justify-between pt-4 border-t border-slate-100">
+        <div className="flex items-center justify-between pt-4 border-t border-[#8B0000]/15">
           <button
             onClick={handlePrev}
             disabled={currentStep === 0}
-            className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-colors ${
+            className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-colors ${
               currentStep === 0
-                ? 'opacity-40 cursor-not-allowed text-slate-400'
-                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                ? 'opacity-40 cursor-not-allowed text-[#2D1810]/40'
+                : 'text-[#8B0000] hover:bg-[#8B0000]/10'
             }`}
           >
             <ArrowLeft className="w-4 h-4" />
@@ -305,10 +286,10 @@ export default function CountryQuiz({ onSelectCountryForCatalog, onNavigateHome 
           <button
             onClick={handleNext}
             disabled={!isAnswered}
-            className={`inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold shadow-md transition-all ${
+            className={`inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs sm:text-sm font-black shadow-md transition-all ${
               isAnswered
-                ? 'bg-indigo-600 hover:bg-indigo-700 text-white shadow-indigo-500/25'
-                : 'opacity-50 cursor-not-allowed bg-slate-200 text-slate-500'
+                ? 'bg-[#8B0000] hover:bg-[#630000] text-[#EFE0CD]'
+                : 'opacity-50 cursor-not-allowed bg-[#8B0000]/20 text-[#8B0000]/50'
             }`}
           >
             <span>

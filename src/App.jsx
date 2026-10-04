@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import CountryLandmarkPreview from './components/CountryLandmarkPreview';
-import UniversityFilter from './components/UniversityFilter';
-import UniversityCard from './components/UniversityCard';
-import UniversityModal from './components/UniversityModal';
+import CountriesScreen from './components/CountriesScreen';
+import DirectionsScreen from './components/DirectionsScreen';
+import UniversityListScreen from './components/UniversityListScreen';
+import UniversityDetailModal from './components/UniversityDetailModal';
+import WatercolorTransition from './components/WatercolorTransition';
 import CountryQuiz from './components/CountryQuiz';
 import CareerQuiz from './components/CareerQuiz';
 import FavoritesModal from './components/FavoritesModal';
@@ -14,19 +15,29 @@ import Footer from './components/Footer';
 
 import { universities } from './data/universities';
 import { countries } from './data/countries';
-import { Search, Compass, Briefcase, Sparkles, Filter, ArrowRight } from 'lucide-react';
+import { studyDirections } from './data/directions';
 
 export default function App() {
-  // Navigation tab: 'home' | 'search' | 'countryQuiz' | 'careerQuiz'
-  const [activeTab, setActiveTab] = useState('home');
+  // Screens: 'home' | 'countries' | 'directions' | 'universities' | 'countryQuiz' | 'careerQuiz'
+  const [activeScreen, setActiveScreen] = useState('home');
 
-  // Language onboarding state
+  // Currently selected country and direction
+  const [selectedCountry, setSelectedCountry] = useState(countries[0]); // default Spain
+  const [selectedDirection, setSelectedDirection] = useState(studyDirections[1]); // default IT
+
+  // Watercolor animation state
+  const [watercolorState, setWatercolorState] = useState({
+    isActive: false,
+    origin: { x: window.innerWidth / 2, y: window.innerHeight / 2 },
+    directionTitle: '',
+    directionIcon: ''
+  });
+
+  // Language onboarding
   const [currentLang, setCurrentLang] = useState(() => {
     return localStorage.getItem('euro_lang') || 'ru';
   });
-  const [showLanguageOnboarding, setShowLanguageOnboarding] = useState(() => {
-    return !localStorage.getItem('euro_lang');
-  });
+  const [showLanguageOnboarding, setShowLanguageOnboarding] = useState(false);
 
   // User auth state
   const [user, setUser] = useState(() => {
@@ -43,29 +54,29 @@ export default function App() {
   const [favorites, setFavorites] = useState(() => {
     try {
       const saved = localStorage.getItem('euro_favorites');
-      return saved ? JSON.parse(saved) : ['tum', 'polimi'];
+      return saved ? JSON.parse(saved) : ['uab', 'tum', 'polimi'];
     } catch {
-      return ['tum', 'polimi'];
+      return ['uab', 'tum', 'polimi'];
     }
   });
   const [isFavoritesModalOpen, setIsFavoritesModalOpen] = useState(false);
 
   // University Detail Modal
-  const [selectedUniversity, setSelectedUniversity] = useState(null);
+  const [selectedUniversityForModal, setSelectedUniversityForModal] = useState(null);
 
-  // Filter state
+  // Simultaneous Live Filters State
   const initialFilters = {
     searchQuery: '',
-    selectedCountries: [],
-    selectedField: 'all',
-    degree: 'all',
-    onlyFree: false,
+    countryId: 'all',
+    directionId: 'all',
+    tuitionRange: 'all', // 'all' | 'free' | 'low' | 'mid'
     onlyScholarships: false,
-    sortBy: 'rank'
+    onlyFree: false,
+    examRequirement: 'all' // 'all' | 'noExam' | 'englishOnly'
   };
   const [filters, setFilters] = useState(initialFilters);
 
-  // Sync favorites to localStorage
+  // Sync favorites
   useEffect(() => {
     try {
       localStorage.setItem('euro_favorites', JSON.stringify(favorites));
@@ -80,124 +91,129 @@ export default function App() {
     );
   };
 
-  const handleLogin = (userData) => {
-    setUser(userData);
-    try {
-      localStorage.setItem('euro_user', JSON.stringify(userData));
-    } catch (e) {
-      // ignore
-    }
-  };
-
-  const handleLogout = () => {
-    setUser(null);
-    try {
-      localStorage.removeItem('euro_user');
-    } catch (e) {
-      // ignore
-    }
-  };
-
-  // Filter and sort universities
-  const filteredUniversities = useMemo(() => {
-    return universities
-      .filter((u) => {
-        // Search query
-        if (filters.searchQuery.trim()) {
-          const q = filters.searchQuery.toLowerCase();
-          const matchesName = u.name.toLowerCase().includes(q);
-          const matchesLocal = u.localName.toLowerCase().includes(q);
-          const matchesCity = u.city.toLowerCase().includes(q);
-          const matchesCountry = u.countryName.toLowerCase().includes(q);
-          const matchesProg = u.keyPrograms.some((p) => p.name.toLowerCase().includes(q));
-          if (!matchesName && !matchesLocal && !matchesCity && !matchesCountry && !matchesProg) {
-            return false;
-          }
-        }
-
-        // Country filter
-        if (filters.selectedCountries.length > 0) {
-          if (!filters.selectedCountries.includes(u.countryId)) {
-            return false;
-          }
-        }
-
-        // Field / Direction
-        if (filters.selectedField !== 'all') {
-          if (!u.fields.includes(filters.selectedField)) {
-            return false;
-          }
-        }
-
-        // Degree filter
-        if (filters.degree !== 'all') {
-          if (!u.degrees.includes(filters.degree)) {
-            return false;
-          }
-        }
-
-        // Only free tuition
-        if (filters.onlyFree && !u.tuition.isFree) {
-          return false;
-        }
-
-        // Only with scholarships
-        if (filters.onlyScholarships && !u.scholarship.available) {
-          return false;
-        }
-
-        return true;
-      })
-      .sort((a, b) => {
-        if (filters.sortBy === 'tuitionAsc') {
-          return a.tuition.amount - b.tuition.amount;
-        }
-        if (filters.sortBy === 'costAsc') {
-          return a.livingCostMonth - b.livingCostMonth;
-        }
-        return 0; // default QS order
-      });
-  }, [filters]);
-
-  // Handlers for cross-component triggers
-  const handleStartSearch = () => {
-    setActiveTab('search');
+  // Step 1: Open Countries list (triggered by «⋯» or from hero)
+  const handleOpenCountries = () => {
+    setActiveScreen('countries');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleCountrySelectedFromQuiz = (countryId) => {
-    setFilters({
-      ...initialFilters,
-      selectedCountries: [countryId]
-    });
-    setActiveTab('search');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleFieldSelectedFromQuiz = (fieldId) => {
-    setFilters({
-      ...initialFilters,
-      selectedField: fieldId
-    });
-    setActiveTab('search');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleCountrySelectedFromAtlas = (countryId) => {
+  // Step 2: Country selected -> go to directions
+  const handleSelectCountry = (country) => {
+    setSelectedCountry(country);
     setFilters((prev) => ({
       ...prev,
-      selectedCountries: [countryId]
+      countryId: country.id
     }));
-    setActiveTab('search');
+    setActiveScreen('directions');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Step 3 & 4: Direction selected -> trigger watercolor animation -> open universities
+  const handleSelectDirection = (direction, originCoordinates) => {
+    setSelectedDirection(direction);
+    setFilters((prev) => ({
+      ...prev,
+      directionId: direction.id
+    }));
+
+    setWatercolorState({
+      isActive: true,
+      origin: originCoordinates || { x: window.innerWidth / 2, y: window.innerHeight / 2 },
+      directionTitle: direction.title,
+      directionIcon: direction.icon
+    });
+  };
+
+  const handleWatercolorComplete = () => {
+    setWatercolorState((prev) => ({ ...prev, isActive: false }));
+    setActiveScreen('universities');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Filter universities based on simultaneous filters
+  const filteredUniversities = useMemo(() => {
+    return universities.filter((u) => {
+      // Search text
+      if (filters.searchQuery.trim()) {
+        const q = filters.searchQuery.toLowerCase();
+        const matchesName = u.name.toLowerCase().includes(q);
+        const matchesCity = u.city.toLowerCase().includes(q);
+        const matchesCountry = u.countryName.toLowerCase().includes(q);
+        const matchesProg = u.keyPrograms.some((p) => p.name.toLowerCase().includes(q));
+        if (!matchesName && !matchesCity && !matchesCountry && !matchesProg) {
+          return false;
+        }
+      }
+
+      // Country filter
+      if (filters.countryId !== 'all' && u.countryId !== filters.countryId) {
+        return false;
+      }
+
+      // Direction filter
+      if (filters.directionId !== 'all') {
+        if (!u.fields.includes(filters.directionId)) {
+          return false;
+        }
+      }
+
+      // Tuition range
+      if (filters.tuitionRange === 'free' && !u.tuition.isFree) {
+        return false;
+      }
+      if (filters.tuitionRange === 'low' && u.tuition.amount > 3000) {
+        return false;
+      }
+      if (filters.tuitionRange === 'mid' && (u.tuition.amount < 3000 || u.tuition.amount > 8000)) {
+        return false;
+      }
+
+      // Only scholarships
+      if (filters.onlyScholarships && !u.scholarship.available) {
+        return false;
+      }
+
+      // Only 0€
+      if (filters.onlyFree && !u.tuition.isFree) {
+        return false;
+      }
+
+      // Language Exam
+      if (filters.examRequirement === 'noExam' && !u.languageReq.noExamOption) {
+        return false;
+      }
+
+      return true;
+    });
+  }, [filters]);
+
+  // Quiz navigation handlers
+  const handleCountryFromQuiz = (countryId) => {
+    const matched = countries.find((c) => c.id === countryId) || countries[0];
+    handleSelectCountry(matched);
+  };
+
+  const handleFieldFromQuiz = (fieldId) => {
+    const matched = studyDirections.find((d) => d.id === fieldId) || studyDirections[0];
+    setSelectedDirection(matched);
+    setFilters((prev) => ({
+      ...prev,
+      directionId: fieldId
+    }));
+    setActiveScreen('universities');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-800 font-sans selection:bg-blue-600 selection:text-white">
-      {/* Header Navigation */}
+    <div className="min-h-screen flex flex-col bg-[#EFE0CD] text-[#2D1810] font-sans selection:bg-[#8B0000] selection:text-[#EFE0CD]">
+      {/* Top Navigation Bar with «⋯» button */}
       <Navbar
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
+        activeScreen={activeScreen}
+        onNavigate={(screen) => {
+          setActiveScreen(screen);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
+        onOpenCountries={handleOpenCountries}
         favoritesCount={favorites.length}
         onOpenFavorites={() => setIsFavoritesModalOpen(true)}
         onOpenAuth={() => setIsAuthModalOpen(true)}
@@ -206,123 +222,138 @@ export default function App() {
         currentLang={currentLang}
       />
 
-      {/* Main Dynamic Content Area */}
+      {/* Main Dynamic View */}
       <main className="flex-1">
-        {activeTab === 'home' && (
+        {/* SCREEN 1: Home */}
+        {activeScreen === 'home' && (
           <div>
-            {/* Hero Section */}
             <Hero
-              onStartSearch={handleStartSearch}
-              onStartCountryQuiz={() => setActiveTab('countryQuiz')}
-              onStartCareerQuiz={() => setActiveTab('careerQuiz')}
+              onOpenCountries={handleOpenCountries}
+              onStartSearch={() => {
+                setFilters(initialFilters);
+                setActiveScreen('universities');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              onStartCountryQuiz={() => {
+                setActiveScreen('countryQuiz');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              onStartCareerQuiz={() => {
+                setActiveScreen('careerQuiz');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
             />
-
-            {/* Interactive Country Landmark Visual Showcase */}
-            <CountryLandmarkPreview
-              onSelectCountry={handleCountrySelectedFromAtlas}
-              selectedCountryId={filters.selectedCountries[0]}
-            />
-
-            {/* Featured Universities Preview */}
-            <section className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8 text-left">
-                <div>
-                  <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-3 py-1 rounded-full mb-2">
-                    <Sparkles className="w-3.5 h-3.5" />
-                    Популярные университеты Европы
-                  </div>
-                  <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-                    Ведущие программы со стипендиями
-                  </h2>
-                </div>
-
-                <button
-                  onClick={handleStartSearch}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs sm:text-sm font-bold shadow-md transition-all"
-                >
-                  <span>Открыть все {universities.length} университетов</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {universities.slice(0, 6).map((uni) => (
-                  <UniversityCard
-                    key={uni.id}
-                    university={uni}
-                    isFavorite={favorites.includes(uni.id)}
-                    onToggleFavorite={handleToggleFavorite}
-                    onSelectUniversity={setSelectedUniversity}
-                  />
-                ))}
-              </div>
-            </section>
           </div>
         )}
 
-        {activeTab === 'search' && (
-          <div className="py-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-            {/* Filter Controls Component */}
-            <UniversityFilter
-              filters={filters}
-              setFilters={setFilters}
-              onReset={() => setFilters(initialFilters)}
-              totalFound={filteredUniversities.length}
-            />
-
-            {/* University Cards Grid */}
-            {filteredUniversities.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filteredUniversities.map((uni) => (
-                  <UniversityCard
-                    key={uni.id}
-                    university={uni}
-                    isFavorite={favorites.includes(uni.id)}
-                    onToggleFavorite={handleToggleFavorite}
-                    onSelectUniversity={setSelectedUniversity}
-                  />
-                ))}
-              </div>
-            ) : (
-              /* Empty Search Result State */
-              <div className="bg-white rounded-3xl border border-slate-200 p-12 text-center max-w-lg mx-auto my-8">
-                <div className="w-16 h-16 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center mx-auto mb-4">
-                  <Search className="w-8 h-8" />
-                </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-2">
-                  По заданным фильтрам ничего не найдено
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-500 mb-6">
-                  Попробуйте снять жесткие ограничения по стоимости или выбрать «Все страны».
-                </p>
-                <button
-                  onClick={() => setFilters(initialFilters)}
-                  className="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs sm:text-sm font-bold shadow-xs transition-colors"
-                >
-                  Сбросить все параметры
-                </button>
-              </div>
-            )}
-          </div>
-        )}
-
-        {activeTab === 'countryQuiz' && (
-          <CountryQuiz
-            onSelectCountryForCatalog={handleCountrySelectedFromQuiz}
-            onNavigateHome={() => setActiveTab('home')}
+        {/* SCREEN 2: 13 Countries Grid */}
+        {activeScreen === 'countries' && (
+          <CountriesScreen
+            onSelectCountry={handleSelectCountry}
+            onBack={() => setActiveScreen('home')}
           />
         )}
 
-        {activeTab === 'careerQuiz' && (
+        {/* SCREEN 3: Study Directions */}
+        {activeScreen === 'directions' && (
+          <DirectionsScreen
+            country={selectedCountry}
+            onSelectDirection={handleSelectDirection}
+            onBackToCountries={handleOpenCountries}
+            onShowAllInCountry={() => {
+              setFilters({
+                ...initialFilters,
+                countryId: selectedCountry.id
+              });
+              setActiveScreen('universities');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+          />
+        )}
+
+        {/* SCREEN 4: Universities 3D Flip Cards & Simultaneous Filters */}
+        {activeScreen === 'universities' && (
+          <UniversityListScreen
+            universities={filteredUniversities}
+            filters={filters}
+            setFilters={setFilters}
+            onResetFilters={() => setFilters(initialFilters)}
+            selectedCountry={filters.countryId !== 'all' ? countries.find((c) => c.id === filters.countryId) : null}
+            selectedDirection={filters.directionId !== 'all' ? studyDirections.find((d) => d.id === filters.directionId) : null}
+            onBackToDirections={() => {
+              if (selectedCountry) {
+                setActiveScreen('directions');
+              } else {
+                setActiveScreen('countries');
+              }
+            }}
+            favorites={favorites}
+            onToggleFavorite={handleToggleFavorite}
+            onOpenDetails={(uni) => setSelectedUniversityForModal(uni)}
+          />
+        )}
+
+        {/* SCREEN 5: Country Quiz */}
+        {activeScreen === 'countryQuiz' && (
+          <CountryQuiz
+            onSelectCountryForCatalog={handleCountryFromQuiz}
+            onNavigateHome={() => setActiveScreen('home')}
+          />
+        )}
+
+        {/* SCREEN 6: Career Quiz */}
+        {activeScreen === 'careerQuiz' && (
           <CareerQuiz
-            onSelectFieldForCatalog={handleFieldSelectedFromQuiz}
-            onNavigateHome={() => setActiveTab('home')}
+            onSelectFieldForCatalog={handleFieldFromQuiz}
+            onNavigateHome={() => setActiveScreen('home')}
           />
         )}
       </main>
 
-      {/* Global Modals */}
-      {/* 1. Language Onboarding Modal */}
+      {/* Watercolor Transition Animation */}
+      <WatercolorTransition
+        isActive={watercolorState.isActive}
+        origin={watercolorState.origin}
+        directionTitle={watercolorState.directionTitle}
+        directionIcon={watercolorState.directionIcon}
+        onComplete={handleWatercolorComplete}
+      />
+
+      {/* University Detail Page Modal */}
+      {selectedUniversityForModal && (
+        <UniversityDetailModal
+          university={selectedUniversityForModal}
+          isOpen={Boolean(selectedUniversityForModal)}
+          onClose={() => setSelectedUniversityForModal(null)}
+          isFavorite={favorites.includes(selectedUniversityForModal.id)}
+          onToggleFavorite={handleToggleFavorite}
+        />
+      )}
+
+      {/* Favorites and Comparison Modal */}
+      {isFavoritesModalOpen && (
+        <FavoritesModal
+          isOpen={isFavoritesModalOpen}
+          onClose={() => setIsFavoritesModalOpen(false)}
+          favorites={favorites}
+          onToggleFavorite={handleToggleFavorite}
+          onSelectUniversity={(uni) => setSelectedUniversityForModal(uni)}
+        />
+      )}
+
+      {/* User Auth Modal */}
+      {isAuthModalOpen && (
+        <AuthModal
+          isOpen={isAuthModalOpen}
+          onClose={() => setIsAuthModalOpen(false)}
+          user={user}
+          onLogin={(userData) => setUser(userData)}
+          onLogout={() => setUser(null)}
+          favoritesCount={favorites.length}
+        />
+      )}
+
+      {/* Language Onboarding */}
       {showLanguageOnboarding && (
         <LanguageOnboarding
           onSelectLanguage={(lang) => {
@@ -333,42 +364,8 @@ export default function App() {
         />
       )}
 
-      {/* 2. University Detail View Modal */}
-      {selectedUniversity && (
-        <UniversityModal
-          university={selectedUniversity}
-          isOpen={Boolean(selectedUniversity)}
-          onClose={() => setSelectedUniversity(null)}
-          isFavorite={favorites.includes(selectedUniversity.id)}
-          onToggleFavorite={handleToggleFavorite}
-        />
-      )}
-
-      {/* 3. Favorites and Comparison Modal */}
-      {isFavoritesModalOpen && (
-        <FavoritesModal
-          isOpen={isFavoritesModalOpen}
-          onClose={() => setIsFavoritesModalOpen(false)}
-          favorites={favorites}
-          onToggleFavorite={handleToggleFavorite}
-          onSelectUniversity={setSelectedUniversity}
-        />
-      )}
-
-      {/* 4. User Profile & Auth Modal */}
-      {isAuthModalOpen && (
-        <AuthModal
-          isOpen={isAuthModalOpen}
-          onClose={() => setIsAuthModalOpen(false)}
-          user={user}
-          onLogin={handleLogin}
-          onLogout={handleLogout}
-          favoritesCount={favorites.length}
-        />
-      )}
-
       {/* Footer */}
-      <Footer onNavigate={setActiveTab} />
+      <Footer onNavigate={(screen) => setActiveScreen(screen)} />
     </div>
   );
 }

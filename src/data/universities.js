@@ -1,111 +1,110 @@
 export const universities = [
+  // --- ИСПАНИЯ ---
   {
-    id: 'tum',
-    name: 'Technical University of Munich (TUM)',
-    localName: 'Technische Universität München',
-    countryId: 'germany',
-    countryName: 'Германия',
-    flag: '🇩🇪',
-    city: 'Мюнхен',
-    qsRank: '#28 в мире (#1 в Германии)',
-    photo: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=80',
-    fields: ['it', 'engineering', 'business', 'medicine'],
+    id: 'uab',
+    name: 'Autonomous University of Barcelona (UAB)',
+    localName: 'Universitat Autònoma de Barcelona',
+    countryId: 'spain',
+    countryName: 'Испания',
+    flag: '🇪🇸',
+    city: 'Барселона',
+    qsRank: '#149 в мире (#1 в Испании)',
+    photo: 'https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=1200&q=80',
+    fields: ['business', 'biomedicine', 'humanities', 'design', 'politics'],
     degrees: ['bachelor', 'master'],
     tuition: {
-      amount: 150,
-      text: '~150 € / семестр (семестровый взнос)',
-      isFree: true
-    },
-    scholarship: {
-      available: true,
-      name: 'DAAD & Deutschlandstipendium',
-      coverage: '300 – 934 € в месяц',
-      type: 'full',
-      description: 'Государственная стипендия Германии и программа поддержки талантливых студентов фонда TUM.'
-    },
-    languageReq: {
-      ielts: '6.5',
-      toefl: '88',
-      noExamOption: false,
-      examDescription: 'Требуется IELTS 6.5+ или TOEFL 88+ для англоязычных программ, либо TestDaF 4x4 для программ на немецком'
-    },
-    deadline: '15 июля (зимний семестр) / 15 января (летний)',
-    livingCostMonth: 1050,
-    overview: 'Один из самых престижных технических университетов Европы, колыбель европейских стартапов и инноваций в сердце Баварии.',
-    keyPrograms: [
-      { name: 'Informatics / Computer Science', degree: 'Bachelor & Master', lang: 'EN / DE', duration: '3-4 года' },
-      { name: 'Management & Technology (TUM-BWL)', degree: 'Bachelor & Master', lang: 'English', duration: '3 года' },
-      { name: 'Robotics, Cognition, Intelligence', degree: 'Master', lang: 'English', duration: '2 года' },
-      { name: 'Data Engineering and Analytics', degree: 'Master', lang: 'English', duration: '2 года' }
-    ],
-    admissionChecklist: [
-      'Аттестат с отличным средним баллом (GPA > 4.5/5.0)',
-      'Сертификат IELTS (от 6.5) или TestDaF / Goethe B2-C1',
-      'Прохождение вступительного теста (Eignungsfeststellungsverfahren)',
-      'Мотивационное письмо (SOP) и академическое резюме (CV)',
-      'Для выпускников 11 классов: 1 год Studienkolleg или 1 год университета на родине'
-    ],
-    livingCostDetails: {
-      housing: '450 - 650 € (студенческое общежитие / WG)',
-      food: '250 - 300 €',
-      transport: '29 € (льготный проездной Deutschlandticket)'
-    },
-    websiteUrl: 'https://www.tum.de',
-    landmarkSymbol: '🏛️ Бранденбургские ворота & Баварские Альпы'
-  },
-  {
-    id: 'uva',
-    name: 'University of Amsterdam (UvA)',
-    localName: 'Universiteit van Amsterdam',
-    countryId: 'netherlands',
-    countryName: 'Нидерланды',
-    flag: '🇳🇱',
-    city: 'Амстердам',
-    qsRank: '#53 в мире (#1 в Нидерландах)',
-    photo: 'https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?auto=format&fit=crop&w=1200&q=80',
-    fields: ['business', 'it', 'social', 'design'],
-    degrees: ['bachelor', 'master'],
-    tuition: {
-      amount: 2530,
-      text: '2 530 € (EU) / 9 500 – 14 000 € (Non-EU)',
+      amount: 2200,
+      text: '2 200 – 4 100 € / год (госвуз)',
       isFree: false
     },
     scholarship: {
       available: true,
-      name: 'Amsterdam Merit & NL Scholarship',
-      coverage: 'до 25 000 € в год',
-      type: 'full',
-      description: 'Покрывает полную стоимость обучения и часть расходов на проживание для выдающихся абитуриентов.'
+      name: 'Стипендии Министерства образования Испании (MEC)',
+      coverage: 'Покрытие стоимости учебы + до 3 000 €',
+      type: 'partial',
+      description: 'Государственная программа поддержки иностранных студентов с высоким средним баллом.'
     },
     languageReq: {
-      ielts: '7.0',
-      toefl: '100',
-      noExamOption: false,
-      examDescription: 'IELTS 7.0 (не ниже 6.5 в каждом блоке) или TOEFL iBT 100+'
+      ielts: '6.0',
+      toefl: '80',
+      noExamOption: true,
+      examDescription: 'DELE B2 для курсов на испанском или IELTS 6.0 для англоязычных программ'
     },
-    deadline: '15 января (Numerus Fixus) / 1 апреля (стандартный)',
-    livingCostMonth: 1250,
-    overview: 'Крупнейший исследовательский университет Нидерландов, расположенный вдоль знаменитых каналов Амстердама с огромным выбором англоязычных курсов.',
+    deadline: '1 июня (ранняя подача) / 10 июля',
+    livingCostMonth: 780,
+    overview: 'Один из флагманов высшего образования Испании. Живописный зеленый кампус американского типа в 25 минутах от центра Барселоны.',
     keyPrograms: [
-      { name: 'Business Administration (BSc)', degree: 'Bachelor', lang: 'English', duration: '3 года' },
-      { name: 'Communication Science (#1 в мире по QS)', degree: 'Bachelor & Master', lang: 'English', duration: '3 года' },
-      { name: 'Artificial Intelligence (MSc)', degree: 'Master', lang: 'English', duration: '2 года' },
-      { name: 'Economics & Data Science', degree: 'Bachelor', lang: 'English', duration: '3 года' }
+      { name: 'Business Management and Technology', degree: 'Bachelor', lang: 'English', duration: '4 года' },
+      { name: 'International Relations & Global Governance', degree: 'Bachelor & Master', lang: 'English', duration: '3-4 года' },
+      { name: 'Bioinformatics and Health Data', degree: 'Master', lang: 'English', duration: '2 года' },
+      { name: 'Audiovisual Communication & Media Design', degree: 'Bachelor', lang: 'ES / EN', duration: '4 года' }
     ],
     admissionChecklist: [
-      'Аттестат / Диплом бакалавра международного стандарта',
-      'Сертификат IELTS 7.0 или TOEFL 100',
-      'Высокая оценка по математике (вступительный тест OMPT при необходимости)',
-      'Мотивационное эссе и рекомендательные письма'
+      'Омологация школьного аттестата через UNEDasiss',
+      'Сдача профильных экзаменов PCE при необходимости',
+      'Сертификат IELTS 6.0 или DELE B2'
     ],
     livingCostDetails: {
-      housing: '600 - 850 € в месяц',
-      food: '250 - 320 €',
-      transport: 'Велосипед (0 €) / проездной ~70 €'
+      housing: '350 – 550 € (комната в Vila Universitària)',
+      food: '200 – 250 €',
+      transport: '20 € (молодежный T-Jove на 3 месяца)'
     },
-    websiteUrl: 'https://www.uva.nl',
-    landmarkSymbol: '🚲 Каналы Амстердама и ветряные мельницы'
+    websiteUrl: 'https://www.uab.cat',
+    landmarkSymbol: '☀️ Саграда Фамилия & Барселона'
   },
+  {
+    id: 'ucm',
+    name: 'Complutense University of Madrid',
+    localName: 'Universidad Complutense de Madrid',
+    countryId: 'spain',
+    countryName: 'Испания',
+    flag: '🇪🇸',
+    city: 'Мадрид',
+    qsRank: '#171 в мире',
+    photo: 'https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&fit=crop&w=1200&q=80',
+    fields: ['law', 'humanities', 'politics', 'biomedicine', 'health'],
+    degrees: ['bachelor', 'master'],
+    tuition: {
+      amount: 2500,
+      text: '2 500 – 4 500 € / год',
+      isFree: false
+    },
+    scholarship: {
+      available: true,
+      name: 'Santander & UCM International Grant',
+      coverage: 'до 5 000 € / год',
+      type: 'partial',
+      description: 'Гранты фонда Сантандер для студентов юридических и социально-политических направлений.'
+    },
+    languageReq: {
+      ielts: '6.5',
+      toefl: '85',
+      noExamOption: false,
+      examDescription: 'DELE B2/C1 или IELTS 6.5 для англоязычных потоков'
+    },
+    deadline: '30 мая / 15 июля',
+    livingCostMonth: 820,
+    overview: 'Один из старейших университетов мира, основанный в 1293 году. Среди выпускников — лауреаты Нобелевской премии и ведущие европейские политики.',
+    keyPrograms: [
+      { name: 'European Law and Global Affairs', degree: 'Master', lang: 'English / Spanish', duration: '2 года' },
+      { name: 'Political Science & Administration', degree: 'Bachelor', lang: 'Spanish / English', duration: '4 года' },
+      { name: 'Pharmacy and Public Health', degree: 'Master', lang: 'Spanish', duration: '5 лет' }
+    ],
+    admissionChecklist: [
+      'Апостиль и перевод аттестата/диплома на испанский',
+      'Заверение UNEDasiss',
+      'Мотивационное письмо и CV'
+    ],
+    livingCostDetails: {
+      housing: '380 – 600 €',
+      food: '220 – 260 €',
+      transport: '20 € (Abono Joven)'
+    },
+    websiteUrl: 'https://www.ucm.es',
+    landmarkSymbol: '🏛️ Королевский дворец Мадрида'
+  },
+
+  // --- ИТАЛИЯ ---
   {
     id: 'polimi',
     name: 'Politecnico di Milano',
@@ -116,11 +115,11 @@ export const universities = [
     city: 'Милан',
     qsRank: '#111 в мире (#7 по Дизайну и Архитектуре)',
     photo: 'https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=1200&q=80',
-    fields: ['engineering', 'design', 'it'],
+    fields: ['engineering', 'design', 'it', 'architecture'],
     degrees: ['bachelor', 'master'],
     tuition: {
       amount: 890,
-      text: '890 – 3 890 € / год (снижается до 0 € по DSU)',
+      text: '890 – 3 890 € / год (0 € по стипендии DSU)',
       isFree: true
     },
     scholarship: {
@@ -128,17 +127,17 @@ export const universities = [
       name: 'Стипендия DSU (Diritto allo Studio)',
       coverage: '100% грант на учебу + жилье + до 7 500 €/год наличными',
       type: 'full',
-      description: 'Государственная социальная стипендия, основанная на семейном доходе (ISEE). Доступна всем иностранным студентам!'
+      description: 'Государственная социальная стипендия на основе дохода семьи (ISEE). Доступна иностранным студентам.'
     },
     languageReq: {
       ielts: '6.0',
       toefl: '78',
       noExamOption: true,
-      examDescription: 'IELTS 6.0 или сертификат бакалавриата на английском языке'
+      examDescription: 'IELTS 6.0 или справка об обучении на английском'
     },
     deadline: '15 мая (первая волна) / 15 июля (вторая волна)',
     livingCostMonth: 850,
-    overview: 'Главная кузница инженеров, архитекторов и промышленных дизайнеров южной Европы в мировой столице моды и дизайна.',
+    overview: 'Крупнейший технический университет Италии, ведущая школа дизайна, архитектуры и инженерии в сердце европейской моды.',
     keyPrograms: [
       { name: 'Product Service System Design', degree: 'Master', lang: 'English', duration: '2 года' },
       { name: 'Computer Science and Engineering', degree: 'Bachelor & Master', lang: 'English', duration: '2-3 года' },
@@ -146,19 +145,176 @@ export const universities = [
       { name: 'Mechanical & Automation Engineering', degree: 'Master', lang: 'English', duration: '2 года' }
     ],
     admissionChecklist: [
-      'Диплом бакалавра / Аттестат (12 лет образования или 11 + 1 курс)',
+      'Диплом бакалавра / Аттестат (12 лет образования)',
       'Сертификат IELTS 6.0+',
-      'Портфолио проектов (обязательно для Дизайна и Архитектуры)',
-      'Справка о доходах семьи (для получения стипендии DSU)'
+      'Портфолио проектов (для Дизайна и Архитектуры)',
+      'Справка о доходах семьи для стипендии DSU'
     ],
     livingCostDetails: {
-      housing: '350 - 550 € (бесплатно при стипендии DSU)',
-      food: '200 - 250 €',
-      transport: '22 € (студенческий проездной ATM Milano)'
+      housing: '350 – 550 € (бесплатно при стипендии DSU)',
+      food: '200 – 250 €',
+      transport: '22 € (проездной ATM)'
     },
     websiteUrl: 'https://www.polimi.it',
-    landmarkSymbol: '🏛️ Миланский собор Дуомо & Колизей'
+    landmarkSymbol: '🏛️ Дуомо & Галерея Милана'
   },
+  {
+    id: 'unibo',
+    name: 'University of Bologna',
+    localName: 'Alma Mater Studiorum - Università di Bologna',
+    countryId: 'italy',
+    countryName: 'Италия',
+    flag: '🇮🇹',
+    city: 'Болонья',
+    qsRank: '#133 в мире (#1 старейший университет мира, 1088 г.)',
+    photo: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=1200&q=80',
+    fields: ['law', 'humanities', 'business', 'biomedicine', 'politics'],
+    degrees: ['bachelor', 'master'],
+    tuition: {
+      amount: 157,
+      text: '157 – 2 800 € / год (по ISEE снижается до 157 €)',
+      isFree: true
+    },
+    scholarship: {
+      available: true,
+      name: 'ER.GO Scholarship (Италия)',
+      coverage: 'Бесплатное обучение + бесплатное общежитие + 7 200 € / год',
+      type: 'full',
+      description: 'Региональная стипендия Эмилии-Романьи. Назначается по финансовому положению семьи.'
+    },
+    languageReq: {
+      ielts: '5.5',
+      toefl: '72',
+      noExamOption: true,
+      examDescription: 'IELTS 5.5-6.0 или сдача вступительного теста TOLC'
+    },
+    deadline: '30 апреля / 15 июля',
+    livingCostMonth: 720,
+    overview: 'Старейший непрерывно действующий университет западного мира. Родина Болонского процесса и один из самых оживленных студенческих центров Европы.',
+    keyPrograms: [
+      { name: 'Economics and Finance (CLEF)', degree: 'Bachelor', lang: 'English', duration: '3 года' },
+      { name: 'International and Diplomatic Sciences', degree: 'Bachelor & Master', lang: 'English', duration: '3 года' },
+      { name: 'Pharmacy & Biotechnology', degree: 'Bachelor & Master', lang: 'English', duration: '3-5 лет' }
+    ],
+    admissionChecklist: [
+      'Сдача онлайн-теста TOLC',
+      'Декларация Dichiarazione di Valore / CIMEA',
+      'Заявка на стипендию ER.GO'
+    ],
+    livingCostDetails: {
+      housing: '300 – 450 € (бесплатно по ER.GO)',
+      food: '180 – 230 €',
+      transport: '20 € в месяц'
+    },
+    websiteUrl: 'https://www.unibo.it',
+    landmarkSymbol: '🏛️ Две башни Болоньи'
+  },
+
+  // --- ГЕРМАНИЯ ---
+  {
+    id: 'tum',
+    name: 'Technical University of Munich (TUM)',
+    localName: 'Technische Universität München',
+    countryId: 'germany',
+    countryName: 'Германия',
+    flag: '🇩🇪',
+    city: 'Мюнхен',
+    qsRank: '#28 в мире (#1 в Германии)',
+    photo: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=80',
+    fields: ['engineering', 'it', 'business', 'natural_sciences', 'biomedicine'],
+    degrees: ['bachelor', 'master'],
+    tuition: {
+      amount: 150,
+      text: '~150 € / семестр (0 € за само обучение)',
+      isFree: true
+    },
+    scholarship: {
+      available: true,
+      name: 'DAAD & Deutschlandstipendium',
+      coverage: '300 – 934 € в месяц',
+      type: 'full',
+      description: 'Государственная программа поддержки талантливых студентов и ученых.'
+    },
+    languageReq: {
+      ielts: '6.5',
+      toefl: '88',
+      noExamOption: false,
+      examDescription: 'IELTS 6.5+ или TOEFL 88+ для программ на английском, либо TestDaF для немецкого'
+    },
+    deadline: '15 июля (зимний) / 15 января (летний)',
+    livingCostMonth: 1050,
+    overview: 'Один из самых авторитетных технических институтов мира, ключевой партнер BMW, Siemens и европейского стартап-хаба.',
+    keyPrograms: [
+      { name: 'Informatics & Artificial Intelligence', degree: 'Bachelor & Master', lang: 'EN / DE', duration: '3 года' },
+      { name: 'Management & Technology (TUM-BWL)', degree: 'Bachelor & Master', lang: 'English', duration: '3 года' },
+      { name: 'Robotics, Cognition, Intelligence', degree: 'Master', lang: 'English', duration: '2 года' }
+    ],
+    admissionChecklist: [
+      'Аттестат с высоким средним баллом',
+      'Сертификат IELTS 6.5 или TestDaF',
+      'Для выпускников 11 классов: 1 год Studienkolleg или ВУЗа'
+    ],
+    livingCostDetails: {
+      housing: '450 – 650 €',
+      food: '250 – 300 €',
+      transport: '29 € (Deutschlandticket)'
+    },
+    websiteUrl: 'https://www.tum.de',
+    landmarkSymbol: '🏛️ Баварские Альпы & Бранденбургские ворота'
+  },
+  {
+    id: 'rwth',
+    name: 'RWTH Aachen University',
+    localName: 'Rheinisch-Westfälische Technische Hochschule Aachen',
+    countryId: 'germany',
+    countryName: 'Германия',
+    flag: '🇩🇪',
+    city: 'Аахен',
+    qsRank: '#99 в мире (#2 по машиностроению в Германии)',
+    photo: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80',
+    fields: ['engineering', 'it', 'natural_sciences'],
+    degrees: ['bachelor', 'master'],
+    tuition: {
+      amount: 320,
+      text: '320 € / семестр (включает проездной по всей Германии)',
+      isFree: true
+    },
+    scholarship: {
+      available: true,
+      name: 'Гранты DAAD & NRW Scholarship',
+      coverage: 'до 934 € в месяц',
+      type: 'full',
+      description: 'Федеральные программы поддержки студентов в технических специальностях.'
+    },
+    languageReq: {
+      ielts: '6.5',
+      toefl: '90',
+      noExamOption: false,
+      examDescription: 'IELTS 6.5 для англоязычных программ или TestDaF 4x4 для немецких'
+    },
+    deadline: '1 марта / 15 июля',
+    livingCostMonth: 820,
+    overview: 'Инженерное сердце немецкого автопрома и тяжелого машиностроения. Прямые лаборатории с Siemens, BMW, Bosch прямо в кампусе.',
+    keyPrograms: [
+      { name: 'Mechanical Engineering (Maschinenbau)', degree: 'Bachelor & Master', lang: 'DE / EN', duration: '3-4 года' },
+      { name: 'Computer Science & Data Engineering', degree: 'Master', lang: 'English', duration: '2 года' },
+      { name: 'Automotive Engineering', degree: 'Master', lang: 'English', duration: '2 года' }
+    ],
+    admissionChecklist: [
+      'Школьный аттестат + 1 курс ВУЗа или Studienkolleg',
+      'Сертификат немецкого или английского языка',
+      'Прохождение GRE для магистерских программ'
+    ],
+    livingCostDetails: {
+      housing: '280 – 450 €',
+      food: '200 – 240 €',
+      transport: '0 € (входит в студенческий взнос)'
+    },
+    websiteUrl: 'https://www.rwth-aachen.de',
+    landmarkSymbol: '🏛️ Аахенский собор'
+  },
+
+  // --- ФРАНЦИЯ ---
   {
     id: 'sorbonne',
     name: 'Sorbonne University',
@@ -169,7 +325,7 @@ export const universities = [
     city: 'Париж',
     qsRank: '#59 в мире',
     photo: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1200&q=80',
-    fields: ['medicine', 'social', 'it', 'engineering'],
+    fields: ['humanities', 'biomedicine', 'natural_sciences', 'health'],
     degrees: ['bachelor', 'master'],
     tuition: {
       amount: 175,
@@ -181,37 +337,404 @@ export const universities = [
       name: 'Eiffel Excellence & Субсидия CAF',
       coverage: '1 181 €/мес + компенсация жилья до 250 €/мес',
       type: 'full',
-      description: 'Французская правительственная стипендия Eiffel + государственная субсидия на жилье CAF для каждого студента.'
+      description: 'Французская правительственная стипендия Eiffel + государственная субсидия на жилье CAF.'
     },
     languageReq: {
       ielts: '6.5',
       toefl: '85',
       noExamOption: false,
-      examDescription: 'DELF B2 / DALF C1 для франкоязычных программ или IELTS 6.5 для программ на английском'
+      examDescription: 'DELF B2 / DALF C1 для французского или IELTS 6.5 для программ на английском'
     },
-    deadline: '15 декабря (через Campus France) / 15 марта',
+    deadline: '15 декабря (Campus France) / 15 марта',
     livingCostMonth: 950,
-    overview: 'Легендарный исторический университет в Латинском квартале Парижа, объединяющий глубокие традиции европейской науки и передовые биомедицинские лаборатории.',
+    overview: 'Легендарный исторический университет в Латинском квартале Парижа с глубочайшими академическими традициями.',
     keyPrograms: [
       { name: 'Biomedical Sciences & Genetics', degree: 'Bachelor & Master', lang: 'EN / FR', duration: '3 года' },
-      { name: 'Computer Science & Computational Biology', degree: 'Master', lang: 'English', duration: '2 года' },
       { name: 'Philosophy and European Literature', degree: 'Bachelor', lang: 'French', duration: '3 года' },
       { name: 'Quantum Information Science', degree: 'Master', lang: 'English', duration: '2 года' }
     ],
     admissionChecklist: [
-      'Подача досье через портал Études en France (Campus France)',
+      'Подача досье через портал Campus France',
       'Академическая выписка с отличными оценками',
-      'Языковой сертификат (DELF B2 или IELTS 6.5+)',
-      'Мотивационное письмо на французском или английском'
+      'DELF B2 или IELTS 6.5+'
     ],
     livingCostDetails: {
-      housing: '450 - 700 € (с учетом скидки от субсидии CAF)',
-      food: '200 - 270 € (студенческие обеды CROUS всего за 1€ / 3.3€)',
-      transport: '38 € (Imagine R студенческий проездной)'
+      housing: '450 – 700 € (со скидкой CAF)',
+      food: '200 – 270 €',
+      transport: '38 € (Imagine R)'
     },
     websiteUrl: 'https://www.sorbonne-universite.fr',
-    landmarkSymbol: '🗼 Эйфелева башня и Латинский квартал'
+    landmarkSymbol: '🗼 Эйфелева башня & Латинский квартал'
   },
+  {
+    id: 'sciencespo',
+    name: 'Sciences Po Paris',
+    localName: 'Institut d\'études politiques de Paris',
+    countryId: 'france',
+    countryName: 'Франция',
+    flag: '🇫🇷',
+    city: 'Париж',
+    qsRank: '#2 в мире по Политике и Международным отношениям',
+    photo: 'https://images.unsplash.com/photo-1520939817895-060bdef4bf1a?auto=format&fit=crop&w=1200&q=80',
+    fields: ['politics', 'law', 'business', 'humanities'],
+    degrees: ['bachelor', 'master'],
+    tuition: {
+      amount: 14000,
+      text: 'От 0 € по стипендиям до 14 000 € / год',
+      isFree: false
+    },
+    scholarship: {
+      available: true,
+      name: 'Emile Boutmy Scholarship',
+      coverage: 'до 14 210 € в год (полная оплата учебы)',
+      type: 'full',
+      description: 'Специальная стипендия Sciences Po для выдающихся международных студентов.'
+    },
+    languageReq: {
+      ielts: '7.0',
+      toefl: '100',
+      noExamOption: false,
+      examDescription: 'IELTS 7.0 или TOEFL 100+ для англоязычного трека'
+    },
+    deadline: '28 февраля',
+    livingCostMonth: 1050,
+    overview: 'Ведущий мировой институт подготовки президентов, премьер-министров, дипломатов и лидеров международных организаций.',
+    keyPrograms: [
+      { name: 'International Governance and Diplomacy', degree: 'Master', lang: 'English', duration: '2 года' },
+      { name: 'European Studies & Public Affairs', degree: 'Master', lang: 'English', duration: '2 года' },
+      { name: 'Economics and Public Policy', degree: 'Master', lang: 'English', duration: '2 года' }
+    ],
+    admissionChecklist: [
+      'Мотивационное эссе и три академических рекомендации',
+      'IELTS 7.0+',
+      'Онлайн-собеседование с приемной комиссией'
+    ],
+    livingCostDetails: {
+      housing: '550 – 800 €',
+      food: '250 – 300 €',
+      transport: '38 €'
+    },
+    websiteUrl: 'https://www.sciencespo.fr',
+    landmarkSymbol: '🏛️ Сен-Жермен-де-Пре'
+  },
+
+  // --- СЛОВАКИЯ ---
+  {
+    id: 'comenius',
+    name: 'Comenius University in Bratislava',
+    localName: 'Univerzita Komenského v Bratislave',
+    countryId: 'slovakia',
+    countryName: 'Словакия',
+    flag: '🇸🇰',
+    city: 'Братислава',
+    qsRank: '#651 в мире (#1 в Словакии)',
+    photo: 'https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=1200&q=80',
+    fields: ['biomedicine', 'law', 'it', 'natural_sciences', 'humanities'],
+    degrees: ['bachelor', 'master'],
+    tuition: {
+      amount: 0,
+      text: '0 € (на словацком языке) / от 2 500 € (на английском)',
+      isFree: true
+    },
+    scholarship: {
+      available: true,
+      name: 'Стипендия Правительства Словацкой Республики',
+      coverage: 'Бесплатная учеба + до 400 € / месяц',
+      type: 'full',
+      description: 'Государственная программа Словакии для талантливых иностранных абитуриентов.'
+    },
+    languageReq: {
+      ielts: '5.5',
+      toefl: '70',
+      noExamOption: true,
+      examDescription: 'Без экзамена при зачислении на словацкое отделение после подготовительного года'
+    },
+    deadline: '28 февраля / 30 апреля',
+    livingCostMonth: 580,
+    overview: 'Старейший университет Словакии (основан в 1919 г.), славится медицинским и юридическим факультетами в получасе езды от Вены.',
+    keyPrograms: [
+      { name: 'General Medicine (MUDr)', degree: 'Master', lang: 'English / SK', duration: '6 лет' },
+      { name: 'Applied Informatics & Software', degree: 'Bachelor', lang: 'Slovak / English', duration: '3 года' },
+      { name: 'European Law and Integration', degree: 'Master', lang: 'Slovak', duration: '2 года' }
+    ],
+    admissionChecklist: [
+      'Нострификация школьного аттестата в Словакии',
+      'Базовый сертификат словацкого B1-B2 или английского IELTS 5.5'
+    ],
+    livingCostDetails: {
+      housing: '150 – 250 € (университетские общежития)',
+      food: '160 – 200 €',
+      transport: '12 € в месяц'
+    },
+    websiteUrl: 'https://uniba.sk',
+    landmarkSymbol: '🏰 Братиславский град & Дунай'
+  },
+
+  // --- ПОРТУГАЛИЯ ---
+  {
+    id: 'ulisboa',
+    name: 'University of Lisbon',
+    localName: 'Universidade de Lisboa',
+    countryId: 'portugal',
+    countryName: 'Португалия',
+    flag: '🇵🇹',
+    city: 'Лиссабон',
+    qsRank: '#266 в мире (#1 в Португалии)',
+    photo: 'https://images.unsplash.com/photo-1508672019048-805b876b67e2?auto=format&fit=crop&w=1200&q=80',
+    fields: ['engineering', 'it', 'design', 'business', 'law'],
+    degrees: ['bachelor', 'master'],
+    tuition: {
+      amount: 1500,
+      text: '1 500 – 3 500 € / год (очень доступно)',
+      isFree: false
+    },
+    scholarship: {
+      available: true,
+      name: 'Стипендии Camões & FCT',
+      coverage: 'Покрытие стоимости учебы + до 650 €/мес',
+      type: 'partial',
+      description: 'Португальские фонды поддержки научно-технических исследований.'
+    },
+    languageReq: {
+      ielts: '6.0',
+      toefl: '80',
+      noExamOption: true,
+      examDescription: 'IELTS 6.0 для программ на английском или CAPLE B2'
+    },
+    deadline: '31 мая / 15 июля',
+    livingCostMonth: 680,
+    overview: 'Ведущий исследовательский центр Португалии. Кампус Instituto Superior Técnico (IST) готовит инженеров мирового класса.',
+    keyPrograms: [
+      { name: 'Data Science and Engineering', degree: 'Master', lang: 'English', duration: '2 года' },
+      { name: 'Architecture and Urbanism', degree: 'Bachelor & Master', lang: 'PT / EN', duration: '5 лет' },
+      { name: 'International Management & Finance', degree: 'Bachelor', lang: 'English', duration: '3 года' }
+    ],
+    admissionChecklist: [
+      'Эквиваленция аттестата в DGES Portugal',
+      'IELTS 6.0 или вступительный экзамен Enade'
+    ],
+    livingCostDetails: {
+      housing: '280 – 450 €',
+      food: '180 – 220 €',
+      transport: '20 € (проездной Navegante)'
+    },
+    websiteUrl: 'https://www.ulisboa.pt',
+    landmarkSymbol: '🚋 Башня Белен & Желтый трамвай'
+  },
+
+  // --- АВСТРИЯ ---
+  {
+    id: 'univie',
+    name: 'University of Vienna',
+    localName: 'Universität Wien',
+    countryId: 'austria',
+    countryName: 'Австрия',
+    flag: '🇦🇹',
+    city: 'Вена',
+    qsRank: '#130 в мире',
+    photo: 'https://images.unsplash.com/photo-1516550893923-42d28e5677af?auto=format&fit=crop&w=1200&q=80',
+    fields: ['humanities', 'business', 'law', 'it', 'natural_sciences'],
+    degrees: ['bachelor', 'master'],
+    tuition: {
+      amount: 726,
+      text: '726 € / семестр (~1 450 € / год)',
+      isFree: true
+    },
+    scholarship: {
+      available: true,
+      name: 'ÖAD Grants & Ernst Mach Grant',
+      coverage: 'до 1 050 € в месяц',
+      type: 'partial',
+      description: 'Австрийские академические гранты для иностранных студентов.'
+    },
+    languageReq: {
+      ielts: '6.5',
+      toefl: '90',
+      noExamOption: true,
+      examDescription: 'Немецкий A2 для зачисления на курсы VWU при ВУЗе, либо B2/C1'
+    },
+    deadline: '5 сентября / 5 февраля',
+    livingCostMonth: 900,
+    overview: 'Один из крупнейших и старейших университетов Европы (основан в 1365 г.), выпустивший 15 нобелевских лауреатов.',
+    keyPrograms: [
+      { name: 'Data Science & Scientific Computing', degree: 'Master', lang: 'English', duration: '2 года' },
+      { name: 'Economics and Global Business', degree: 'Master', lang: 'English', duration: '2 года' },
+      { name: 'International Legal Studies (LLM)', degree: 'Master', lang: 'English', duration: '1 год' }
+    ],
+    admissionChecklist: [
+      'Справка об особом праве на учебу (Studienplatznachweis)',
+      'Аттестат с апостилем и нотариальным переводом',
+      'Немецкий язык от A2'
+    ],
+    livingCostDetails: {
+      housing: '380 – 550 €',
+      food: '230 – 280 €',
+      transport: '30 € в месяц'
+    },
+    websiteUrl: 'https://www.univie.ac.at',
+    landmarkSymbol: '🏔️ Дворец Бельведер & Венская опера'
+  },
+
+  // --- ФИНЛЯНДИЯ ---
+  {
+    id: 'helsinki',
+    name: 'University of Helsinki',
+    localName: 'Helsingin yliopisto',
+    countryId: 'finland',
+    countryName: 'Финляндия',
+    flag: '🇫🇮',
+    city: 'Хельсинки',
+    qsRank: '#115 в мире (#1 в Финляндии)',
+    photo: 'https://images.unsplash.com/photo-1538332576228-eb5b4c4de6f5?auto=format&fit=crop&w=1200&q=80',
+    fields: ['natural_sciences', 'biomedicine', 'it', 'health', 'humanities'],
+    degrees: ['bachelor', 'master'],
+    tuition: {
+      amount: 13000,
+      text: '0 € (EU) / 13 000 € (Non-EU, гранты до 100%)',
+      isFree: false
+    },
+    scholarship: {
+      available: true,
+      name: 'Helsinki University Scholarship Programme',
+      coverage: '100% покрытия учебы + 10 000 € грант на жизнь',
+      type: 'full',
+      description: 'Финская государственная стипендия для лучших иностранных студентов магистратуры.'
+    },
+    languageReq: {
+      ielts: '6.5',
+      toefl: '92',
+      noExamOption: false,
+      examDescription: 'IELTS 6.5 (минимум 6.0 по writing) или TOEFL 92+'
+    },
+    deadline: '3 января (единый финский intake)',
+    livingCostMonth: 950,
+    overview: 'Флагман финской системы образования — самой передовой в мире. Мировые исследования в экологии, генетике и квантовых вычислениях.',
+    keyPrograms: [
+      { name: 'Atmospheric Sciences & Climate Change', degree: 'Master', lang: 'English', duration: '2 года' },
+      { name: 'Computer Science (AI & Algorithms)', degree: 'Bachelor & Master', lang: 'English', duration: '3 года' },
+      { name: 'Translational Medicine', degree: 'Master', lang: 'English', duration: '2 года' }
+    ],
+    admissionChecklist: [
+      'Подача через общефинский портал Studyinfo.fi',
+      'IELTS 6.5+ или TOEFL 92+',
+      'Академическое мотивационное письмо'
+    ],
+    livingCostDetails: {
+      housing: '350 – 550 € (HOAS студенческое жилье)',
+      food: '220 – 280 €',
+      transport: '35 € (HSL студенческий тариф)'
+    },
+    websiteUrl: 'https://www.helsinki.fi',
+    landmarkSymbol: '🌲 Белоснежный собор Хельсинки & Озера'
+  },
+
+  // --- ШВЕЦИЯ ---
+  {
+    id: 'kth',
+    name: 'KTH Royal Institute of Technology',
+    localName: 'Kungliga Tekniska högskolan',
+    countryId: 'sweden',
+    countryName: 'Швеция',
+    flag: '🇸🇪',
+    city: 'Стокгольм',
+    qsRank: '#73 в мире',
+    photo: 'https://images.unsplash.com/photo-1509356843151-3e7d96241e11?auto=format&fit=crop&w=1200&q=80',
+    fields: ['engineering', 'it', 'design', 'natural_sciences'],
+    degrees: ['bachelor', 'master'],
+    tuition: {
+      amount: 0,
+      text: '0 € (EU) / 13 000 – 16 000 € (Non-EU)',
+      isFree: false
+    },
+    scholarship: {
+      available: true,
+      name: 'KTH Scholarship & Swedish Institute (SI)',
+      coverage: '100% покрытия учебы + стипендия 12 000 SEK (~1 050 €/мес)',
+      type: 'full',
+      description: 'Государственная стипендия правительства Швеции Swedish Institute покрывает проживание, страховку и учебу.'
+    },
+    languageReq: {
+      ielts: '6.5',
+      toefl: '90',
+      noExamOption: false,
+      examDescription: 'IELTS 6.5 (минимум 5.5 по секциям) или TOEFL 90+'
+    },
+    deadline: '15 января (Universityadmissions.se)',
+    livingCostMonth: 1150,
+    overview: 'Главный центр скандинавской инженерной мысли. KTH тесно сотрудничает со Spotify, Ericsson, Volvo и шведскими эко-кластерами.',
+    keyPrograms: [
+      { name: 'Information and Communication Technology (BSc)', degree: 'Bachelor', lang: 'English', duration: '3 года' },
+      { name: 'Machine Learning (MSc)', degree: 'Master', lang: 'English', duration: '2 года' },
+      { name: 'Interactive Media Technology & Design', degree: 'Master', lang: 'English', duration: '2 года' }
+    ],
+    admissionChecklist: [
+      'Подача через общешведский портал Universityadmissions.se',
+      'Выписка оценок с сильным математическим профилем',
+      'Сертификат IELTS 6.5 или TOEFL 90'
+    ],
+    livingCostDetails: {
+      housing: '500 – 750 € (очередь SSSB)',
+      food: '260 – 320 €',
+      transport: '55 € (SL Stockholm)'
+    },
+    websiteUrl: 'https://www.kth.se',
+    landmarkSymbol: '✨ Северное сияние & Стокгольм'
+  },
+
+  // --- НОРВЕГИЯ ---
+  {
+    id: 'uio',
+    name: 'University of Oslo',
+    localName: 'Universitetet i Oslo',
+    countryId: 'norway',
+    countryName: 'Норвегия',
+    flag: '🇳🇴',
+    city: 'Осло',
+    qsRank: '#117 в мире (#1 в Норвегии)',
+    photo: 'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=1200&q=80',
+    fields: ['natural_sciences', 'biomedicine', 'it', 'law', 'humanities'],
+    degrees: ['bachelor', 'master'],
+    tuition: {
+      amount: 11000,
+      text: '8 000 – 13 000 € / год (госвуз)',
+      isFree: false
+    },
+    scholarship: {
+      available: true,
+      name: 'Norwegian Research Council Grants',
+      coverage: 'Покрытие расходов на исследования и гранты',
+      type: 'partial',
+      description: 'Норвежские научные стипендии для исследовательских программ.'
+    },
+    languageReq: {
+      ielts: '6.5',
+      toefl: '90',
+      noExamOption: false,
+      examDescription: 'IELTS 6.5 или TOEFL 90+'
+    },
+    deadline: '1 декабря / 1 февраля',
+    livingCostMonth: 1250,
+    overview: 'Старейший и престижнейший университет Норвегии. Лидер в изучении морской экологии, энергетики, астрофизики и международного права.',
+    keyPrograms: [
+      { name: 'Marine Biology & Arctic Ecology', degree: 'Master', lang: 'English', duration: '2 года' },
+      { name: 'Computational Science & Data', degree: 'Master', lang: 'English', duration: '2 года' },
+      { name: 'Public International Law', degree: 'Master', lang: 'English', duration: '1.5 года' }
+    ],
+    admissionChecklist: [
+      'Подача через портал Samordna opptak',
+      'Выписка оценок GPA > 4.2/5',
+      'Сертификат IELTS 6.5+'
+    ],
+    livingCostDetails: {
+      housing: '550 – 800 € (SiO общежития)',
+      food: '300 – 380 €',
+      transport: '45 € (Ruter проездной)'
+    },
+    websiteUrl: 'https://www.uio.no',
+    landmarkSymbol: '🏞️ Норвежские фьорды & Осло'
+  },
+
+  // --- ЧЕХИЯ ---
   {
     id: 'charles',
     name: 'Charles University in Prague',
@@ -222,7 +745,7 @@ export const universities = [
     city: 'Прага',
     qsRank: '#248 в мире (#1 в Центральной Европе)',
     photo: 'https://images.unsplash.com/photo-1541849546-216549ae216d?auto=format&fit=crop&w=1200&q=80',
-    fields: ['medicine', 'social', 'it', 'business'],
+    fields: ['biomedicine', 'humanities', 'it', 'business', 'law'],
     degrees: ['bachelor', 'master'],
     tuition: {
       amount: 0,
@@ -240,401 +763,136 @@ export const universities = [
       ielts: '6.0',
       toefl: '80',
       noExamOption: true,
-      examDescription: 'Без экзамена при поступлении на языковые подготовительные курсы UJOP или чешский язык B2'
+      examDescription: 'Без экзамена при зачислении на языковые курсы UJOP или чешский B2'
     },
-    deadline: '28 февраля (на программы) / 31 мая (на подкурсы)',
+    deadline: '28 февраля / 31 мая',
     livingCostMonth: 650,
-    overview: 'Основан в 1348 году королем Карлом IV. Один из старейших университетов мира с выдающимися медицинскими и гуманитарными факультетами.',
+    overview: 'Основан в 1348 году королем Карлом IV. Один из старейших университетов мира с легендарными медицинскими и гуманитарными факультетами.',
     keyPrograms: [
-      { name: 'General Medicine (MUDr)', degree: 'Master (6 лет)', lang: 'English / CZ', duration: '6 лет' },
+      { name: 'General Medicine (MUDr)', degree: 'Master', lang: 'English / CZ', duration: '6 лет' },
       { name: 'Computer Science (Artificial Intelligence)', degree: 'Bachelor & Master', lang: 'EN / CZ', duration: '3 года' },
-      { name: 'International Relations & European Studies', degree: 'Bachelor & Master', lang: 'English', duration: '3 года' },
-      { name: 'Economics and Finance (IES)', degree: 'Bachelor & Master', lang: 'English', duration: '3 года' }
+      { name: 'International Relations & European Studies', degree: 'Bachelor & Master', lang: 'English', duration: '3 года' }
     ],
     admissionChecklist: [
       'Нострификация школьного аттестата или диплома в Чехии',
-      'Вступительные экзамены по профильным предметам (тесты SCIO / OSP)',
-      'Сертификат чешского языка B2 (для бесплатного отделения) или IELTS 6.0'
+      'Вступительные тесты SCIO / OSP',
+      'Сертификат чешского B2 или IELTS 6.0'
     ],
     livingCostDetails: {
-      housing: '200 - 350 € (университетское общежитие Kolej)',
-      food: '180 - 240 €',
-      transport: '6 € в месяц (студенческий проездной Lítačka)'
+      housing: '200 – 350 € (общежитие Kolej)',
+      food: '180 – 240 €',
+      transport: '6 € в месяц (Lítačka)'
     },
     websiteUrl: 'https://cuni.cz',
-    landmarkSymbol: '🌉 Карлов мост и Пражский град'
+    landmarkSymbol: '🌉 Карлов мост & Пражский град'
   },
+
+  // --- ШВЕЙЦАРИЯ ---
   {
-    id: 'tudelft',
-    name: 'Delft University of Technology (TU Delft)',
-    localName: 'Technische Universiteit Delft',
-    countryId: 'netherlands',
-    countryName: 'Нидерланды',
-    flag: '🇳🇱',
-    city: 'Делфт',
-    qsRank: '#49 в мире (#3 в Европе по инженерии)',
-    photo: 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1200&q=80',
-    fields: ['engineering', 'it', 'design'],
+    id: 'eth',
+    name: 'ETH Zurich',
+    localName: 'Eidgenössische Technische Hochschule Zürich',
+    countryId: 'switzerland',
+    countryName: 'Швейцария',
+    flag: '🇨🇭',
+    city: 'Цюрих',
+    qsRank: '#7 в мире (#1 в континентальной Европе)',
+    photo: 'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=1200&q=80',
+    fields: ['engineering', 'it', 'natural_sciences', 'architecture'],
     degrees: ['bachelor', 'master'],
     tuition: {
-      amount: 2530,
-      text: '2 530 € (EU) / 16 000 € (Non-EU)',
+      amount: 730,
+      text: '730 CHF (~760 €) за семестр в госвузе №7 в мире!',
+      isFree: true
+    },
+    scholarship: {
+      available: true,
+      name: 'Excellence Scholarship & Opportunity Programme (ESOP)',
+      coverage: 'Полная стипендия 12 000 CHF / семестр + освобождение от взносов',
+      type: 'full',
+      description: 'Престижная стипендия ETH Zurich для выдающихся студентов магистратуры со всего мира.'
+    },
+    languageReq: {
+      ielts: '7.0',
+      toefl: '100',
+      noExamOption: false,
+      examDescription: 'IELTS 7.0 или TOEFL 100+ для магистратуры на английском'
+    },
+    deadline: '15 декабря (международные заявки)',
+    livingCostMonth: 1650,
+    overview: 'Альма-матер Альберта Эйнштейна. Мировой лидер в области робототехники, квантовых технологий, физики и искусственного интеллекта.',
+    keyPrograms: [
+      { name: 'Computer Science (Visual & Data Intelligence)', degree: 'Master', lang: 'English', duration: '2 года' },
+      { name: 'Quantum Engineering', degree: 'Master', lang: 'English', duration: '2 года' },
+      { name: 'Robotics, Systems and Control', degree: 'Master', lang: 'English', duration: '2 года' }
+    ],
+    admissionChecklist: [
+      'Диплом бакалавра с наивысшими оценками (top 5% курса)',
+      'IELTS 7.0+ или TOEFL 100+',
+      'Сертификат GRE (рекомендуется)'
+    ],
+    livingCostDetails: {
+      housing: '700 – 1 000 € (студенческие WOKO)',
+      food: '400 – 500 €',
+      transport: '65 € в месяц'
+    },
+    websiteUrl: 'https://ethz.ch',
+    landmarkSymbol: '🏔️ Маттерхорн & Цюрихское озеро'
+  },
+
+  // --- БЕЛЬГИЯ ---
+  {
+    id: 'kuleuven',
+    name: 'KU Leuven',
+    localName: 'Katholieke Universiteit Leuven',
+    countryId: 'belgium',
+    countryName: 'Бельгия',
+    flag: '🇧🇪',
+    city: 'Лёвен',
+    qsRank: '#63 в мире (#1 самый инновационный ВУЗ Европы по Reuters)',
+    photo: 'https://images.unsplash.com/photo-1549144511-f099e773c147?auto=format&fit=crop&w=1200&q=80',
+    fields: ['engineering', 'it', 'law', 'business', 'biomedicine', 'humanities'],
+    degrees: ['bachelor', 'master'],
+    tuition: {
+      amount: 1100,
+      text: '1 100 – 3 500 € / год (госвуз)',
       isFree: false
     },
     scholarship: {
       available: true,
-      name: 'Justus & Louise van Effen Excellence',
-      coverage: '100% стоимости обучения + расходы на проживание',
+      name: 'Master Mind Scholarship (Фландрия, Бельгия)',
+      coverage: 'до 10 000 € / год + бесплатная учеба',
       type: 'full',
-      description: 'Престижнейший грант для выдающихся инженеров и исследователей со всего мира.'
+      description: 'Государственная программа правительства Фландрии для иностранных студентов.'
     },
     languageReq: {
       ielts: '6.5',
       toefl: '90',
       noExamOption: false,
-      examDescription: 'IELTS 6.5 (минимум 6.0 по всем секциям) или TOEFL 90+'
+      examDescription: 'IELTS 6.5 или TOEFL 90+'
     },
-    deadline: '15 января (для стипендий и Numerus Fixus) / 1 апреля',
-    livingCostMonth: 1100,
-    overview: 'Инженерная Мекка Европы. Кампус TU Delft признан одним из самых футуристичных: именно здесь создаются Hyperloop, квантовые компьютеры и эко-города.',
+    deadline: '1 марта (для стипендий) / 1 июня',
+    livingCostMonth: 850,
+    overview: 'Основан в 1425 году. Один из главных научных центров Европы, колыбель европейского микроэлектронного центра IMEC.',
     keyPrograms: [
-      { name: 'Aerospace Engineering (BSc & MSc)', degree: 'Bachelor & Master', lang: 'English', duration: '3 года' },
-      { name: 'Computer Science and Engineering', degree: 'Bachelor & Master', lang: 'English', duration: '3 года' },
-      { name: 'Sustainable Energy Technology', degree: 'Master', lang: 'English', duration: '2 года' },
-      { name: 'Integrated Product Design', degree: 'Master', lang: 'English', duration: '2 года' }
+      { name: 'Engineering Technology (BSc & MSc)', degree: 'Bachelor & Master', lang: 'English', duration: '3 года' },
+      { name: 'Artificial Intelligence (MSc)', degree: 'Master', lang: 'English', duration: '1-2 года' },
+      { name: 'European Master in Law and Economics', degree: 'Master', lang: 'English', duration: '1 год' }
     ],
     admissionChecklist: [
-      'Высочайшие баллы по физике и высшей математике',
-      'Сертификат английского языка IELTS 6.5-7.0',
-      'Успешная сдача вступительного отбора Numerus Fixus (для бакалавриата Aerospace/CS)'
+      'Аттестат / Диплом бакалавра с апостилем',
+      'IELTS 6.5+',
+      'Мотивационное письмо'
     ],
     livingCostDetails: {
-      housing: '500 - 750 € в Делфте/Гааге',
-      food: '250 - 300 €',
-      transport: 'Велосипед (город полностью адаптирован под велодвижение)'
-    },
-    websiteUrl: 'https://www.tudelft.nl',
-    landmarkSymbol: '🚲 Ветряные мельницы и футуристичный кампус Делфта'
-  },
-  {
-    id: 'uab',
-    name: 'Autonomous University of Barcelona (UAB)',
-    localName: 'Universitat Autònoma de Barcelona',
-    countryId: 'spain',
-    countryName: 'Испания',
-    flag: '🇪🇸',
-    city: 'Барселона',
-    qsRank: '#149 в мире (#1 в Испании)',
-    photo: 'https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=1200&q=80',
-    fields: ['business', 'medicine', 'social', 'design'],
-    degrees: ['bachelor', 'master'],
-    tuition: {
-      amount: 2200,
-      text: '2 200 – 4 100 € / год в государственном ВУЗе',
-      isFree: false
-    },
-    scholarship: {
-      available: true,
-      name: 'Стипендии Министерства образования Испании (MEC)',
-      coverage: 'Покрытие стоимости учебы + до 3 000 €',
-      type: 'partial',
-      description: 'Государственная программа поддержки студентов с хорошим академическим баллом.'
-    },
-    languageReq: {
-      ielts: '6.0',
-      toefl: '80',
-      noExamOption: true,
-      examDescription: 'DELE B2 для испаноязычных курсов или IELTS 6.0 для англоязычных'
-    },
-    deadline: '1 июня (ранняя подача) / 10 июля',
-    livingCostMonth: 780,
-    overview: 'Живописный зеленый кампус американского типа в 25 минутах от центра Барселоны и пляжей Средиземного моря.',
-    keyPrograms: [
-      { name: 'Business Management and Technology', degree: 'Bachelor', lang: 'English', duration: '4 года' },
-      { name: 'International Relations & Global Governance', degree: 'Bachelor & Master', lang: 'English', duration: '3-4 года' },
-      { name: 'Bioinformatics and Health Data', degree: 'Master', lang: 'English', duration: '2 года' },
-      { name: 'Audiovisual Communication & Media', degree: 'Bachelor', lang: 'ES / EN', duration: '4 года' }
-    ],
-    admissionChecklist: [
-      'Омологация школьного аттестата через UNEDasiss',
-      'Сдача экзаменов PCE (Pruebas de Competencias Específicas) для повышения балла',
-      'Языковой сертификат (IELTS 6.0 или DELE B2)'
-    ],
-    livingCostDetails: {
-      housing: '350 - 550 € (комната в Vila Universitària)',
-      food: '200 - 250 €',
-      transport: '20 € (T-Jove проездной на 3 месяца для молодежи)'
-    },
-    websiteUrl: 'https://www.uab.cat',
-    landmarkSymbol: '☀️ Саграда Фамилия и Средиземное море'
-  },
-  {
-    id: 'univie',
-    name: 'University of Vienna',
-    localName: 'Universität Wien',
-    countryId: 'austria',
-    countryName: 'Австрия',
-    flag: '🇦🇹',
-    city: 'Вена',
-    qsRank: '#130 в мире',
-    photo: 'https://images.unsplash.com/photo-1516550893923-42d28e5677af?auto=format&fit=crop&w=1200&q=80',
-    fields: ['social', 'it', 'business', 'medicine'],
-    degrees: ['bachelor', 'master'],
-    tuition: {
-      amount: 726,
-      text: '726.72 € / семестр (~1 453 € / год)',
-      isFree: true
-    },
-    scholarship: {
-      available: true,
-      name: 'ÖAD Grants & Стипендии фонда Эрнста Маха',
-      coverage: '1 050 € в месяц',
-      type: 'partial',
-      description: 'Австрийские академические гранты для иностранных студентов и исследователей.'
-    },
-    languageReq: {
-      ielts: '6.5',
-      toefl: '90',
-      noExamOption: true,
-      examDescription: 'Сертификат немецкого языка A2 для зачисления на подготовительное отделение (VWU) с доучиванием до C1'
-    },
-    deadline: '5 сентября (зимний семестр) / 5 февраля (летний)',
-    livingCostMonth: 900,
-    overview: 'Один из крупнейших и старейших университетов Европы (основан в 1365 году), выпустивший 15 нобелевских лауреатов, в культурном сердце Австрии.',
-    keyPrograms: [
-      { name: 'Data Science & Scientific Computing', degree: 'Master', lang: 'English', duration: '2 года' },
-      { name: 'Economics and Global Business', degree: 'Master', lang: 'English', duration: '2 года' },
-      { name: 'International Legal Studies (LLM)', degree: 'Master', lang: 'English', duration: '1 год' },
-      { name: 'Computer Science (Informatik)', degree: 'Bachelor', lang: 'German', duration: '3 года' }
-    ],
-    admissionChecklist: [
-      'Справка об особом праве на учебу (Studienplatznachweis)',
-      'Аттестат о среднем образовании с апостилем и переводом',
-      'Немецкий язык от A2 (с возможностью посещать курсы при университете) или B2/C1'
-    ],
-    livingCostDetails: {
-      housing: '380 - 550 € (студенческое общежитие OEAD)',
-      food: '230 - 280 €',
-      transport: '30 € в месяц (студенческий билет Wiener Linien)'
-    },
-    websiteUrl: 'https://www.univie.ac.at',
-    landmarkSymbol: '🏔️ Дворец Бельведер и Венская опера'
-  },
-  {
-    id: 'kth',
-    name: 'KTH Royal Institute of Technology',
-    localName: 'Kungliga Tekniska högskolan',
-    countryId: 'sweden',
-    countryName: 'Швеция',
-    flag: '🇸🇪',
-    city: 'Стокгольм',
-    qsRank: '#73 в мире',
-    photo: 'https://images.unsplash.com/photo-1509356843151-3e7d96241e11?auto=format&fit=crop&w=1200&q=80',
-    fields: ['it', 'engineering', 'design'],
-    degrees: ['bachelor', 'master'],
-    tuition: {
-      amount: 0,
-      text: '0 € (граждане EU) / 13 000 – 16 000 € (Non-EU)',
-      isFree: false
-    },
-    scholarship: {
-      available: true,
-      name: 'KTH Scholarship & Swedish Institute (SI)',
-      coverage: '100% покрытия обучения + стипендия 12 000 SEK (~1 050 €/мес)',
-      type: 'full',
-      description: 'Государственная стипендия правительства Швеции Swedish Institute покрывает проживание, страховку и учебу.'
-    },
-    languageReq: {
-      ielts: '6.5',
-      toefl: '90',
-      noExamOption: false,
-      examDescription: 'IELTS 6.5 (минимум 5.5 по секциям) или TOEFL 90+'
-    },
-    deadline: '15 января (единая национальная подача Universityadmissions.se)',
-    livingCostMonth: 1150,
-    overview: 'Главный центр скандинавской инженерной мысли. KTH тесно сотрудничает со Spotify, Ericsson, Volvo и шведскими эко-кластерами.',
-    keyPrograms: [
-      { name: 'Information and Communication Technology (BSc)', degree: 'Bachelor', lang: 'English', duration: '3 года' },
-      { name: 'Machine Learning (MSc)', degree: 'Master', lang: 'English', duration: '2 года' },
-      { name: 'Interactive Media Technology', degree: 'Master', lang: 'English', duration: '2 года' },
-      { name: 'Sustainable Energy Engineering', degree: 'Master', lang: 'English', duration: '2 года' }
-    ],
-    admissionChecklist: [
-      'Подача через общешведский портал Universityadmissions.se',
-      'Выписка оценок с сильным математическим профилем',
-      'Сертификат IELTS 6.5 или TOEFL 90'
-    ],
-    livingCostDetails: {
-      housing: '500 - 750 € (через SSSB очередь на общежития)',
-      food: '260 - 320 €',
-      transport: '55 € (студенческий проездной SL Stockholm)'
-    },
-    websiteUrl: 'https://www.kth.se',
-    landmarkSymbol: '✨ Северное сияние и скандинавский хайтек'
-  },
-  {
-    id: 'uw',
-    name: 'University of Warsaw',
-    localName: 'Uniwersytet Warszawski',
-    countryId: 'poland',
-    countryName: 'Польша',
-    flag: '🇵🇱',
-    city: 'Варшава',
-    qsRank: '#262 в мире (#1 в Польше)',
-    photo: 'https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&w=1200&q=80',
-    fields: ['it', 'business', 'social', 'medicine'],
-    degrees: ['bachelor', 'master'],
-    tuition: {
-      amount: 2200,
-      text: '2 000 – 3 500 € / год (очень доступно)',
-      isFree: false
-    },
-    scholarship: {
-      available: true,
-      name: 'Стипендия NAWA им. генерала Андерса / Банаха',
-      coverage: 'Бесплатное обучение + до 1 700 PLN/мес',
-      type: 'full',
-      description: 'Польское национальное агентство академических обменов предоставляет полные гранты.'
-    },
-    languageReq: {
-      ielts: '6.0',
-      toefl: '75',
-      noExamOption: true,
-      examDescription: 'IELTS 6.0 или внутреннее онлайн-собеседование на знание английского / польского'
-    },
-    deadline: '10 июля (первый тур) / 15 сентября (дополнительный)',
-    livingCostMonth: 580,
-    overview: 'Ведущий исследовательский университет Польши. Сильнейшая школа программирования и спортивного олимпиадного кодинга в Центральной Европе.',
-    keyPrograms: [
-      { name: 'Computer Science (Machine Learning Focus)', degree: 'Bachelor & Master', lang: 'English', duration: '3 года' },
-      { name: 'International Business Program (IBP)', degree: 'Bachelor', lang: 'English', duration: '3 года' },
-      { name: 'Quantitative Finance and Big Data', degree: 'Master', lang: 'English', duration: '2 года' },
-      { name: 'International Relations', degree: 'Bachelor & Master', lang: 'English', duration: '3 года' }
-    ],
-    admissionChecklist: [
-      'Регистрация в системе IRK (Internetowa Rejestracja Kandydatów)',
-      'Школьный аттестат или диплом с апостилем',
-      'Сертификат IELTS 6.0 или B2 польский/английский'
-    ],
-    livingCostDetails: {
-      housing: '180 - 320 € (общежитие / комната)',
-      food: '150 - 200 €',
-      transport: '15 € в месяц (студенческий проездной WTP)'
-    },
-    websiteUrl: 'https://en.uw.edu.pl',
-    landmarkSymbol: '🏰 Королевский замок в Варшаве'
-  },
-  {
-    id: 'unibo',
-    name: 'University of Bologna',
-    localName: 'Alma Mater Studiorum - Università di Bologna',
-    countryId: 'italy',
-    countryName: 'Италия',
-    flag: '🇮🇹',
-    city: 'Болонья',
-    qsRank: '#133 в мире (#1 старейший ВУЗ в мире, 1088 г.)',
-    photo: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=1200&q=80',
-    fields: ['social', 'medicine', 'business', 'it'],
-    degrees: ['bachelor', 'master'],
-    tuition: {
-      amount: 157,
-      text: '157 – 2 800 € / год (по ISEE снижается до 157 €)',
-      isFree: true
-    },
-    scholarship: {
-      available: true,
-      name: 'ER.GO Scholarship (Италия)',
-      coverage: 'Бесплатное обучение + бесплатное общежитие + 7 200 € в год',
-      type: 'full',
-      description: 'Региональная стипендия Эмилии-Романьи. Назначается по критерию финансового положения семьи.'
-    },
-    languageReq: {
-      ielts: '5.5',
-      toefl: '72',
-      noExamOption: true,
-      examDescription: 'IELTS 5.5-6.0 или сдача вступительного теста TOLC'
-    },
-    deadline: '30 апреля (для иностранцев non-EU) / 15 июля',
-    livingCostMonth: 720,
-    overview: 'Старейший непрерывно действующий университет западного мира. Родина Болонского процесса и один из самых оживленных студенческих центров Европы.',
-    keyPrograms: [
-      { name: 'Economics and Finance (CLEF)', degree: 'Bachelor', lang: 'English', duration: '3 года' },
-      { name: 'Pharmacy & Biotechnology', degree: 'Bachelor & Master', lang: 'English', duration: '3-5 лет' },
-      { name: 'Artificial Intelligence (MSc)', degree: 'Master', lang: 'English', duration: '2 года' },
-      { name: 'Global Cultures and Humanities', degree: 'Master', lang: 'English', duration: '2 года' }
-    ],
-    admissionChecklist: [
-      'Сдача онлайн-теста TOLC (TOLC-E для экономики, TOLC-I для инженерии)',
-      'Декларация Dichiarazione di Valore или сертификат CIMEA',
-      'Заявка на стипендию ER.GO до конца августа'
-    ],
-    livingCostDetails: {
-      housing: '300 - 450 € (бесплатно при стипендии ER.GO)',
-      food: '180 - 230 €',
+      housing: '350 – 550 €',
+      food: '220 – 260 €',
       transport: '20 € в месяц'
     },
-    websiteUrl: 'https://www.unibo.it',
-    landmarkSymbol: '🏛️ Две башни Болоньи и аркады ЮНЕСКО'
-  },
-  {
-    id: 'rwth',
-    name: 'RWTH Aachen University',
-    localName: 'Rheinisch-Westfälische Technische Hochschule Aachen',
-    countryId: 'germany',
-    countryName: 'Германия',
-    flag: '🇩🇪',
-    city: 'Аахен',
-    qsRank: '#99 в мире (#2 по машиностроению в Германии)',
-    photo: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80',
-    fields: ['engineering', 'it'],
-    degrees: ['bachelor', 'master'],
-    tuition: {
-      amount: 320,
-      text: '320 € / семестр (включает бесплатный проезд по всей Германии)',
-      isFree: true
-    },
-    scholarship: {
-      available: true,
-      name: 'Гранты DAAD & NRW Scholarship',
-      coverage: 'до 934 € в месяц',
-      type: 'full',
-      description: 'Федеральные программы поддержки студентов в технических специальностях.'
-    },
-    languageReq: {
-      ielts: '6.5',
-      toefl: '90',
-      noExamOption: false,
-      examDescription: 'IELTS 6.5 для англоязычных магистерских программ или TestDaF 4x4 для немецких'
-    },
-    deadline: '1 марта (для non-EU) / 15 июля',
-    livingCostMonth: 820,
-    overview: 'Инженерное сердце немецкого автопрома и тяжелого машиностроения. Прямые лаборатории с Siemens, BMW, Bosch и Airbus прямо в кампусе.',
-    keyPrograms: [
-      { name: 'Mechanical Engineering (Maschinenbau)', degree: 'Bachelor & Master', lang: 'DE / EN', duration: '3-4 года' },
-      { name: 'Computer Science and Data Engineering', degree: 'Master', lang: 'English', duration: '2 года' },
-      { name: 'Automotive Engineering', degree: 'Master', lang: 'English', duration: '2 года' }
-    ],
-    admissionChecklist: [
-      'Школьный аттестат + 1 курс ВУЗа или Studienkolleg (T-Kurs)',
-      'Сертификат немецкого или английского языка',
-      'Прохождение GRE для ряда магистерских программ'
-    ],
-    livingCostDetails: {
-      housing: '280 - 450 € (очень доступные студенческие общежития)',
-      food: '200 - 240 €',
-      transport: '0 € (входит в семестровый студенческий билет)'
-    },
-    websiteUrl: 'https://www.rwth-aachen.de',
-    landmarkSymbol: '🏛️ Аахенский собор Карла Великого'
+    websiteUrl: 'https://www.kuleuven.be',
+    landmarkSymbol: '🏛️ Ратуша Лёвена & Атомиум'
   }
 ];
 
-export const fieldCategories = [
-  { id: 'all', name: 'Все направления', icon: 'Sparkles' },
-  { id: 'it', name: 'IT, AI & Данные', icon: 'Code' },
-  { id: 'business', name: 'Бизнес & Менеджмент', icon: 'TrendingUp' },
-  { id: 'engineering', name: 'Инженерия & Робототехника', icon: 'Cpu' },
-  { id: 'medicine', name: 'Медицина & Биотехнологии', icon: 'HeartPulse' },
-  { id: 'design', name: 'Дизайн & Архитектура', icon: 'Palette' },
-  { id: 'social', name: 'Гуманитарные & Международные отношения', icon: 'Globe2' }
-];
+
+export { studyDirections as fieldCategories } from './directions';

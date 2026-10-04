@@ -27,22 +27,22 @@ export default function FavoritesModal({
   const favoriteUniversities = universities.filter((u) => favorites.includes(u.id));
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-900/80 backdrop-blur-md overflow-y-auto animate-fadeIn">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/75 backdrop-blur-md overflow-y-auto animate-fadeIn">
       <div
-        className="relative w-full max-w-4xl bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden my-6 text-left"
+        className="relative w-full max-w-4xl bg-[#FAF5EE] rounded-3xl shadow-2xl border-2 border-[#8B0000]/25 overflow-hidden my-6 text-left"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-5 sm:p-6 border-b border-slate-100 bg-slate-50/80">
+        <div className="flex items-center justify-between p-5 sm:p-6 border-b border-[#8B0000]/15 bg-[#EFE0CD]/50">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-rose-50 border border-rose-100 flex items-center justify-center text-rose-500">
+            <div className="w-10 h-10 rounded-2xl bg-[#8B0000]/10 border border-[#8B0000]/20 flex items-center justify-center text-[#8B0000]">
               <Heart className="w-5 h-5 fill-current" />
             </div>
             <div>
-              <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
+              <h2 className="text-xl sm:text-2xl font-black text-[#8B0000] tracking-tight">
                 Избранные университеты
               </h2>
-              <p className="text-xs text-slate-500">
+              <p className="text-xs text-[#2D1810]/70 font-medium">
                 Сохранено программ: {favoriteUniversities.length}
               </p>
             </div>
@@ -54,8 +54,8 @@ export default function FavoritesModal({
                 onClick={() => setViewMode(viewMode === 'list' ? 'compare' : 'list')}
                 className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${
                   viewMode === 'compare'
-                    ? 'bg-blue-600 text-white shadow-xs'
-                    : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-100'
+                    ? 'bg-[#8B0000] text-[#EFE0CD] shadow-xs'
+                    : 'bg-white border border-[#8B0000]/20 text-[#8B0000] hover:bg-[#FAF5EE]'
                 }`}
               >
                 <Scale className="w-4 h-4" />
@@ -65,7 +65,7 @@ export default function FavoritesModal({
 
             <button
               onClick={onClose}
-              className="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-200 transition-colors"
+              className="p-2 rounded-xl text-[#8B0000] hover:bg-[#8B0000]/10 transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
@@ -76,18 +76,18 @@ export default function FavoritesModal({
         <div className="p-5 sm:p-6 max-h-[65vh] overflow-y-auto">
           {favoriteUniversities.length === 0 ? (
             <div className="py-12 text-center">
-              <div className="w-16 h-16 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center mx-auto mb-3">
+              <div className="w-16 h-16 rounded-full bg-[#EFE0CD] text-[#8B0000] flex items-center justify-center mx-auto mb-3">
                 <Heart className="w-8 h-8" />
               </div>
-              <h3 className="text-lg font-bold text-slate-800 mb-1">
+              <h3 className="text-lg font-bold text-[#8B0000] mb-1">
                 В вашем списке пока пусто
               </h3>
-              <p className="text-xs sm:text-sm text-slate-500 max-w-sm mx-auto mb-6">
-                Нажимайте на иконку сердечка на карточках университетов в каталоге, чтобы сохранить их сюда и сравнить между собой.
+              <p className="text-xs sm:text-sm text-[#2D1810]/70 max-w-sm mx-auto mb-6">
+                Нажимайте на иконку сердечка на карточках университетов, чтобы сохранить их сюда и сравнить между собой.
               </p>
               <button
                 onClick={onClose}
-                className="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-bold rounded-xl shadow-xs transition-colors"
+                className="px-5 py-2.5 bg-[#8B0000] hover:bg-[#630000] text-[#EFE0CD] text-xs sm:text-sm font-bold rounded-xl shadow-xs transition-colors"
               >
                 Перейти в каталог
               </button>
@@ -97,80 +97,80 @@ export default function FavoritesModal({
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs sm:text-sm border-collapse">
                 <thead>
-                  <tr className="border-b border-slate-200">
-                    <th className="py-3 px-3 font-bold text-slate-400 uppercase tracking-wider text-[11px] w-1/4">
+                  <tr className="border-b border-[#8B0000]/20">
+                    <th className="py-3 px-3 font-bold text-[#8B0000] uppercase tracking-wider text-[11px] w-1/4">
                       Критерий
                     </th>
                     {favoriteUniversities.map((u) => (
-                      <th key={u.id} className="py-3 px-3 font-bold text-slate-900 w-1/3">
+                      <th key={u.id} className="py-3 px-3 font-bold text-[#2D1810] w-1/3">
                         <div className="flex items-center gap-1.5 mb-1">
                           <span>{u.flag}</span>
-                          <span className="font-extrabold">{u.name}</span>
+                          <span className="font-extrabold text-[#8B0000]">{u.name}</span>
                         </div>
-                        <span className="text-[11px] text-slate-400 block font-normal">
+                        <span className="text-[11px] text-[#2D1810]/60 block font-normal">
                           {u.city}, {u.countryName}
                         </span>
                       </th>
                     ))}
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-100">
+                <tbody className="divide-y divide-[#8B0000]/10">
                   <tr>
-                    <td className="py-3 px-3 font-semibold text-slate-500">Рейтинг QS:</td>
+                    <td className="py-3 px-3 font-bold text-[#8B0000]">Рейтинг QS:</td>
                     {favoriteUniversities.map((u) => (
-                      <td key={u.id} className="py-3 px-3 font-bold text-blue-600">
+                      <td key={u.id} className="py-3 px-3 font-bold text-[#2D1810]">
                         {u.qsRank}
                       </td>
                     ))}
                   </tr>
                   <tr>
-                    <td className="py-3 px-3 font-semibold text-slate-500">Обучение в год:</td>
+                    <td className="py-3 px-3 font-bold text-[#8B0000]">Обучение в год:</td>
                     {favoriteUniversities.map((u) => (
-                      <td key={u.id} className="py-3 px-3 font-bold text-slate-900">
+                      <td key={u.id} className="py-3 px-3 font-black text-[#8B0000]">
                         {u.tuition.text}
                       </td>
                     ))}
                   </tr>
                   <tr>
-                    <td className="py-3 px-3 font-semibold text-slate-500">Стипендия:</td>
+                    <td className="py-3 px-3 font-bold text-[#8B0000]">Стипендия:</td>
                     {favoriteUniversities.map((u) => (
                       <td key={u.id} className="py-3 px-3">
                         {u.scholarship.available ? (
-                          <span className="font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md inline-block">
+                          <span className="font-bold text-[#8B0000] bg-[#8B0000]/10 px-2 py-0.5 rounded-md inline-block">
                             {u.scholarship.name}
                           </span>
                         ) : (
-                          <span className="text-slate-400">Только базовые</span>
+                          <span className="text-[#2D1810]/50">Базовые</span>
                         )}
                       </td>
                     ))}
                   </tr>
                   <tr>
-                    <td className="py-3 px-3 font-semibold text-slate-500">Языковой экзамен:</td>
+                    <td className="py-3 px-3 font-bold text-[#8B0000]">Языковой экзамен:</td>
                     {favoriteUniversities.map((u) => (
-                      <td key={u.id} className="py-3 px-3 text-slate-700">
+                      <td key={u.id} className="py-3 px-3 text-[#2D1810]">
                         IELTS {u.languageReq.ielts} / TOEFL {u.languageReq.toefl}
                       </td>
                     ))}
                   </tr>
                   <tr>
-                    <td className="py-3 px-3 font-semibold text-slate-500">Расходы в месяц:</td>
+                    <td className="py-3 px-3 font-bold text-[#8B0000]">Расходы в месяц:</td>
                     {favoriteUniversities.map((u) => (
-                      <td key={u.id} className="py-3 px-3 font-bold text-amber-700">
+                      <td key={u.id} className="py-3 px-3 font-bold text-[#2D1810]">
                         ~{u.livingCostMonth} € / мес
                       </td>
                     ))}
                   </tr>
                   <tr>
-                    <td className="py-3 px-3 font-semibold text-slate-500">Дедлайн подачи:</td>
+                    <td className="py-3 px-3 font-bold text-[#8B0000]">Дедлайн подачи:</td>
                     {favoriteUniversities.map((u) => (
-                      <td key={u.id} className="py-3 px-3 text-slate-800 font-medium">
+                      <td key={u.id} className="py-3 px-3 text-[#2D1810] font-medium">
                         {u.deadline}
                       </td>
                     ))}
                   </tr>
                   <tr>
-                    <td className="py-3 px-3 font-semibold text-slate-500">Действие:</td>
+                    <td className="py-3 px-3 font-bold text-[#8B0000]">Действие:</td>
                     {favoriteUniversities.map((u) => (
                       <td key={u.id} className="py-3 px-3">
                         <button
@@ -178,7 +178,7 @@ export default function FavoritesModal({
                             onClose();
                             onSelectUniversity(u);
                           }}
-                          className="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-bold transition-colors"
+                          className="px-3 py-1.5 bg-[#8B0000] hover:bg-[#630000] text-[#EFE0CD] rounded-lg text-xs font-bold transition-colors"
                         >
                           Подробнее
                         </button>
@@ -194,7 +194,7 @@ export default function FavoritesModal({
               {favoriteUniversities.map((u) => (
                 <div
                   key={u.id}
-                  className="p-4 rounded-2xl border border-slate-200/90 hover:border-blue-300 bg-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition-all shadow-2xs"
+                  className="p-4 rounded-2xl border border-[#8B0000]/15 hover:border-[#8B0000] bg-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition-all shadow-2xs"
                 >
                   <div className="flex items-center gap-3">
                     <img
@@ -205,18 +205,18 @@ export default function FavoritesModal({
                     <div>
                       <div className="flex items-center gap-2">
                         <span className="text-base">{u.flag}</span>
-                        <h4 className="font-bold text-slate-900 text-sm sm:text-base">
+                        <h4 className="font-black text-[#8B0000] text-sm sm:text-base">
                           {u.name}
                         </h4>
                       </div>
-                      <p className="text-xs text-slate-500">
+                      <p className="text-xs text-[#2D1810]/70">
                         {u.city}, {u.countryName} • {u.qsRank}
                       </p>
-                      <div className="flex gap-2 mt-1.5 text-[11px] font-semibold">
-                        <span className="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md">
+                      <div className="flex gap-2 mt-1.5 text-[11px] font-bold">
+                        <span className="text-[#8B0000] bg-[#8B0000]/10 px-2 py-0.5 rounded-md">
                           {u.tuition.text}
                         </span>
-                        <span className="text-blue-700 bg-blue-50 px-2 py-0.5 rounded-md">
+                        <span className="text-[#2D1810] bg-[#EFE0CD] px-2 py-0.5 rounded-md">
                           IELTS {u.languageReq.ielts}
                         </span>
                       </div>
@@ -226,7 +226,7 @@ export default function FavoritesModal({
                   <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
                     <button
                       onClick={() => onToggleFavorite(u.id)}
-                      className="p-2 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-xl transition-colors"
+                      className="p-2 text-[#8B0000]/60 hover:text-[#8B0000] hover:bg-[#8B0000]/10 rounded-xl transition-colors"
                       title="Удалить из избранного"
                     >
                       <Trash2 className="w-4 h-4" />
@@ -237,7 +237,7 @@ export default function FavoritesModal({
                         onClose();
                         onSelectUniversity(u);
                       }}
-                      className="inline-flex items-center gap-1.5 px-4 py-2 bg-blue-50 hover:bg-blue-600 text-blue-700 hover:text-white rounded-xl text-xs font-bold transition-all"
+                      className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#8B0000] hover:bg-[#630000] text-[#EFE0CD] rounded-xl text-xs font-black transition-all"
                     >
                       <span>Подробнее</span>
                       <ArrowRight className="w-3.5 h-3.5" />

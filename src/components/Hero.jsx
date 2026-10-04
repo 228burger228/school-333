@@ -1,123 +1,139 @@
 import React from 'react';
 import {
-  Search,
   Compass,
   Briefcase,
   ArrowRight,
   Sparkles,
-  CheckCircle2,
-  Euro,
-  GraduationCap,
-  Globe2
+  MapPin,
+  Search,
+  MoreHorizontal
 } from 'lucide-react';
+import { countries } from '../data/countries';
 
-export default function Hero({ onStartSearch, onStartCountryQuiz, onStartCareerQuiz }) {
+export default function Hero({
+  onOpenCountries,
+  onStartSearch,
+  onStartCountryQuiz,
+  onStartCareerQuiz
+}) {
   return (
-    <section className="relative overflow-hidden pt-8 pb-12 sm:pt-16 sm:pb-20 bg-gradient-to-b from-blue-50/50 via-white to-slate-50">
-      {/* Decorative ambient blurred blobs */}
-      <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-gradient-to-r from-blue-400/20 via-indigo-400/20 to-purple-400/20 blur-3xl pointer-events-none rounded-full" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-        {/* Top Tagline Pill */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-100/80 border border-blue-200 text-blue-800 text-xs sm:text-sm font-semibold tracking-wide shadow-2xs mb-6 animate-pulse-subtle">
-          <Sparkles className="w-4 h-4 text-blue-600" />
-          <span>Европейское образование без стресса и десятков вкладок</span>
+    <section className="relative overflow-hidden pt-8 pb-16 sm:pt-14 sm:pb-20 text-center bg-[#EFE0CD]">
+      {/* Background soft ornamentation */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Top Tagline */}
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#8B0000]/10 border border-[#8B0000]/25 text-[#8B0000] text-xs sm:text-sm font-bold tracking-wide mb-6">
+          <Sparkles className="w-4 h-4 text-[#8B0000]" />
+          <span>Образование в Европе без стресса и десятков официальных вкладок</span>
         </div>
 
         {/* Hero Title */}
-        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.15] max-w-4xl mx-auto mb-6">
+        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-[#8B0000] tracking-tight leading-[1.15] max-w-4xl mx-auto mb-6">
           Поступление в Европу —{' '}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700">
+          <span className="underline decoration-[#8B0000]/40 decoration-wavy decoration-2">
             проще, ближе и понятнее
           </span>
         </h1>
 
-        {/* Subtitle / USP */}
-        <p className="text-base sm:text-lg lg:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed mb-8">
-          Не просто каталог университетов. Мы помогаем пройти путь от неопределенности к конкретному университету, стипендии и пошаговому плану поступления.
+        {/* Subtitle */}
+        <p className="text-sm sm:text-lg text-[#2D1810]/85 max-w-2xl mx-auto leading-relaxed mb-8 font-medium">
+          Превращаем самостоятельное исследование десятков сайтов в ясный пошаговый маршрут: от выбора страны и направления до конкретного университета и стипендии.
         </p>
 
-        {/* Primary Action Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 max-w-xl mx-auto mb-12">
+        {/* PRIMARY ACTION BUTTONS: Featuring the «⋯» button! */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 max-w-2xl mx-auto mb-12">
+          {/* THE PROMINENT «⋯» BUTTON */}
           <button
-            onClick={onStartSearch}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white text-sm sm:text-base font-bold rounded-2xl shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/30 hover:-translate-y-0.5 transition-all"
+            onClick={onOpenCountries}
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-[#8B0000] hover:bg-[#630000] text-[#EFE0CD] text-sm sm:text-base font-black rounded-2xl shadow-xl shadow-[#8B0000]/25 hover:-translate-y-0.5 transition-all group"
           >
-            <Search className="w-5 h-5" />
-            <span>Начать поиск университетов</span>
-            <ArrowRight className="w-4 h-4" />
+            <span className="text-xl font-black tracking-widest group-hover:scale-125 transition-transform">⋯</span>
+            <span>Выбрать страну (13 стран)</span>
+            <ArrowRight className="w-4 h-4 text-[#EFE0CD]" />
           </button>
 
           <button
             onClick={onStartCountryQuiz}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white hover:bg-indigo-50 border border-slate-200 hover:border-indigo-300 text-slate-800 hover:text-indigo-700 text-sm sm:text-base font-bold rounded-2xl shadow-xs hover:shadow-md transition-all"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 bg-[#FAF5EE] hover:bg-white text-[#8B0000] border-2 border-[#8B0000]/30 hover:border-[#8B0000] text-sm sm:text-base font-bold rounded-2xl shadow-sm hover:shadow-md transition-all"
           >
-            <Compass className="w-5 h-5 text-indigo-600" />
-            <span>Какая страна подходит мне?</span>
+            <Compass className="w-5 h-5 text-[#8B0000]" />
+            <span>Тест: Какая страна подходит?</span>
           </button>
         </div>
 
-        {/* Quick Route Cards: 3 Steps from Confusion to Enrollment */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl mx-auto mb-12 text-left">
+        {/* Countries Preview Pills */}
+        <div className="bg-[#FAF5EE] rounded-3xl p-6 border-2 border-[#8B0000]/15 max-w-4xl mx-auto mb-12 shadow-sm text-left">
+          <div className="flex items-center justify-between gap-2 mb-3">
+            <span className="text-xs font-black uppercase tracking-wider text-[#8B0000] flex items-center gap-1.5">
+              <span>⋯</span>
+              <span>13 доступных направлений Европы:</span>
+            </span>
+            <button
+              onClick={onOpenCountries}
+              className="text-xs font-bold text-[#8B0000] hover:underline"
+            >
+              Смотреть все →
+            </button>
+          </div>
+
+          <div className="flex flex-wrap gap-2">
+            {countries.map((c) => (
+              <button
+                key={c.id}
+                onClick={onOpenCountries}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#EFE0CD] hover:bg-[#8B0000] hover:text-[#EFE0CD] text-xs font-bold text-[#8B0000] border border-[#8B0000]/20 transition-all hover:scale-105"
+              >
+                <span>{c.flag}</span>
+                <span>{c.name}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* 3 Steps Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl mx-auto mb-10 text-left">
           <div
-            onClick={onStartCountryQuiz}
-            className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-2xs hover:shadow-md hover:border-indigo-300 cursor-pointer transition-all group"
+            onClick={onOpenCountries}
+            className="bg-[#FAF5EE] p-5 rounded-3xl border-2 border-[#8B0000]/15 hover:border-[#8B0000] cursor-pointer transition-all hover:shadow-md group"
           >
-            <div className="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold mb-3 group-hover:scale-110 transition-transform">
-              <Compass className="w-5 h-5" />
+            <div className="w-10 h-10 rounded-2xl bg-[#8B0000] text-[#EFE0CD] flex items-center justify-center font-black text-lg mb-3">
+              ⋯
             </div>
-            <h3 className="text-base font-bold text-slate-900 mb-1 group-hover:text-indigo-600 transition-colors">
-              1. Не знаете, какую страну выбрать?
+            <h3 className="text-base font-black text-[#8B0000] mb-1">
+              1. Страны и культура
             </h3>
-            <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">
-              Пройдите тест на 3 минуты: сопоставим ваш бюджет, климат, язык и карьерные цели с 9 странами Европы.
+            <p className="text-xs text-[#2D1810]/75 leading-relaxed font-medium">
+              13 стран с атмосферой, стикерами, стоимостью жизни и доступными визами.
             </p>
           </div>
 
           <div
             onClick={onStartCareerQuiz}
-            className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-2xs hover:shadow-md hover:border-emerald-300 cursor-pointer transition-all group"
+            className="bg-[#FAF5EE] p-5 rounded-3xl border-2 border-[#8B0000]/15 hover:border-[#8B0000] cursor-pointer transition-all hover:shadow-md group"
           >
-            <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold mb-3 group-hover:scale-110 transition-transform">
+            <div className="w-10 h-10 rounded-2xl bg-[#8B0000] text-[#EFE0CD] flex items-center justify-center font-bold mb-3">
               <Briefcase className="w-5 h-5" />
             </div>
-            <h3 className="text-base font-bold text-slate-900 mb-1 group-hover:text-emerald-600 transition-colors">
-              2. Не определились с профессией?
+            <h3 className="text-base font-black text-[#8B0000] mb-1">
+              2. 10 направлений обучения
             </h3>
-            <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">
-              Профориентационный тест подскажет перспективные направления обучения и специальности в ЕС.
+            <p className="text-xs text-[#2D1810]/75 leading-relaxed font-medium">
+              IT, медицина, инженерия, бизнес, право, архитектура и другие профили.
             </p>
           </div>
 
           <div
             onClick={onStartSearch}
-            className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-2xs hover:shadow-md hover:border-blue-300 cursor-pointer transition-all group"
+            className="bg-[#FAF5EE] p-5 rounded-3xl border-2 border-[#8B0000]/15 hover:border-[#8B0000] cursor-pointer transition-all hover:shadow-md group"
           >
-            <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold mb-3 group-hover:scale-110 transition-transform">
+            <div className="w-10 h-10 rounded-2xl bg-[#8B0000] text-[#EFE0CD] flex items-center justify-center font-bold mb-3">
               <Search className="w-5 h-5" />
             </div>
-            <h3 className="text-base font-bold text-slate-900 mb-1 group-hover:text-blue-600 transition-colors">
-              3. Ищете программы и стипендии?
+            <h3 className="text-base font-black text-[#8B0000] mb-1">
+              3. 3D-карточки ВУЗов
             </h3>
-            <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">
-              Умный поиск с фильтрами: бесплатные программы, стипендии DSU и DAAD, поступление без IELTS.
+            <p className="text-xs text-[#2D1810]/75 leading-relaxed font-medium">
+              Фотография на лицевой стороне, а при перевороте — гранты, языки и стоимость.
             </p>
-          </div>
-        </div>
-
-        {/* Statistical Badges */}
-        <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 pt-6 border-t border-slate-200 text-slate-600 text-xs sm:text-sm">
-          <div className="flex items-center gap-2">
-            <span className="text-lg font-black text-slate-900">0 €</span>
-            <span>стоимость учебы в госвузах Германии и Чехии</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-lg font-black text-blue-600">100%</span>
-            <span>покрытие по стипендиям DSU, Eiffel и DAAD</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-lg font-black text-indigo-600">9 стран</span>
-            <span>с подробными требованиями и дедлайнами</span>
           </div>
         </div>
       </div>
