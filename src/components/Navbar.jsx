@@ -7,7 +7,7 @@ import {
   Compass,
   Briefcase,
   Search,
-  MoreHorizontal,
+  BookOpen,
   Menu,
   X
 } from 'lucide-react';
@@ -78,6 +78,18 @@ export default function Navbar({
             </button>
 
             <button
+              onClick={() => onNavigate('guide')}
+              className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all ${
+                activeScreen === 'guide'
+                  ? 'bg-[#8B0000]/15 text-[#8B0000]'
+                  : 'text-[#2D1810]/80 hover:text-[#8B0000] hover:bg-[#8B0000]/5'
+              }`}
+            >
+              <BookOpen className="w-4 h-4" />
+              Гид & Стипендии
+            </button>
+
+            <button
               onClick={() => onNavigate('countryQuiz')}
               className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all ${
                 activeScreen === 'countryQuiz'
@@ -86,7 +98,7 @@ export default function Navbar({
               }`}
             >
               <Compass className="w-4 h-4" />
-              Тест: Какая страна?
+              Тест стран
             </button>
 
             <button
@@ -175,6 +187,17 @@ export default function Navbar({
           >
             <Search className="w-4 h-4" />
             Все университеты
+          </button>
+
+          <button
+            onClick={() => {
+              onNavigate('guide');
+              setMobileMenuOpen(false);
+            }}
+            className="w-full flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-bold text-[#8B0000] hover:bg-[#8B0000]/10"
+          >
+            <BookOpen className="w-4 h-4" />
+            Гид и стипендии
           </button>
 
           <button

@@ -74,9 +74,24 @@ export default function CountriesScreen({ onSelectCountry, onBack }) {
               </div>
 
               {/* Landmark & Vibe description */}
-              <p className="text-xs sm:text-sm text-[#2D1810]/85 font-medium leading-relaxed mb-4">
+              <p className="text-xs sm:text-sm text-[#2D1810]/85 font-medium leading-relaxed mb-3">
                 {c.vibe}
               </p>
+
+              {/* Sticker Collage Preview Thumbnail */}
+              {c.stickerImages && c.stickerImages.length > 0 && (
+                <div className="mb-3 h-28 rounded-2xl overflow-hidden border border-[#8B0000]/15 bg-[#EFE0CD] relative group-hover:shadow-inner">
+                  <img
+                    src={c.stickerImages[0]}
+                    alt={`Стикеры ${c.name}`}
+                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                  <div className="absolute bottom-1.5 right-2 px-2 py-0.5 rounded-md bg-[#FAF5EE]/90 text-[10px] font-bold text-[#8B0000] border border-[#8B0000]/20 backdrop-blur-xs">
+                    Атмосфера {c.flag}
+                  </div>
+                </div>
+              )}
 
               {/* Cultural Stickers Collage Pills */}
               <div className="flex flex-wrap gap-1.5 mb-5">

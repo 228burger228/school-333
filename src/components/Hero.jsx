@@ -6,6 +6,8 @@ import {
   Sparkles,
   MapPin,
   Search,
+  BookOpen,
+  Award,
   MoreHorizontal
 } from 'lucide-react';
 import { countries } from '../data/countries';
@@ -14,11 +16,11 @@ export default function Hero({
   onOpenCountries,
   onStartSearch,
   onStartCountryQuiz,
-  onStartCareerQuiz
+  onStartCareerQuiz,
+  onOpenGuide
 }) {
   return (
     <section className="relative overflow-hidden pt-8 pb-16 sm:pt-14 sm:pb-20 text-center bg-[#EFE0CD]">
-      {/* Background soft ornamentation */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Top Tagline */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#8B0000]/10 border border-[#8B0000]/25 text-[#8B0000] text-xs sm:text-sm font-bold tracking-wide mb-6">
@@ -39,7 +41,7 @@ export default function Hero({
           Превращаем самостоятельное исследование десятков сайтов в ясный пошаговый маршрут: от выбора страны и направления до конкретного университета и стипендии.
         </p>
 
-        {/* PRIMARY ACTION BUTTONS: Featuring the «⋯» button! */}
+        {/* PRIMARY ACTION BUTTONS */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 max-w-2xl mx-auto mb-12">
           {/* THE PROMINENT «⋯» BUTTON */}
           <button
@@ -58,6 +60,27 @@ export default function Hero({
             <Compass className="w-5 h-5 text-[#8B0000]" />
             <span>Тест: Какая страна подходит?</span>
           </button>
+        </div>
+
+        {/* Editorial Campus Illustration Banner */}
+        <div className="max-w-4xl mx-auto mb-10 rounded-3xl overflow-hidden border-2 border-[#8B0000]/20 shadow-xl relative group">
+          <img
+            src="images/hero_campus.jpg"
+            alt="Студенты на историческом европейском кампусе"
+            className="w-full h-56 sm:h-72 md:h-88 object-cover object-center group-hover:scale-102 transition-transform duration-700"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#500000]/90 via-[#8B0000]/25 to-transparent flex flex-col justify-end p-5 sm:p-7 text-left">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EFE0CD] text-[#8B0000] text-xs font-black uppercase tracking-wider w-fit mb-2 shadow-xs">
+              <Sparkles className="w-3.5 h-3.5" />
+              Атмосфера европейских кампусов
+            </span>
+            <h3 className="text-lg sm:text-2xl font-black text-[#EFE0CD] tracking-tight">
+              Свобода выбора, международное признание и гранты
+            </h3>
+            <p className="text-xs sm:text-sm text-[#EFE0CD]/90 font-medium max-w-xl mt-1 hidden sm:block">
+              От старейших аудиторий Болоньи и Мадрида до передовых лабораторий Мюнхена и Цюриха.
+            </p>
+          </div>
         </div>
 
         {/* Countries Preview Pills */}
@@ -89,8 +112,8 @@ export default function Hero({
           </div>
         </div>
 
-        {/* 3 Steps Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl mx-auto mb-10 text-left">
+        {/* 4 Roadmap & Feature Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto mb-10 text-left">
           <div
             onClick={onOpenCountries}
             className="bg-[#FAF5EE] p-5 rounded-3xl border-2 border-[#8B0000]/15 hover:border-[#8B0000] cursor-pointer transition-all hover:shadow-md group"
@@ -102,7 +125,7 @@ export default function Hero({
               1. Страны и культура
             </h3>
             <p className="text-xs text-[#2D1810]/75 leading-relaxed font-medium">
-              13 стран с атмосферой, стикерами, стоимостью жизни и доступными визами.
+              13 стран со стикерами, атмосферой, расходами и условиями виз.
             </p>
           </div>
 
@@ -114,10 +137,10 @@ export default function Hero({
               <Briefcase className="w-5 h-5" />
             </div>
             <h3 className="text-base font-black text-[#8B0000] mb-1">
-              2. 10 направлений обучения
+              2. 10 направлений
             </h3>
             <p className="text-xs text-[#2D1810]/75 leading-relaxed font-medium">
-              IT, медицина, инженерия, бизнес, право, архитектура и другие профили.
+              IT, биомед, инженерия, право, архитектура и другие профили.
             </p>
           </div>
 
@@ -132,7 +155,22 @@ export default function Hero({
               3. 3D-карточки ВУЗов
             </h3>
             <p className="text-xs text-[#2D1810]/75 leading-relaxed font-medium">
-              Фотография на лицевой стороне, а при перевороте — гранты, языки и стоимость.
+              Фотография на лицевой стороне, а при перевороте — гранты и цены.
+            </p>
+          </div>
+
+          <div
+            onClick={onOpenGuide}
+            className="bg-[#FAF5EE] p-5 rounded-3xl border-2 border-[#8B0000]/15 hover:border-[#8B0000] cursor-pointer transition-all hover:shadow-md group"
+          >
+            <div className="w-10 h-10 rounded-2xl bg-[#8B0000] text-[#EFE0CD] flex items-center justify-center font-bold mb-3">
+              <BookOpen className="w-5 h-5" />
+            </div>
+            <h3 className="text-base font-black text-[#8B0000] mb-1">
+              4. Гид и стипендии
+            </h3>
+            <p className="text-xs text-[#2D1810]/75 leading-relaxed font-medium">
+              Таймлайн 2026/2027, стипендии DSU/DAAD и ответы на сложные вопросы.
             </p>
           </div>
         </div>

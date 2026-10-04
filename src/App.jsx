@@ -11,6 +11,7 @@ import CareerQuiz from './components/CareerQuiz';
 import FavoritesModal from './components/FavoritesModal';
 import AuthModal from './components/AuthModal';
 import LanguageOnboarding from './components/LanguageOnboarding';
+import AdmissionGuideScreen from './components/AdmissionGuideScreen';
 import Footer from './components/Footer';
 
 import { universities } from './data/universities';
@@ -18,7 +19,7 @@ import { countries } from './data/countries';
 import { studyDirections } from './data/directions';
 
 export default function App() {
-  // Screens: 'home' | 'countries' | 'directions' | 'universities' | 'countryQuiz' | 'careerQuiz'
+  // Screens: 'home' | 'countries' | 'directions' | 'universities' | 'countryQuiz' | 'careerQuiz' | 'guide'
   const [activeScreen, setActiveScreen] = useState('home');
 
   // Currently selected country and direction
@@ -242,6 +243,10 @@ export default function App() {
                 setActiveScreen('careerQuiz');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
+              onOpenGuide={() => {
+                setActiveScreen('guide');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
             />
           </div>
         )}
@@ -306,6 +311,17 @@ export default function App() {
           <CareerQuiz
             onSelectFieldForCatalog={handleFieldFromQuiz}
             onNavigateHome={() => setActiveScreen('home')}
+          />
+        )}
+
+        {/* SCREEN 7: Admission Guide, Timeline & Scholarships */}
+        {activeScreen === 'guide' && (
+          <AdmissionGuideScreen
+            onBack={() => {
+              setActiveScreen('home');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onNavigateToCatalog={handleOpenCountries}
           />
         )}
       </main>

@@ -50,6 +50,9 @@ export const countries = [
       { text: '🎨 Академия искусств', icon: '🎨' },
       { text: '☕ Эспрессо-культура', icon: '☕' }
     ],
+    stickerImages: [
+      'stickers/italy_stickers.jpg'
+    ],
     highlights: [
       'Региональная стипендия DSU: 100% бесплатная учеба + жилье + до 7 500 €/год',
       'Старейшие университеты мира (Болонья основана в 1088 г.)',
@@ -74,6 +77,9 @@ export const countries = [
       { text: '🚗 Автобаны и технологии', icon: '🚗' },
       { text: '📐 Школа Баухаус', icon: '📐' },
       { text: '🧪 Передовая наука', icon: '🧪' }
+    ],
+    stickerImages: [
+      'stickers/germany_stickers.jpg'
     ],
     highlights: [
       'Бесплатное образование в госвузах для всех студентов',
@@ -100,6 +106,9 @@ export const countries = [
       { text: '🍷 Французский стиль', icon: '🍷' },
       { text: '🥖 Багет из пекарни', icon: '🥖' }
     ],
+    stickerImages: [
+      'stickers/france_stickers.jpg'
+    ],
     highlights: [
       'Субсидия CAF на аренду жилья (возврат до 35-40% аренды)',
       'Стипендия Eiffel Excellence для талантливых студентов',
@@ -123,6 +132,9 @@ export const countries = [
       { text: '🏔️ Горные пики Татр', icon: '🏔️' },
       { text: '🌲 Альпийские озера', icon: '🌲' },
       { text: '🧀 Традиционные брынзовые галушки', icon: '🧀' }
+    ],
+    stickerImages: [
+      'stickers/czech_stickers.jpg'
     ],
     highlights: [
       'Полностью бесплатное обучение на словацком для всех иностранцев',
@@ -148,6 +160,9 @@ export const countries = [
       { text: '🧁 Паштел де ната', icon: '🧁' },
       { text: '🎨 Плитка азулежу', icon: '🎨' }
     ],
+    stickerImages: [
+      'stickers/portugal_stickers.jpg'
+    ],
     highlights: [
       'Теплый атлантический климат и безопасность (топ-5 самых мирных стран мира)',
       'Коимбрский университет — один из старейших в Европе',
@@ -171,6 +186,9 @@ export const countries = [
       { text: '🏰 Дворец Шёнбрунн', icon: '🏰' },
       { text: '☕ Кофе по-венски & Захер', icon: '☕' },
       { text: '⛷️ Альпийские склоны', icon: '⛷️' }
+    ],
+    stickerImages: [
+      'stickers/austria_stickers.jpg'
     ],
     highlights: [
       'Вена многократно признана лучшим городом мира по качеству жизни',
@@ -196,6 +214,9 @@ export const countries = [
       { text: '🌲 Озера и северный лес', icon: '🌲' },
       { text: '🦌 Лапландия & олени', icon: '🦌' }
     ],
+    stickerImages: [
+      'stickers/nordic_stickers.jpg'
+    ],
     highlights: [
       'Финляндия — признанный мировой лидер по качеству системы образования',
       '2 года визы на поиск работы после окончания ВУЗа',
@@ -219,6 +240,9 @@ export const countries = [
       { text: '🎧 Родина Spotify & Skype', icon: '🎧' },
       { text: '🛋️ Скандинавский минимализм', icon: '🛋️' },
       { text: '☕ Традиция Fika с булочкой', icon: '☕' }
+    ],
+    stickerImages: [
+      'stickers/nordic_stickers.jpg'
     ],
     highlights: [
       'Родина глобальных единорогов: Spotify, Klarna, Mojang, Ericsson',
@@ -244,6 +268,9 @@ export const countries = [
       { text: '⛵ Корабли викингов', icon: '⛵' },
       { text: '🐟 Свежий лосось', icon: '🐟' }
     ],
+    stickerImages: [
+      'stickers/nordic_stickers.jpg'
+    ],
     highlights: [
       'Университет Осло и NTNU — ведущие мировые центры геологоразведки и морских технологий',
       'Один из самых высоких уровней жизни и экологической безопасности на планете',
@@ -267,6 +294,9 @@ export const countries = [
       { text: '🏰 Пражский град', icon: '🏰' },
       { text: '🕰️ Астрономические часы Орлой', icon: '🕰️' },
       { text: '🥐 Трдельник с корицей', icon: '🥐' }
+    ],
+    stickerImages: [
+      'stickers/czech_stickers.jpg'
     ],
     highlights: [
       '100% бесплатное высшее образование на чешском для всех иностранцев',
@@ -292,6 +322,9 @@ export const countries = [
       { text: '⌚ Точнейшие швейцарские часы', icon: '⌚' },
       { text: '🧀 Сырное фондю в Альпах', icon: '🧀' }
     ],
+    stickerImages: [
+      'stickers/swiss_stickers.jpg'
+    ],
     highlights: [
       'ETH Zurich и EPFL входят в топ-10 лучших университетов планеты',
       'Низкая стоимость обучения в государственных институтах при мировом уровне',
@@ -315,6 +348,9 @@ export const countries = [
       { text: '🧇 Бельгийские вафли', icon: '🧇' },
       { text: '⚛️ Монумент Атомиум', icon: '⚛️' },
       { text: '🍫 Шоколадные бутики', icon: '🍫' }
+    ],
+    stickerImages: [
+      'stickers/france_stickers.jpg'
     ],
     highlights: [
       'KU Leuven — один из самых инновационных университетов мира',

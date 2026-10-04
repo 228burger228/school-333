@@ -19,9 +19,12 @@
     </div>
     <script type="module" src="/src/main.jsx"></script>
     <script>
-      // Если открыто на GitHub Pages или локально без dev-сервера Vite:
-      if (document.querySelector('script[src="/src/main.jsx"]') && !document.querySelector('script[src="/@vite/client"]')) {
-        location.replace("docs/index.html");
+      // Если открыто на GitHub Pages или без dev-сервера Vite:
+      if (location.protocol === 'file:' || (document.querySelector('script[src="/src/main.jsx"]') && !document.querySelector('script[src="/@vite/client"]'))) {
+        var base = location.pathname.endsWith('/') ? location.pathname : location.pathname + '/';
+        if (!location.pathname.includes('/docs/')) {
+          location.replace(base + 'docs/index.html' + location.search + location.hash);
+        }
       }
     </script>
   </body>
