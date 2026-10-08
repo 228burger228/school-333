@@ -41,7 +41,7 @@ export default function Navbar({
             </div>
             <div>
               <span className="text-xl sm:text-2xl font-black tracking-tight text-[#8B0000]">
-                Euro<span className="text-[#630000]">Path</span>
+                Maybe <span className="text-[#630000]">abroad?</span>
               </span>
               <span className="block text-[9px] uppercase font-bold tracking-widest text-[#2D1810]/60 -mt-1">
                 Поступление в Европу

@@ -16,59 +16,43 @@ export const languages = [
     hint: 'Select English language'
   },
   {
-    code: 'de',
-    name: 'Deutsch',
-    greeting: 'Hallo!',
-    subtext: 'Finde deine Traumuniversität in Europa ohne Hürden',
-    flag: '🇩🇪',
-    hint: 'Wähle Deutsch'
+    code: 'be',
+    name: 'Беларуская',
+    greeting: 'Прывітанне!',
+    subtext: 'Паступленне ў еўрапейскія ўніверсітэты — проста і зразумела',
+    flag: '🇧🇾',
+    hint: 'Выбраць беларускую мову'
   },
   {
-    code: 'fr',
-    name: 'Français',
-    greeting: 'Bonjour!',
-    subtext: 'Découvre ton avenir académique au cœur de l\'Europe',
-    flag: '🇫🇷',
-    hint: 'Choisir le Français'
+    code: 'kk',
+    name: 'Қазақша',
+    greeting: 'Сәлем!',
+    subtext: 'Еуропада білім алу — қарапайым, қолжетімді және түсінікті',
+    flag: '🇰🇿',
+    hint: 'Қазақ тілін таңдау'
   },
   {
-    code: 'it',
-    name: 'Italiano',
-    greeting: 'Ciao!',
-    subtext: 'Inizia il tuo percorso universitario tra arte e innovazione',
-    flag: '🇮🇹',
-    hint: 'Scegli Italiano'
+    code: 'az',
+    name: 'Azərbaycan',
+    greeting: 'Salam!',
+    subtext: 'Avropada ali təhsil — asan, yaxın və aydın yol xəritəsi',
+    flag: '🇦🇿',
+    hint: 'Azərbaycan dilini seçmək'
   },
   {
-    code: 'es',
-    name: 'Español',
-    greeting: '¡Hola!',
-    subtext: 'Tu camino hacia las mejores universidades europeas',
-    flag: '🇪🇸',
-    hint: 'Elegir Español'
+    code: 'hy',
+    name: 'Հայերեն',
+    greeting: 'Բարև!',
+    subtext: 'Եվրոպական կրթություն — պարզ, մատչելի և հասկանալի ուղի',
+    flag: '🇦🇲',
+    hint: 'Ընտրել հայերեն լեզուն'
   },
   {
-    code: 'nl',
-    name: 'Nederlands',
-    greeting: 'Welkom!',
-    subtext: 'Ontdek innovatieve opleidingen en topuniversiteiten',
-    flag: '🇳🇱',
-    hint: 'Kies Nederlands'
-  },
-  {
-    code: 'cz',
-    name: 'Čeština',
-    greeting: 'Ahoj!',
-    subtext: 'Otevři si dveře k prestižnímu evropskému vzdělání',
-    flag: '🇨🇿',
-    hint: 'Zvolit Češtinu'
-  },
-  {
-    code: 'sv',
-    name: 'Svenska',
-    greeting: 'Hej!',
-    subtext: 'Upptäck ledande utbildningar i Skandinavien och Europa',
-    flag: '🇸🇪',
-    hint: 'Välj Svenska'
+    code: 'ky',
+    name: 'Кыргызча',
+    greeting: 'Салам!',
+    subtext: 'Европада билим алуу — жөнөкөй, жакын жана түшүнүктүү',
+    flag: '🇰🇬',
+    hint: 'Кыргыз тилин тандоо'
   }
 ];

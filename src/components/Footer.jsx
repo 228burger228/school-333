@@ -14,7 +14,7 @@ export default function Footer({ onNavigate }) {
               </div>
               <div>
                 <span className="text-2xl font-black tracking-tight text-[#EFE0CD]">
-                  Euro<span className="text-[#DFCEB8]">Path</span>
+                  Maybe <span className="text-[#DFCEB8]">abroad?</span>
                 </span>
                 <span className="block text-[9px] uppercase font-bold tracking-widest text-[#EFE0CD]/60 -mt-1">
                   Европейский образовательный навигатор
@@ -111,7 +111,7 @@ export default function Footer({ onNavigate }) {
 
         {/* Bottom Imprint */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#EFE0CD]/60 font-medium">
-          <p>© 2026 EuroPath. Все права защищены. Интерактивная платформа европейского образования.</p>
+          <p>© 2026 Maybe abroad?. Все права защищены. Интерактивная платформа европейского образования.</p>
           <div className="flex items-center gap-2 text-[#EFE0CD]/75">
             <span>Цветовая гамма: #8B0000 • #EFE0CD</span>
           </div>

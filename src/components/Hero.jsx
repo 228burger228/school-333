@@ -3,7 +3,6 @@ import {
   Compass,
   Briefcase,
   ArrowRight,
-  Sparkles,
   MapPin,
   Search,
   BookOpen,
@@ -11,42 +10,40 @@ import {
   MoreHorizontal
 } from 'lucide-react';
 import { countries } from '../data/countries';
+import ProgramAggregator from './ProgramAggregator';
 
 export default function Hero({
   onOpenCountries,
   onStartSearch,
   onStartCountryQuiz,
   onStartCareerQuiz,
-  onOpenGuide
+  onOpenGuide,
+  onAggregate
 }) {
   return (
     <section className="relative overflow-hidden pt-8 pb-16 sm:pt-14 sm:pb-20 text-center bg-[#EFE0CD]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Top Tagline */}
+        {/* Top Tagline (без блика, "десятка вкладок") */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#8B0000]/10 border border-[#8B0000]/25 text-[#8B0000] text-xs sm:text-sm font-bold tracking-wide mb-6">
-          <Sparkles className="w-4 h-4 text-[#8B0000]" />
-          <span>Образование в Европе без стресса и десятков официальных вкладок</span>
+          <span>Образование в Европе без стресса и десятка вкладок</span>
         </div>
 
-        {/* Hero Title */}
+        {/* Hero Title (без волнистого подчеркивания) */}
         <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-[#8B0000] tracking-tight leading-[1.15] max-w-4xl mx-auto mb-6">
-          Поступление в Европу —{' '}
-          <span className="underline decoration-[#8B0000]/40 decoration-wavy decoration-2">
-            проще, ближе и понятнее
-          </span>
+          Поступление в Европу — проще, ближе и понятнее
         </h1>
 
-        {/* Subtitle */}
+        {/* Subtitle ("десятка сайтов") */}
         <p className="text-sm sm:text-lg text-[#2D1810]/85 max-w-2xl mx-auto leading-relaxed mb-8 font-medium">
-          Превращаем самостоятельное исследование десятков сайтов в ясный пошаговый маршрут: от выбора страны и направления до конкретного университета и стипендии.
+          Превращаем самостоятельное исследование десятка сайтов в ясный пошаговый маршрут: от выбора страны и направления до конкретного университета и стипендии.
         </p>
 
         {/* PRIMARY ACTION BUTTONS */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 max-w-2xl mx-auto mb-12">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 max-w-2xl mx-auto mb-10">
           {/* THE PROMINENT «⋯» BUTTON */}
           <button
             onClick={onOpenCountries}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-[#8B0000] hover:bg-[#630000] text-[#EFE0CD] text-sm sm:text-base font-black rounded-2xl shadow-xl shadow-[#8B0000]/25 hover:-translate-y-0.5 transition-all group"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-[#8B0000] hover:bg-[#630000] text-[#EFE0CD] text-sm sm:text-base font-black rounded-2xl shadow-xl shadow-[#8B0000]/25 hover:-translate-y-0.5 transition-all group cursor-pointer"
           >
             <span className="text-xl font-black tracking-widest group-hover:scale-125 transition-transform">⋯</span>
             <span>Выбрать страну (13 стран)</span>
@@ -55,32 +52,21 @@ export default function Hero({
 
           <button
             onClick={onStartCountryQuiz}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 bg-[#FAF5EE] hover:bg-white text-[#8B0000] border-2 border-[#8B0000]/30 hover:border-[#8B0000] text-sm sm:text-base font-bold rounded-2xl shadow-sm hover:shadow-md transition-all"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 bg-[#FAF5EE] hover:bg-white text-[#8B0000] border-2 border-[#8B0000]/30 hover:border-[#8B0000] text-sm sm:text-base font-bold rounded-2xl shadow-sm hover:shadow-md transition-all cursor-pointer"
           >
             <Compass className="w-5 h-5 text-[#8B0000]" />
-            <span>Тест: Какая страна подходит?</span>
+            <span>Какая страна мне бы подошла?</span>
           </button>
         </div>
 
-        {/* Editorial Campus Illustration Banner */}
-        <div className="max-w-4xl mx-auto mb-10 rounded-3xl overflow-hidden border-2 border-[#8B0000]/20 shadow-xl relative group">
-          <img
-            src="images/hero_campus.jpg"
-            alt="Студенты на историческом европейском кампусе"
-            className="w-full h-56 sm:h-72 md:h-88 object-cover object-center group-hover:scale-102 transition-transform duration-700"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#500000]/90 via-[#8B0000]/25 to-transparent flex flex-col justify-end p-5 sm:p-7 text-left">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EFE0CD] text-[#8B0000] text-xs font-black uppercase tracking-wider w-fit mb-2 shadow-xs">
-              <Sparkles className="w-3.5 h-3.5" />
-              Атмосфера европейских кампусов
-            </span>
-            <h3 className="text-lg sm:text-2xl font-black text-[#EFE0CD] tracking-tight">
-              Свобода выбора, международное признание и гранты
-            </h3>
-            <p className="text-xs sm:text-sm text-[#EFE0CD]/90 font-medium max-w-xl mt-1 hidden sm:block">
-              От старейших аудиторий Болоньи и Мадрида до передовых лабораторий Мюнхена и Цюриха.
-            </p>
-          </div>
+        {/* АГРЕГАТОР ПРОГРАММ (Прил. 4) */}
+        <ProgramAggregator onAggregate={onAggregate} />
+
+        {/* Плашка: Свобода выбора международное признание и гранты (Прил. 3) */}
+        <div className="max-w-4xl mx-auto mb-12 rounded-3xl p-6 sm:p-8 bg-[#FAF5EE] border-2 border-[#8B0000]/25 shadow-md text-center">
+          <h3 className="text-xl sm:text-3xl font-black text-[#8B0000] tracking-tight">
+            Свобода выбора международное признание и гранты
+          </h3>
         </div>
 
         {/* Countries Preview Pills */}
@@ -92,7 +78,7 @@ export default function Hero({
             </span>
             <button
               onClick={onOpenCountries}
-              className="text-xs font-bold text-[#8B0000] hover:underline"
+              className="text-xs font-bold text-[#8B0000] hover:underline cursor-pointer"
             >
               Смотреть все →
             </button>
@@ -103,7 +89,7 @@ export default function Hero({
               <button
                 key={c.id}
                 onClick={onOpenCountries}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#EFE0CD] hover:bg-[#8B0000] hover:text-[#EFE0CD] text-xs font-bold text-[#8B0000] border border-[#8B0000]/20 transition-all hover:scale-105"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#EFE0CD] hover:bg-[#8B0000] hover:text-[#EFE0CD] text-xs font-bold text-[#8B0000] border border-[#8B0000]/20 transition-all hover:scale-105 cursor-pointer"
               >
                 <span>{c.flag}</span>
                 <span>{c.name}</span>
@@ -112,7 +98,7 @@ export default function Hero({
           </div>
         </div>
 
-        {/* 4 Roadmap & Feature Cards */}
+        {/* 4 Roadmap & Feature Cards (Прил. 5) */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto mb-10 text-left">
           <div
             onClick={onOpenCountries}
@@ -125,7 +111,7 @@ export default function Hero({
               1. Страны и культура
             </h3>
             <p className="text-xs text-[#2D1810]/75 leading-relaxed font-medium">
-              13 стран со стикерами, атмосферой, расходами и условиями виз.
+              13 стран, вузы, гранты, стипендии и международное образование.
             </p>
           </div>
 
@@ -140,7 +126,7 @@ export default function Hero({
               2. 10 направлений
             </h3>
             <p className="text-xs text-[#2D1810]/75 leading-relaxed font-medium">
-              IT, биомед, инженерия, право, архитектура и другие профили.
+              IT, международные отношения, медицина и другие профили.
             </p>
           </div>
 

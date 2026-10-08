@@ -43,7 +43,7 @@ export default function LanguageOnboarding({ onSelectLanguage, onClose }) {
           Выберите язык платформы
         </h2>
         <p className="text-xs sm:text-sm text-[#2D1810]/75 max-w-md mb-6 font-medium">
-          Листайте карточки с приветствиями на европейских языках и выберите удобный для вас язык интерфейса.
+          Листайте карточки с приветствиями и выберите удобный для вас язык интерфейса.
         </p>
 
         {/* Interactive 3D Flip Card Container */}

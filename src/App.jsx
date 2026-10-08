@@ -205,6 +205,18 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleAggregatorSubmit = ({ fundingOption, selectedLanguage, selectedExam }) => {
+    setFilters((prev) => ({
+      ...initialFilters,
+      tuitionRange: fundingOption === 'free' ? 'free' : 'all',
+      onlyFree: fundingOption === 'free',
+      onlyScholarships: fundingOption === 'scholarship',
+      examRequirement: selectedExam === 'Пока не сдавал' ? 'noExam' : 'all'
+    }));
+    setActiveScreen('universities');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-[#EFE0CD] text-[#2D1810] font-sans selection:bg-[#8B0000] selection:text-[#EFE0CD]">
       {/* Top Navigation Bar with «⋯» button */}
@@ -247,6 +259,7 @@ export default function App() {
                 setActiveScreen('guide');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
+              onAggregate={handleAggregatorSubmit}
             />
           </div>
         )}
