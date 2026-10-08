@@ -32,11 +32,15 @@ export default function UniversityDetailModal({
         onClick={(e) => e.stopPropagation()}
       >
         {/* Banner with Campus Photo */}
-        <div className="relative h-60 sm:h-72 w-full overflow-hidden bg-slate-900">
+        <div className="relative h-60 sm:h-72 w-full overflow-hidden bg-gradient-to-br from-[#700000] via-[#8B0000] to-[#500000]">
           <img
             src={university.photo}
             alt={university.name}
             className="w-full h-full object-cover opacity-90"
+            onError={(e) => {
+              e.currentTarget.onerror = null;
+              e.currentTarget.src = 'images/hero_campus.jpg';
+            }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#2D1810] via-black/40 to-transparent" />
 
@@ -62,7 +66,7 @@ export default function UniversityDetailModal({
 
           {/* QS Ranking Tag */}
           <div className="absolute top-4 left-4">
-            <span className="bg-[#FAF5EE] text-[#8B0000] text-xs font-black px-3 py-1 rounded-full flex items-center gap-1 shadow-md border border-[#8B0000]/20">
+            <span className="bg-[#FAF5EE] text-[#8B0000] text-xs font-black px-3 py-1 rounded-full flex items-center gap-1.5 shadow-md border border-[#8B0000]/20">
               <Award className="w-3.5 h-3.5 text-[#8B0000]" />
               {university.qsRank}
             </span>
@@ -72,11 +76,16 @@ export default function UniversityDetailModal({
           <div className="absolute bottom-4 left-4 right-4 text-white">
             <div className="flex items-center gap-2 text-xs font-bold text-[#EFE0CD] mb-1">
               <span>{university.flag}</span>
-              <span>
+              <span className="flex items-center gap-1">
+                <MapPin className="w-3.5 h-3.5 text-[#EFE0CD]" />
                 {university.countryName}, {university.city}
               </span>
-              <span>•</span>
-              <span>{university.landmarkSymbol}</span>
+              {university.landmarkSymbol && (
+                <>
+                  <span>•</span>
+                  <span>{university.landmarkSymbol}</span>
+                </>
+              )}
             </div>
             <h2 className="text-2xl sm:text-4xl font-black text-white tracking-tight drop-shadow-md">
               {university.name}

@@ -9,7 +9,7 @@ export const universities = [
     flag: '🇪🇸',
     city: 'Барселона',
     qsRank: '#149 в мире (#1 в Испании)',
-    photo: 'https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=1200&q=80',
+    photo: 'universities/spain.jpg',
     fields: ['business', 'biomedicine', 'humanities', 'design', 'politics'],
     degrees: ['bachelor', 'master'],
     tuition: {
@@ -50,7 +50,7 @@ export const universities = [
       transport: '20 € (молодежный T-Jove на 3 месяца)'
     },
     websiteUrl: 'https://www.uab.cat',
-    landmarkSymbol: '☀️ Саграда Фамилия & Барселона'
+    landmarkSymbol: 'Саграда Фамилия & Барселона'
   },
   {
     id: 'ucm',
@@ -61,7 +61,7 @@ export const universities = [
     flag: '🇪🇸',
     city: 'Мадрид',
     qsRank: '#171 в мире',
-    photo: 'https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&fit=crop&w=1200&q=80',
+    photo: 'universities/spain.jpg',
     fields: ['law', 'humanities', 'politics', 'biomedicine', 'health'],
     degrees: ['bachelor', 'master'],
     tuition: {
@@ -101,7 +101,7 @@ export const universities = [
       transport: '20 € (Abono Joven)'
     },
     websiteUrl: 'https://www.ucm.es',
-    landmarkSymbol: '🏛️ Королевский дворец Мадрида'
+    landmarkSymbol: 'Королевский дворец Мадрида'
   },
 
   // --- ИТАЛИЯ ---
@@ -114,7 +114,7 @@ export const universities = [
     flag: '🇮🇹',
     city: 'Милан',
     qsRank: '#111 в мире (#7 по Дизайну и Архитектуре)',
-    photo: 'https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=1200&q=80',
+    photo: 'universities/italy.jpg',
     fields: ['engineering', 'design', 'it', 'architecture'],
     degrees: ['bachelor', 'master'],
     tuition: {
@@ -156,7 +156,7 @@ export const universities = [
       transport: '22 € (проездной ATM)'
     },
     websiteUrl: 'https://www.polimi.it',
-    landmarkSymbol: '🏛️ Дуомо & Галерея Милана'
+    landmarkSymbol: 'Дуомо & Галерея Милана'
   },
   {
     id: 'unibo',
@@ -167,7 +167,7 @@ export const universities = [
     flag: '🇮🇹',
     city: 'Болонья',
     qsRank: '#133 в мире (#1 старейший университет мира, 1088 г.)',
-    photo: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=1200&q=80',
+    photo: 'universities/italy.jpg',
     fields: ['law', 'humanities', 'business', 'biomedicine', 'politics'],
     degrees: ['bachelor', 'master'],
     tuition: {
@@ -207,7 +207,7 @@ export const universities = [
       transport: '20 € в месяц'
     },
     websiteUrl: 'https://www.unibo.it',
-    landmarkSymbol: '🏛️ Две башни Болоньи'
+    landmarkSymbol: 'Две башни Болоньи'
   },
 
   // --- ГЕРМАНИЯ ---
@@ -220,7 +220,7 @@ export const universities = [
     flag: '🇩🇪',
     city: 'Мюнхен',
     qsRank: '#28 в мире (#1 в Германии)',
-    photo: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=80',
+    photo: 'universities/germany.jpg',
     fields: ['engineering', 'it', 'business', 'natural_sciences', 'biomedicine'],
     degrees: ['bachelor', 'master'],
     tuition: {
@@ -260,7 +260,7 @@ export const universities = [
       transport: '29 € (Deutschlandticket)'
     },
     websiteUrl: 'https://www.tum.de',
-    landmarkSymbol: '🏛️ Баварские Альпы & Бранденбургские ворота'
+    landmarkSymbol: 'Баварские Альпы & Бранденбургские ворота'
   },
   {
     id: 'rwth',
@@ -271,7 +271,7 @@ export const universities = [
     flag: '🇩🇪',
     city: 'Аахен',
     qsRank: '#99 в мире (#2 по машиностроению в Германии)',
-    photo: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80',
+    photo: 'universities/germany.jpg',
     fields: ['engineering', 'it', 'natural_sciences'],
     degrees: ['bachelor', 'master'],
     tuition: {
@@ -311,7 +311,7 @@ export const universities = [
       transport: '0 € (входит в студенческий взнос)'
     },
     websiteUrl: 'https://www.rwth-aachen.de',
-    landmarkSymbol: '🏛️ Аахенский собор'
+    landmarkSymbol: 'Аахенский собор'
   },
 
   // --- ФРАНЦИЯ ---
@@ -324,7 +324,7 @@ export const universities = [
     flag: '🇫🇷',
     city: 'Париж',
     qsRank: '#59 в мире',
-    photo: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1200&q=80',
+    photo: 'universities/france.jpg',
     fields: ['humanities', 'biomedicine', 'natural_sciences', 'health'],
     degrees: ['bachelor', 'master'],
     tuition: {
@@ -364,7 +364,7 @@ export const universities = [
       transport: '38 € (Imagine R)'
     },
     websiteUrl: 'https://www.sorbonne-universite.fr',
-    landmarkSymbol: '🗼 Эйфелева башня & Латинский квартал'
+    landmarkSymbol: 'Эйфелева башня & Латинский квартал'
   },
   {
     id: 'sciencespo',
@@ -375,7 +375,7 @@ export const universities = [
     flag: '🇫🇷',
     city: 'Париж',
     qsRank: '#2 в мире по Политике и Международным отношениям',
-    photo: 'https://images.unsplash.com/photo-1520939817895-060bdef4bf1a?auto=format&fit=crop&w=1200&q=80',
+    photo: 'universities/france.jpg',
     fields: ['politics', 'law', 'business', 'humanities'],
     degrees: ['bachelor', 'master'],
     tuition: {
@@ -415,7 +415,7 @@ export const universities = [
       transport: '38 €'
     },
     websiteUrl: 'https://www.sciencespo.fr',
-    landmarkSymbol: '🏛️ Сен-Жермен-де-Пре'
+    landmarkSymbol: 'Сен-Жермен-де-Пре'
   },
 
   // --- СЛОВАКИЯ ---
@@ -428,7 +428,7 @@ export const universities = [
     flag: '🇸🇰',
     city: 'Братислава',
     qsRank: '#651 в мире (#1 в Словакии)',
-    photo: 'https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=1200&q=80',
+    photo: 'universities/central.jpg',
     fields: ['biomedicine', 'law', 'it', 'natural_sciences', 'humanities'],
     degrees: ['bachelor', 'master'],
     tuition: {
@@ -467,7 +467,7 @@ export const universities = [
       transport: '12 € в месяц'
     },
     websiteUrl: 'https://uniba.sk',
-    landmarkSymbol: '🏰 Братиславский град & Дунай'
+    landmarkSymbol: 'Братиславский град & Дунай'
   },
 
   // --- ПОРТУГАЛИЯ ---
@@ -480,7 +480,7 @@ export const universities = [
     flag: '🇵🇹',
     city: 'Лиссабон',
     qsRank: '#266 в мире (#1 в Португалии)',
-    photo: 'https://images.unsplash.com/photo-1508672019048-805b876b67e2?auto=format&fit=crop&w=1200&q=80',
+    photo: 'universities/spain.jpg',
     fields: ['engineering', 'it', 'design', 'business', 'law'],
     degrees: ['bachelor', 'master'],
     tuition: {
@@ -519,7 +519,7 @@ export const universities = [
       transport: '20 € (проездной Navegante)'
     },
     websiteUrl: 'https://www.ulisboa.pt',
-    landmarkSymbol: '🚋 Башня Белен & Желтый трамвай'
+    landmarkSymbol: 'Башня Белен & Желтый трамвай'
   },
 
   // --- АВСТРИЯ ---
@@ -532,7 +532,7 @@ export const universities = [
     flag: '🇦🇹',
     city: 'Вена',
     qsRank: '#130 в мире',
-    photo: 'https://images.unsplash.com/photo-1516550893923-42d28e5677af?auto=format&fit=crop&w=1200&q=80',
+    photo: 'universities/central.jpg',
     fields: ['humanities', 'business', 'law', 'it', 'natural_sciences'],
     degrees: ['bachelor', 'master'],
     tuition: {
@@ -572,7 +572,7 @@ export const universities = [
       transport: '30 € в месяц'
     },
     websiteUrl: 'https://www.univie.ac.at',
-    landmarkSymbol: '🏔️ Дворец Бельведер & Венская опера'
+    landmarkSymbol: 'Дворец Бельведер & Венская опера'
   },
 
   // --- ФИНЛЯНДИЯ ---
@@ -585,7 +585,7 @@ export const universities = [
     flag: '🇫🇮',
     city: 'Хельсинки',
     qsRank: '#115 в мире (#1 в Финляндии)',
-    photo: 'https://images.unsplash.com/photo-1538332576228-eb5b4c4de6f5?auto=format&fit=crop&w=1200&q=80',
+    photo: 'universities/nordic.jpg',
     fields: ['natural_sciences', 'biomedicine', 'it', 'health', 'humanities'],
     degrees: ['bachelor', 'master'],
     tuition: {
@@ -625,7 +625,7 @@ export const universities = [
       transport: '35 € (HSL студенческий тариф)'
     },
     websiteUrl: 'https://www.helsinki.fi',
-    landmarkSymbol: '🌲 Белоснежный собор Хельсинки & Озера'
+    landmarkSymbol: 'Белоснежный собор Хельсинки & Озера'
   },
 
   // --- ШВЕЦИЯ ---
@@ -638,7 +638,7 @@ export const universities = [
     flag: '🇸🇪',
     city: 'Стокгольм',
     qsRank: '#73 в мире',
-    photo: 'https://images.unsplash.com/photo-1509356843151-3e7d96241e11?auto=format&fit=crop&w=1200&q=80',
+    photo: 'universities/nordic.jpg',
     fields: ['engineering', 'it', 'design', 'natural_sciences'],
     degrees: ['bachelor', 'master'],
     tuition: {
@@ -678,7 +678,7 @@ export const universities = [
       transport: '55 € (SL Stockholm)'
     },
     websiteUrl: 'https://www.kth.se',
-    landmarkSymbol: '✨ Северное сияние & Стокгольм'
+    landmarkSymbol: 'Северное сияние & Стокгольм'
   },
 
   // --- НОРВЕГИЯ ---
@@ -691,7 +691,7 @@ export const universities = [
     flag: '🇳🇴',
     city: 'Осло',
     qsRank: '#117 в мире (#1 в Норвегии)',
-    photo: 'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=1200&q=80',
+    photo: 'universities/nordic.jpg',
     fields: ['natural_sciences', 'biomedicine', 'it', 'law', 'humanities'],
     degrees: ['bachelor', 'master'],
     tuition: {
@@ -731,7 +731,7 @@ export const universities = [
       transport: '45 € (Ruter проездной)'
     },
     websiteUrl: 'https://www.uio.no',
-    landmarkSymbol: '🏞️ Норвежские фьорды & Осло'
+    landmarkSymbol: 'Норвежские фьорды & Осло'
   },
 
   // --- ЧЕХИЯ ---
@@ -744,7 +744,7 @@ export const universities = [
     flag: '🇨🇿',
     city: 'Прага',
     qsRank: '#248 в мире (#1 в Центральной Европе)',
-    photo: 'https://images.unsplash.com/photo-1541849546-216549ae216d?auto=format&fit=crop&w=1200&q=80',
+    photo: 'universities/central.jpg',
     fields: ['biomedicine', 'humanities', 'it', 'business', 'law'],
     degrees: ['bachelor', 'master'],
     tuition: {
@@ -784,7 +784,7 @@ export const universities = [
       transport: '6 € в месяц (Lítačka)'
     },
     websiteUrl: 'https://cuni.cz',
-    landmarkSymbol: '🌉 Карлов мост & Пражский град'
+    landmarkSymbol: 'Карлов мост & Пражский град'
   },
 
   // --- ШВЕЙЦАРИЯ ---
@@ -797,7 +797,7 @@ export const universities = [
     flag: '🇨🇭',
     city: 'Цюрих',
     qsRank: '#7 в мире (#1 в континентальной Европе)',
-    photo: 'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=1200&q=80',
+    photo: 'universities/central.jpg',
     fields: ['engineering', 'it', 'natural_sciences', 'architecture'],
     degrees: ['bachelor', 'master'],
     tuition: {
@@ -837,7 +837,7 @@ export const universities = [
       transport: '65 € в месяц'
     },
     websiteUrl: 'https://ethz.ch',
-    landmarkSymbol: '🏔️ Маттерхорн & Цюрихское озеро'
+    landmarkSymbol: 'Маттерхорн & Цюрихское озеро'
   },
 
   // --- БЕЛЬГИЯ ---
@@ -850,7 +850,7 @@ export const universities = [
     flag: '🇧🇪',
     city: 'Лёвен',
     qsRank: '#63 в мире (#1 самый инновационный ВУЗ Европы по Reuters)',
-    photo: 'https://images.unsplash.com/photo-1549144511-f099e773c147?auto=format&fit=crop&w=1200&q=80',
+    photo: 'universities/france.jpg',
     fields: ['engineering', 'it', 'law', 'business', 'biomedicine', 'humanities'],
     degrees: ['bachelor', 'master'],
     tuition: {
@@ -890,7 +890,7 @@ export const universities = [
       transport: '20 € в месяц'
     },
     websiteUrl: 'https://www.kuleuven.be',
-    landmarkSymbol: '🏛️ Ратуша Лёвена & Атомиум'
+    landmarkSymbol: 'Ратуша Лёвена & Атомиум'
   }
 ];
 

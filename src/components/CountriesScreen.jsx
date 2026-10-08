@@ -1,6 +1,6 @@
 import React from 'react';
 import { countries } from '../data/countries';
-import { ArrowLeft, ArrowRight, Sparkles, MapPin, Globe } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Sparkles, MapPin, Globe, Coins, Calendar } from 'lucide-react';
 
 export default function CountriesScreen({ onSelectCountry, onBack }) {
   return (
@@ -110,11 +110,17 @@ export default function CountriesScreen({ onSelectCountry, onBack }) {
             {/* Bottom Tuition & Living Cost Row */}
             <div className="pt-3 border-t border-[#8B0000]/10 flex items-center justify-between text-xs">
               <div>
-                <span className="text-[10px] uppercase font-bold text-[#8B0000]/70 block">Обучение</span>
+                <span className="text-[10px] uppercase font-bold text-[#8B0000]/70 flex items-center gap-1">
+                  <Coins className="w-3 h-3 text-[#8B0000]" />
+                  Обучение
+                </span>
                 <span className="font-extrabold text-[#2D1810]">{c.tuitionSummary}</span>
               </div>
               <div className="text-right">
-                <span className="text-[10px] uppercase font-bold text-[#8B0000]/70 block">Жизнь в мес.</span>
+                <span className="text-[10px] uppercase font-bold text-[#8B0000]/70 flex items-center gap-1 justify-end">
+                  <Calendar className="w-3 h-3 text-[#8B0000]" />
+                  Жизнь в мес.
+                </span>
                 <span className="font-extrabold text-[#8B0000]">{c.avgLivingCost}</span>
               </div>
             </div>
