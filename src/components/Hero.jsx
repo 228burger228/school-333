@@ -163,6 +163,18 @@ export default function Hero({
           </div>
         </div>
 
+        {/* Разграничитель и заголовок навигации/предложений */}
+        <div className="relative my-12 max-w-5xl mx-auto">
+          <div className="absolute inset-0 flex items-center" aria-hidden="true">
+            <div className="w-full border-t-2 border-[#8B0000]/15" />
+          </div>
+          <div className="relative flex justify-center">
+            <span className="bg-[#EFE0CD] px-5 py-1 rounded-full border border-[#8B0000]/20 text-xs font-black uppercase tracking-widest text-[#8B0000] shadow-2xs">
+              Навигация и ключевые предложения
+            </span>
+          </div>
+        </div>
+
         {/* 4 Roadmap & Feature Cards (Прил. 5) */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto mb-10 text-left">
           <div

@@ -23,7 +23,7 @@ export default function UniversityFlipCard({
   const [isFlipped, setIsFlipped] = useState(false);
 
   return (
-    <div className="w-full h-[470px] perspective-1000 select-none">
+    <div className="w-full h-[510px] perspective-1000 select-none">
       <div
         className={`relative w-full h-full duration-500 transform-style-3d rounded-3xl transition-transform cursor-pointer ${
           isFlipped ? 'rotate-y-180' : ''
@@ -34,7 +34,7 @@ export default function UniversityFlipCard({
         <div className="absolute inset-0 backface-hidden rounded-3xl overflow-hidden bg-[#FAF5EE] border-2 border-[#8B0000]/20 shadow-md hover:shadow-xl hover:border-[#8B0000] transition-all flex flex-col justify-between">
           
           {/* Top: University Campus Photo Banner */}
-          <div className="relative w-full h-[210px] sm:h-[220px] bg-gradient-to-br from-[#700000] via-[#8B0000] to-[#500000] overflow-hidden shrink-0">
+          <div className="relative w-full h-[185px] sm:h-[195px] bg-gradient-to-br from-[#700000] via-[#8B0000] to-[#500000] overflow-hidden shrink-0">
             <img
               src={university.photo}
               alt={university.name}
@@ -129,7 +129,7 @@ export default function UniversityFlipCard({
           </div>
 
           {/* Bottom Bar: Строгая академическая типографика */}
-          <div className="px-4 py-3 bg-[#FAF5EE] flex items-center justify-between border-t border-[#8B0000]/15 text-xs">
+          <div className="px-4 py-3 bg-[#FAF5EE] flex items-center justify-between border-t border-[#8B0000]/15 text-xs shrink-0">
             <div>
               <span className="text-[10px] uppercase font-extrabold tracking-wider text-[#8B0000]/80 block">
                 Стоимость обучения
