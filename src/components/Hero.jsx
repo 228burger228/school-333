@@ -98,6 +98,71 @@ export default function Hero({
           </div>
         </div>
 
+        {/* Секция: Почему стоит воспользоваться Maybe abroad? */}
+        <div className="max-w-6xl mx-auto mb-16 text-left">
+          <div className="text-center max-w-2xl mx-auto mb-8">
+            <span className="text-xs font-black uppercase tracking-wider text-[#8B0000] block mb-1">
+              Ценность для абитуриента
+            </span>
+            <h2 className="text-2xl sm:text-4xl font-black text-[#8B0000] tracking-tight">
+              Почему стоит воспользоваться Maybe abroad?
+            </h2>
+            <p className="text-xs sm:text-sm text-[#2D1810]/75 mt-2 font-medium">
+              Вместо десятков разрозненных форумов и сайтов посольств — единая проверенная платформа с точными цифрами и дедлайнами.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="bg-[#FAF5EE] p-5 rounded-3xl border-2 border-[#8B0000]/15 shadow-sm">
+              <div className="w-9 h-9 rounded-xl bg-[#8B0000]/10 text-[#8B0000] flex items-center justify-center font-black text-sm mb-3">
+                0€
+              </div>
+              <h3 className="text-sm font-black text-[#8B0000] mb-1.5">
+                Гранты и бесплатная учеба
+              </h3>
+              <p className="text-xs text-[#2D1810]/80 leading-relaxed font-medium">
+                Германия, Чехия и Словакия без оплаты за обучение. Стипендии DSU в Италии до 7 500 €/год с бесплатным общежитием.
+              </p>
+            </div>
+
+            <div className="bg-[#FAF5EE] p-5 rounded-3xl border-2 border-[#8B0000]/15 shadow-sm">
+              <div className="w-9 h-9 rounded-xl bg-[#8B0000]/10 text-[#8B0000] flex items-center justify-center font-black text-sm mb-3">
+                ✓
+              </div>
+              <h3 className="text-sm font-black text-[#8B0000] mb-1.5">
+                Без сюрпризов в правилах
+              </h3>
+              <p className="text-xs text-[#2D1810]/80 leading-relaxed font-medium">
+                Пошаговые чек-листы документов: апостиль, омологация UNEDasiss, дедлайны и минимальные баллы языковых сертификатов.
+              </p>
+            </div>
+
+            <div className="bg-[#FAF5EE] p-5 rounded-3xl border-2 border-[#8B0000]/15 shadow-sm">
+              <div className="w-9 h-9 rounded-xl bg-[#8B0000]/10 text-[#8B0000] flex items-center justify-center font-black text-sm mb-3">
+                ⚡
+              </div>
+              <h3 className="text-sm font-black text-[#8B0000] mb-1.5">
+                Агрегатор за 60 секунд
+              </h3>
+              <p className="text-xs text-[#2D1810]/80 leading-relaxed font-medium">
+                Укажите текущий уровень языка и желаемое финансирование — алгоритм мгновенно подберет целевые европейские университеты.
+              </p>
+            </div>
+
+            <div className="bg-[#FAF5EE] p-5 rounded-3xl border-2 border-[#8B0000]/15 shadow-sm">
+              <div className="w-9 h-9 rounded-xl bg-[#8B0000]/10 text-[#8B0000] flex items-center justify-center font-black text-sm mb-3">
+                EU
+              </div>
+              <h3 className="text-sm font-black text-[#8B0000] mb-1.5">
+                Визы и старт карьеры
+              </h3>
+              <p className="text-xs text-[#2D1810]/80 leading-relaxed font-medium">
+                От 12 до 24 месяцев визы на поиск работы в Европе после окончания ВУЗа и международное признание полученного диплома.
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* 4 Roadmap & Feature Cards (Прил. 5) */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto mb-10 text-left">
           <div
