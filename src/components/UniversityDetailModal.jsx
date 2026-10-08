@@ -11,7 +11,8 @@ import {
   BookOpen,
   MapPin,
   Clock,
-  Globe
+  Globe,
+  Printer
 } from 'lucide-react';
 
 export default function UniversityDetailModal({
@@ -19,9 +20,98 @@ export default function UniversityDetailModal({
   isOpen,
   onClose,
   isFavorite,
-  onToggleFavorite
+  onToggleFavorite,
+  onRequestAudit
 }) {
   const [activeTab, setActiveTab] = useState('programs');
+
+  const handlePrintChecklist = () => {
+    const printWindow = window.open('', '_blank');
+    if (!printWindow) {
+      window.print();
+      return;
+    }
+    const htmlContent = `
+      <!DOCTYPE html>
+      <html lang="ru">
+      <head>
+        <meta charset="utf-8">
+        <title>Чек-лист поступления — ${university.name}</title>
+        <style>
+          body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; color: #2D1810; margin: 35px; line-height: 1.5; background: #FAF5EE; }
+          .header { border-bottom: 2px solid #8B0000; padding-bottom: 12px; margin-bottom: 20px; }
+          .badge { background: #8B0000; color: #EFE0CD; padding: 4px 10px; border-radius: 6px; font-weight: bold; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; display: inline-block; margin-bottom: 8px; }
+          h1 { color: #8B0000; margin: 4px 0; font-size: 22px; font-weight: 800; }
+          .sub { color: #666; font-size: 13px; font-weight: 600; margin-bottom: 10px; }
+          .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
+          .card { background: #fff; padding: 14px; border: 1px solid #8B000033; border-radius: 10px; }
+          .card-title { font-size: 11px; text-transform: uppercase; font-weight: 800; color: #8B0000; margin-bottom: 8px; border-bottom: 1px solid #8B000022; padding-bottom: 4px; }
+          .param { margin-bottom: 6px; font-size: 12.5px; }
+          .section { background: #fff; padding: 16px; border: 1px solid #8B000033; border-radius: 10px; margin-bottom: 20px; }
+          .section-title { font-size: 12px; text-transform: uppercase; font-weight: 800; color: #8B0000; margin-bottom: 10px; border-bottom: 1px solid #8B000022; padding-bottom: 4px; }
+          .checklist-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; font-size: 12.5px; }
+          .box { width: 14px; height: 14px; border: 1.5px solid #8B0000; border-radius: 3px; margin-top: 2px; flex-shrink: 0; }
+          .footer { margin-top: 30px; border-top: 1px solid #8B000033; padding-top: 12px; font-size: 11px; color: #777; display: flex; justify-content: space-between; }
+          @media print { body { background: #fff; margin: 15mm; } .card, .section { border: 1px solid #ccc; } }
+        </style>
+      </head>
+      <body>
+        <div class="header">
+          <span class="badge">Maybe abroad? • Академический навигатор</span>
+          <h1>${university.name}</h1>
+          <div class="sub">${university.countryName}, ${university.city} • QS Rank: ${university.qsRank} • Дедлайн: ${university.deadline}</div>
+        </div>
+
+        <div class="grid">
+          <div class="card">
+            <div class="card-title">Финансовые условия & Стипендии</div>
+            <div class="param"><strong>Стоимость учебы:</strong> ${university.tuition.text}</div>
+            <div class="param"><strong>Грант:</strong> ${university.scholarship.name}</div>
+            <div class="param"><strong>Покрытие:</strong> ${university.scholarship.coverage}</div>
+            <div class="param"><strong>Бюджет в месяц:</strong> ~${university.livingCostMonth} € (жилье + еда + проезд)</div>
+          </div>
+          <div class="card">
+            <div class="card-title">Языковой порог & Тесты</div>
+            <div class="param"><strong>IELTS:</strong> ${university.languageReq.ielts || 'Не требуется'}</div>
+            <div class="param"><strong>TOEFL:</strong> ${university.languageReq.toefl || 'Не требуется'}</div>
+            <div class="param"><strong>Особенности:</strong> ${university.languageReq.examDescription}</div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Обязательный чек-лист документов для подачи</div>
+          ${university.admissionChecklist.map(doc => `
+            <div class="checklist-item">
+              <span class="box"></span>
+              <span>${doc}</span>
+            </div>
+          `).join('')}
+          <div class="checklist-item"><span class="box"></span><span>Заграничный паспорт со сроком действия не менее 1.5 лет</span></div>
+          <div class="checklist-item"><span class="box"></span><span>Мотивационное письмо (Motivation Letter / Statement of Purpose)</span></div>
+          <div class="checklist-item"><span class="box"></span><span>Академическое резюме в стандарте Europass (CV)</span></div>
+          <div class="checklist-item"><span class="box"></span><span>Справка о наличии средств на банковском счете для студенческой визы</span></div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Рекомендованные программы</div>
+          ${university.keyPrograms.map(p => `
+            <div class="param">• <strong>${p.name}</strong> (${p.degree}, ${p.lang}, срок: ${p.duration})</div>
+          `).join('')}
+        </div>
+
+        <div class="footer">
+          <span>Сформировано на платформе Maybe abroad? • Официальный сайт: ${university.websiteUrl}</span>
+          <span>Дата: ${new Date().toLocaleDateString('ru-RU')}</span>
+        </div>
+        <script>
+          window.onload = function() { window.print(); }
+        </script>
+      </body>
+      </html>
+    `;
+    printWindow.document.write(htmlContent);
+    printWindow.document.close();
+  };
 
   if (!isOpen || !university) return null;
 
@@ -297,27 +387,54 @@ export default function UniversityDetailModal({
 
         {/* Modal Footer with Action Buttons */}
         <div className="p-4 sm:p-6 bg-[#EFE0CD]/50 border-t border-[#8B0000]/15 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <button
-            onClick={() => onToggleFavorite(university.id)}
-            className={`w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border text-xs sm:text-sm font-bold transition-all ${
-              isFavorite
-                ? 'bg-[#8B0000] text-[#EFE0CD] border-[#8B0000]'
-                : 'bg-white border-[#8B0000]/25 text-[#8B0000] hover:bg-[#FAF5EE]'
-            }`}
-          >
-            <Heart className={`w-4 h-4 ${isFavorite ? 'fill-current' : ''}`} />
-            <span>{isFavorite ? 'В избранном' : 'Сохранить в избранное'}</span>
-          </button>
+          <div className="flex items-center gap-2 w-full sm:w-auto">
+            <button
+              onClick={() => onToggleFavorite(university.id)}
+              className={`inline-flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-xl border text-xs font-bold transition-all ${
+                isFavorite
+                  ? 'bg-[#8B0000] text-[#EFE0CD] border-[#8B0000]'
+                  : 'bg-white border-[#8B0000]/25 text-[#8B0000] hover:bg-[#FAF5EE]'
+              }`}
+              title="Сохранить в избранное"
+            >
+              <Heart className={`w-4 h-4 ${isFavorite ? 'fill-current' : ''}`} />
+              <span className="hidden sm:inline">{isFavorite ? 'В избранном' : 'В избранное'}</span>
+            </button>
 
-          <a
-            href={university.websiteUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-[#8B0000] hover:bg-[#630000] text-[#EFE0CD] text-xs sm:text-sm font-black rounded-xl shadow-md transition-all"
-          >
-            <span>Официальный сайт университета</span>
-            <ExternalLink className="w-4 h-4" />
-          </a>
+            <button
+              onClick={handlePrintChecklist}
+              className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-white border border-[#8B0000]/30 hover:border-[#8B0000] text-[#8B0000] text-xs font-bold transition-all shadow-2xs cursor-pointer"
+              title="Скачать или распечатать чек-лист поступления в PDF"
+            >
+              <Printer className="w-4 h-4" />
+              <span>Чек-лист (PDF)</span>
+            </button>
+          </div>
+
+          <div className="flex items-center gap-2 w-full sm:w-auto">
+            {onRequestAudit && (
+              <button
+                onClick={() => {
+                  onClose();
+                  onRequestAudit(university);
+                }}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-2.5 bg-[#FAF5EE] hover:bg-[#FAF5EE]/80 border-2 border-[#8B0000] text-[#8B0000] text-xs sm:text-sm font-black rounded-xl shadow-2xs transition-all cursor-pointer"
+              >
+                <Sparkles className="w-3.5 h-3.5 text-[#8B0000]" />
+                <span>Оценить шансы</span>
+              </button>
+            )}
+
+            <a
+              href={university.websiteUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-5 py-2.5 bg-[#8B0000] hover:bg-[#630000] text-[#EFE0CD] text-xs sm:text-sm font-black rounded-xl shadow-md transition-all cursor-pointer"
+            >
+              <span>Сайт ВУЗа</span>
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          </div>
         </div>
       </div>
     </div>

@@ -9,7 +9,8 @@ import {
   Search,
   BookOpen,
   Menu,
-  X
+  X,
+  Sparkles
 } from 'lucide-react';
 import { languages } from '../data/languages';
 
@@ -21,6 +22,7 @@ export default function Navbar({
   onOpenFavorites,
   onOpenAuth,
   onOpenLanguage,
+  onOpenAudit,
   user,
   currentLang
 }) {
@@ -141,6 +143,16 @@ export default function Navbar({
               )}
             </button>
 
+            {/* Free Audit Quick Button */}
+            <button
+              onClick={onOpenAudit}
+              className="hidden lg:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-[#8B0000]/30 bg-[#EFE0CD]/60 hover:bg-[#8B0000] hover:text-[#EFE0CD] text-[#8B0000] text-xs font-black transition-all cursor-pointer shadow-2xs"
+              title="Бесплатный расчет шансов на поступление"
+            >
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Оценка шансов</span>
+            </button>
+
             {/* Profile Button */}
             <button
               onClick={onOpenAuth}
@@ -166,6 +178,20 @@ export default function Navbar({
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div className="md:hidden bg-[#FAF5EE] border-b border-[#8B0000]/20 px-4 pt-3 pb-6 space-y-2 text-left animate-fadeIn">
+          {/* Free Audit Button on Mobile */}
+          <button
+            onClick={() => {
+              onOpenAudit();
+              setMobileMenuOpen(false);
+            }}
+            className="w-full flex items-center justify-between px-4 py-2.5 rounded-2xl bg-[#EFE0CD] border border-[#8B0000]/30 text-[#8B0000] font-black text-xs shadow-2xs"
+          >
+            <span className="flex items-center gap-2">
+              <Sparkles className="w-4 h-4 text-[#8B0000]" />
+              <span>Бесплатный экспресс-аудит шансов</span>
+            </span>
+            <span>→</span>
+          </button>
           {/* Prominent «⋯» on Mobile */}
           <button
             onClick={() => {

@@ -891,6 +891,483 @@ export const universities = [
     },
     websiteUrl: 'https://www.kuleuven.be',
     landmarkSymbol: 'Ратуша Лёвена & Атомиум'
+  },
+
+  // --- ЧЕХИЯ (ČVUT) ---
+  {
+    id: 'cvut',
+    name: 'Czech Technical University in Prague (ČVUT)',
+    localName: 'České vysoké učení technické v Praze',
+    countryId: 'czech',
+    countryName: 'Чехия',
+    flag: '🇨🇿',
+    city: 'Прага',
+    qsRank: '#403 в мире (Топ-1 в Центральной Европе по IT и инженерии)',
+    photo: 'universities/central.jpg',
+    fields: ['it', 'engineering', 'architecture', 'natural_sciences'],
+    degrees: ['bachelor', 'master'],
+    tuition: {
+      amount: 0,
+      text: '0 € на чешском / ~3 800 € на английском',
+      isFree: true
+    },
+    scholarship: {
+      available: true,
+      name: 'Государственная стипендия Чехии & Стипендия за успеваемость ČVUT',
+      coverage: 'Бесплатное обучение + до 14 000 CZK (~580 €) в месяц',
+      type: 'full',
+      description: 'Государственные программы поддержки иностранных студентов при обучении на чешском или английском языке.'
+    },
+    languageReq: {
+      ielts: '6.0',
+      toefl: '80',
+      noExamOption: true,
+      examDescription: 'Сертификат B2 по чешскому языку (бесплатно) или IELTS 6.0 для англоязычных программ'
+    },
+    deadline: '31 марта (основной поток) / 31 мая',
+    livingCostMonth: 650,
+    overview: 'Старейший технический университет Центральной Европы (основан в 1707 г.). Легендарный факультет информационных технологий (FIT) и электротехники (FEL).',
+    keyPrograms: [
+      { name: 'Software Engineering and Web Technologies', degree: 'Bachelor', lang: 'English / CZ', duration: '3 года' },
+      { name: 'Artificial Intelligence & Computer Vision', degree: 'Master', lang: 'English', duration: '2 года' },
+      { name: 'Architecture and Urbanism', degree: 'Bachelor & Master', lang: 'Czech / EN', duration: '4 года' }
+    ],
+    admissionChecklist: [
+      'Нострификация школьного аттестата или диплома в магистрате Праги',
+      'Вступительные тесты по математике и информатике (SCIO)',
+      'Сертификат чешского B2 или IELTS 6.0+'
+    ],
+    livingCostDetails: {
+      housing: '200 – 350 € (общежития Strahov/Dejvice)',
+      food: '180 – 230 € (студенческие столовые Менза)',
+      transport: '5 € (студенческий проездной Lítačka)'
+    },
+    websiteUrl: 'https://www.cvut.cz',
+    landmarkSymbol: 'Карлов мост & Пражский Град'
+  },
+
+  // --- АВСТРИЯ (TU Wien) ---
+  {
+    id: 'tuwien',
+    name: 'TU Wien (Vienna University of Technology)',
+    localName: 'Technische Universität Wien',
+    countryId: 'austria',
+    countryName: 'Австрия',
+    flag: '🇦🇹',
+    city: 'Вена',
+    qsRank: '#190 в мире (Ведущий инженерный вуз Австрии)',
+    photo: 'universities/central.jpg',
+    fields: ['engineering', 'it', 'architecture', 'natural_sciences'],
+    degrees: ['bachelor', 'master'],
+    tuition: {
+      amount: 726,
+      text: '726 € / семестр (~1 450 € / год)',
+      isFree: false
+    },
+    scholarship: {
+      available: true,
+      name: 'ÖAD Ernst Mach Grant & TU Wien Leistungsstipendium',
+      coverage: 'До 1 200 € в месяц на проживание',
+      type: 'partial',
+      description: 'Австрийские государственные стипендии ÖAD для иностранных студентов с отличной успеваемостью.'
+    },
+    languageReq: {
+      ielts: '6.5',
+      toefl: '88',
+      noExamOption: false,
+      examDescription: 'Немецкий C1 (Goethe/ÖSD) или IELTS 6.5 для англоязычных магистерских программ'
+    },
+    deadline: '5 сентября (зимний семестр) / 5 февраля (летний)',
+    livingCostMonth: 950,
+    overview: 'Расположен в самом центре Вены возле Карлсплац. Крупнейший исследовательский и инновационный кластер Австрии с тесными связями с Siemens, AVL и Infineon.',
+    keyPrograms: [
+      { name: 'Data Science & Machine Learning', degree: 'Master', lang: 'English', duration: '2 года' },
+      { name: 'Computer Engineering and Embedded Systems', degree: 'Bachelor & Master', lang: 'DE / EN', duration: '3 года' },
+      { name: 'Architecture and Sustainable Design', degree: 'Bachelor', lang: 'German', duration: '3 года' }
+    ],
+    admissionChecklist: [
+      'Апостиль на аттестат / диплом + нотариальный немецкий перевод',
+      'Справка о праве на обучение (Nachweis der besonderen Universitätsreife)',
+      'Языковой сертификат'
+    ],
+    livingCostDetails: {
+      housing: '380 – 600 € (комната в общежитии ÖJAB/OeAD)',
+      food: '250 – 300 €',
+      transport: '75 € за весь семестр (Semesterticket)'
+    },
+    websiteUrl: 'https://www.tuwien.at',
+    landmarkSymbol: 'Собор Святого Стефана & Бельведер'
+  },
+
+  // --- СЛОВАКИЯ (STU Bratislava) ---
+  {
+    id: 'stubratislava',
+    name: 'Slovak University of Technology in Bratislava (STU)',
+    localName: 'Slovenská technická univerzita v Bratislave',
+    countryId: 'slovakia',
+    countryName: 'Словакия',
+    flag: '🇸🇰',
+    city: 'Братислава',
+    qsRank: '#751 в мире (#1 технический ВУЗ Словакии)',
+    photo: 'universities/central.jpg',
+    fields: ['engineering', 'it', 'architecture', 'design'],
+    degrees: ['bachelor', 'master'],
+    tuition: {
+      amount: 0,
+      text: '0 € на словацком языке (госвуз)',
+      isFree: true
+    },
+    scholarship: {
+      available: true,
+      name: 'Стипендия Правительства Словакии для иностранцев',
+      coverage: '4 000 € в год за высокий средний балл',
+      type: 'full',
+      description: 'Грантовая программа Министерства образования Словакии для талантливых зарубежных студентов.'
+    },
+    languageReq: {
+      ielts: '6.0',
+      toefl: '75',
+      noExamOption: true,
+      examDescription: 'Словацкий B1/B2 (языковые курсы при университете) или IELTS 6.0 для программ на английском'
+    },
+    deadline: '30 апреля / 31 мая',
+    livingCostMonth: 550,
+    overview: 'Ведущий центр инженерного и IT-образования в Словакии. В 55 км от Вены. Выпускники факультета информатики FIIT STU имеют 100% трудоустройство в ЕС.',
+    keyPrograms: [
+      { name: 'Informatics and Software Systems (FIIT)', degree: 'Bachelor & Master', lang: 'Slovak / EN', duration: '3 года' },
+      { name: 'Robotics and Cybernetics', degree: 'Master', lang: 'English', duration: '2 года' },
+      { name: 'Architecture and Product Design', degree: 'Bachelor', lang: 'Slovak', duration: '4 года' }
+    ],
+    admissionChecklist: [
+      'Нострификация школьного аттестата в Братиславе',
+      'Заявление (Prihláška na vysokoškolské štúdium)',
+      'Без вступительных экзаменов при хорошем среднем балле аттестата'
+    ],
+    livingCostDetails: {
+      housing: '120 – 180 € (студенческое общежитие Mladá Garda)',
+      food: '180 – 220 €',
+      transport: '15 € в месяц (проездной ISIC)'
+    },
+    websiteUrl: 'https://www.stuba.sk',
+    landmarkSymbol: 'Братиславский Град & Мост СНП'
+  },
+
+  // --- ПОРТУГАЛИЯ (University of Porto) ---
+  {
+    id: 'uporto',
+    name: 'University of Porto',
+    localName: 'Universidade do Porto',
+    countryId: 'portugal',
+    countryName: 'Португалия',
+    flag: '🇵🇹',
+    city: 'Порту',
+    qsRank: '#253 в мире (#1 университет Португалии)',
+    photo: 'universities/spain.jpg',
+    fields: ['engineering', 'biomedicine', 'architecture', 'business', 'natural_sciences'],
+    degrees: ['bachelor', 'master'],
+    tuition: {
+      amount: 1925,
+      text: '1 925 – 3 500 € / год (госвуз)',
+      isFree: false
+    },
+    scholarship: {
+      available: true,
+      name: 'SASUP Grants & Стипендия Camões',
+      coverage: 'Скидка до 50% на обучение + помощь на проживание',
+      type: 'partial',
+      description: 'Социальная служба университета Порту (SASUP) выделяет прямые субсидии студентам.'
+    },
+    languageReq: {
+      ielts: '6.0',
+      toefl: '80',
+      noExamOption: true,
+      examDescription: 'Сертификат португальского CAPLE B2 или IELTS 6.0 для англоязычных программ'
+    },
+    deadline: '15 мая / 15 июля',
+    livingCostMonth: 650,
+    overview: 'Самый престижный университет Португалии с мировым именем в инженерии (FEUP) и биомедицине (ICBAS). Теплый климат на берегу Атлантического океана.',
+    keyPrograms: [
+      { name: 'Bioengineering and Medical Devices', degree: 'Master', lang: 'English', duration: '2 года' },
+      { name: 'Civil & Structural Engineering', degree: 'Bachelor & Master', lang: 'PT / EN', duration: '3 года' },
+      { name: 'Architecture (FAUP — школа Сизы Виейры)', degree: 'Bachelor & Master', lang: 'Portuguese', duration: '5 лет' }
+    ],
+    admissionChecklist: [
+      'Эквивалентность аттестата через DGES Portugal',
+      'Сдача национальных тестов ENEM или экзаменов Enave',
+      'IELTS 6.0 или CAPLE B2'
+    ],
+    livingCostDetails: {
+      housing: '250 – 420 € (комната в центре Порту)',
+      food: '180 – 220 €',
+      transport: '30 € (проездной Andante)'
+    },
+    websiteUrl: 'https://www.up.pt',
+    landmarkSymbol: 'Мост Луиша I & Башня Клеригуш'
+  },
+
+  // --- ФИНЛЯНДИЯ (Aalto University) ---
+  {
+    id: 'aalto',
+    name: 'Aalto University',
+    localName: 'Aalto-yliopisto',
+    countryId: 'finland',
+    countryName: 'Финляндия',
+    flag: '🇫🇮',
+    city: 'Эспоо / Хельсинки',
+    qsRank: '#109 в мире (#6 в мире по направлению Art & Design)',
+    photo: 'universities/nordic.jpg',
+    fields: ['design', 'it', 'business', 'engineering'],
+    degrees: ['bachelor', 'master'],
+    tuition: {
+      amount: 12000,
+      text: '12 000 – 15 000 € / год (гранты до 100%)',
+      isFree: false
+    },
+    scholarship: {
+      available: true,
+      name: 'Aalto University Scholarship Programme',
+      coverage: '100% покрытие стоимости обучения + грант на жизнь',
+      type: 'full',
+      description: 'Каждый принятый студент из стран вне ЕС автоматически рассматривается на стипендию 100% или 50% скидки.'
+    },
+    languageReq: {
+      ielts: '6.5',
+      toefl: '92',
+      noExamOption: false,
+      examDescription: 'IELTS 6.5 (min 5.5 writing) или TOEFL iBT 92'
+    },
+    deadline: '17 января (единая подача в Финляндии)',
+    livingCostMonth: 850,
+    overview: 'Уникальный синтез дизайна, бизнеса и высоких технологий. Кампус Otaniemi — одна из самых креативных стартап-экосистем Северной Европы (родина Slush).',
+    keyPrograms: [
+      { name: 'Computational Engineering & AI', degree: 'Bachelor', lang: 'English', duration: '3 года' },
+      { name: 'Collaborative and Industrial Design', degree: 'Master', lang: 'English', duration: '2 года' },
+      { name: 'International Design Business Management (IDBM)', degree: 'Master', lang: 'English', duration: '2 года' }
+    ],
+    admissionChecklist: [
+      'Подача через общенациональный портал Studyinfo.fi',
+      'Портфолио для программ дизайна / SAT для бакалавриата',
+      'IELTS 6.5+'
+    ],
+    livingCostDetails: {
+      housing: '320 – 500 € (студенческие апартаменты HOAS)',
+      food: '220 – 260 € (субсидированный ланч за 3.20 €)',
+      transport: '38 € (проездной HSL)'
+    },
+    websiteUrl: 'https://www.aalto.fi',
+    landmarkSymbol: 'Кампус Отаниеми & Финский залив'
+  },
+
+  // --- ШВЕЦИЯ (Lund University) ---
+  {
+    id: 'lund',
+    name: 'Lund University',
+    localName: 'Lunds universitet',
+    countryId: 'sweden',
+    countryName: 'Швеция',
+    flag: '🇸🇪',
+    city: 'Лунд',
+    qsRank: '#75 в мире (#1 университет Швеции)',
+    photo: 'universities/nordic.jpg',
+    fields: ['engineering', 'biomedicine', 'law', 'business', 'humanities'],
+    degrees: ['bachelor', 'master'],
+    tuition: {
+      amount: 11500,
+      text: '11 500 – 16 000 € / год (гранты SI до 100%)',
+      isFree: false
+    },
+    scholarship: {
+      available: true,
+      name: 'Swedish Institute (SI) Scholarships for Global Professionals',
+      coverage: '100% учебы + 12 000 SEK (~1 050 €) / мес на жизнь + перелет',
+      type: 'full',
+      description: 'Престижная государственная стипендия Швеции с полным покрытием всех расходов.'
+    },
+    languageReq: {
+      ielts: '6.5',
+      toefl: '90',
+      noExamOption: false,
+      examDescription: 'IELTS 6.5 (no section below 5.5) или TOEFL 90'
+    },
+    deadline: '15 января (через Universityadmissions.se)',
+    livingCostMonth: 950,
+    overview: 'Основан в 1666 году. Классический университетский город европейского типа, где каждый третий житель — студент. Рядом с синхротронным центром MAX IV и ESS.',
+    keyPrograms: [
+      { name: 'International Business (BSc)', degree: 'Bachelor', lang: 'English', duration: '3 года' },
+      { name: 'Wireless Communication & 5G/6G Networks', degree: 'Master', lang: 'English', duration: '2 года' },
+      { name: 'Public International Law & Human Rights', degree: 'Master', lang: 'English', duration: '2 года' }
+    ],
+    admissionChecklist: [
+      'Подача документов через Universityadmissions.se',
+      'Мотивационное письмо и CV в формате Europass',
+      'IELTS 6.5+'
+    ],
+    livingCostDetails: {
+      housing: '380 – 580 € (комната в студенческом коридоре AF Bostäder)',
+      food: '230 – 280 €',
+      transport: '45 € (велосипед или Skånetrafiken)'
+    },
+    websiteUrl: 'https://www.lunduniversity.lu.se',
+    landmarkSymbol: 'Кафедральный собор Лунда & Ботанический сад'
+  },
+
+  // --- ШВЕЙЦАРИЯ (University of Zurich) ---
+  {
+    id: 'uzh',
+    name: 'University of Zurich (UZH)',
+    localName: 'Universität Zürich',
+    countryId: 'switzerland',
+    countryName: 'Швейцария',
+    flag: '🇨🇭',
+    city: 'Цюрих',
+    qsRank: '#91 в мире (12 Нобелевских лауреатов, включая Эйнштейна)',
+    photo: 'universities/germany.jpg',
+    fields: ['biomedicine', 'law', 'business', 'natural_sciences', 'humanities'],
+    degrees: ['bachelor', 'master'],
+    tuition: {
+      amount: 1450,
+      text: '1 450 CHF (~1 500 €) / год (госвуз)',
+      isFree: false
+    },
+    scholarship: {
+      available: true,
+      name: 'Swiss Government Excellence Scholarships & UZH Grants',
+      coverage: 'До 1 920 CHF в месяц + страховка',
+      type: 'full',
+      description: 'Швейцарские федеральные гранты для исследователей и магистров.'
+    },
+    languageReq: {
+      ielts: '7.0',
+      toefl: '100',
+      noExamOption: false,
+      examDescription: 'IELTS 7.0 / TOEFL 100 или немецкий C1 (Goethe)'
+    },
+    deadline: '30 апреля / 30 ноября',
+    livingCostMonth: 1600,
+    overview: 'Крупнейший университет Швейцарии. Мировой авторитет в области банковского дела, нейробиологии и медицины. Расположен на живописных холмах Цюриха.',
+    keyPrograms: [
+      { name: 'Banking and Finance', degree: 'Master', lang: 'English', duration: '2 года' },
+      { name: 'Biomedicine & Neuroscience', degree: 'Master', lang: 'English', duration: '2 года' },
+      { name: 'International and European Law (LLM)', degree: 'Master', lang: 'English', duration: '1 год' }
+    ],
+    admissionChecklist: [
+      'Швейцарская эквивалентность (Swiss Matura equivalence)',
+      'Подтверждение финансовой состоятельности для визы кантона Цюрих',
+      'IELTS 7.0 или Goethe C1'
+    ],
+    livingCostDetails: {
+      housing: '650 – 950 CHF (студенческое WOKO)',
+      food: '350 – 450 CHF',
+      transport: '65 CHF (проездной ZVV)'
+    },
+    websiteUrl: 'https://www.uzh.ch',
+    landmarkSymbol: 'Цюрихское озеро & Банхофштрассе'
+  },
+
+  // --- БЕЛЬГИЯ (Ghent University) ---
+  {
+    id: 'ugent',
+    name: 'Ghent University',
+    localName: 'Universiteit Gent',
+    countryId: 'belgium',
+    countryName: 'Бельгия',
+    flag: '🇧🇪',
+    city: 'Гент',
+    qsRank: '#159 в мире (Топ-100 по биотехнологиям и ветеринарии)',
+    photo: 'universities/france.jpg',
+    fields: ['biomedicine', 'engineering', 'law', 'natural_sciences', 'business'],
+    degrees: ['bachelor', 'master'],
+    tuition: {
+      amount: 1100,
+      text: '1 100 – 3 200 € / год (госвуз)',
+      isFree: false
+    },
+    scholarship: {
+      available: true,
+      name: 'Master Mind Scholarship (Фландрия) & Top-Up Grants',
+      coverage: '10 000 € / год + бесплатное обучение',
+      type: 'full',
+      description: 'Государственная программа Фландрии для отличников учебы.'
+    },
+    languageReq: {
+      ielts: '6.5',
+      toefl: '90',
+      noExamOption: false,
+      examDescription: 'IELTS 6.5 или TOEFL 90'
+    },
+    deadline: '1 марта / 1 июня',
+    livingCostMonth: 820,
+    overview: 'Один из крупнейших фламандских университетов Бельгии. Город Гент — историческая жемчужина средневековой Европы с насыщенной студенческой жизнью.',
+    keyPrograms: [
+      { name: 'Bioinformatics and Bioscience Engineering', degree: 'Master', lang: 'English', duration: '2 года' },
+      { name: 'European Law and Human Rights', degree: 'Master', lang: 'English', duration: '1 год' },
+      { name: 'Sustainable Food Systems (Erasmus Mundus)', degree: 'Master', lang: 'English', duration: '2 года' }
+    ],
+    admissionChecklist: [
+      'Апостиль на диплом / аттестат',
+      'Академическое резюме и мотивация',
+      'IELTS 6.5+'
+    ],
+    livingCostDetails: {
+      housing: '340 – 520 € (общежития UGent)',
+      food: '220 – 260 € (Resto студенческие столовые)',
+      transport: '20 € (De Lijn или велосипед)'
+    },
+    websiteUrl: 'https://www.ugent.be',
+    landmarkSymbol: 'Замок Гравенстен & Набережная Граслей'
+  },
+
+  // --- ИТАЛИЯ (Sapienza University of Rome) ---
+  {
+    id: 'sapienza',
+    name: 'Sapienza University of Rome',
+    localName: 'Sapienza Università di Roma',
+    countryId: 'italy',
+    countryName: 'Италия',
+    flag: '🇮🇹',
+    city: 'Рим',
+    qsRank: '#132 в мире (#1 в мире по Classics & Ancient History)',
+    photo: 'universities/italy.jpg',
+    fields: ['engineering', 'humanities', 'architecture', 'biomedicine', 'politics'],
+    degrees: ['bachelor', 'master'],
+    tuition: {
+      amount: 1000,
+      text: '1 000 – 2 900 € / год (госвуз, по ISEE от 0 €)',
+      isFree: false
+    },
+    scholarship: {
+      available: true,
+      name: 'LazioDiSCo Scholarship (Рим)',
+      coverage: 'До 7 000 € / год + бесплатное общежитие и столовая',
+      type: 'full',
+      description: 'Региональная стипендия региона Лацио по финансовому критерию (ISEE Parificato).'
+    },
+    languageReq: {
+      ielts: '6.0',
+      toefl: '80',
+      noExamOption: true,
+      examDescription: 'IELTS 6.0 или сдача вступительного теста English TOLC / B2'
+    },
+    deadline: '29 апреля (ранний раунд) / 15 июля',
+    livingCostMonth: 800,
+    overview: 'Основан в 1303 году папой Бонифацием VIII. Крупнейший очный университет Европы (более 115 000 студентов). Знаменитый модернистский город-кампус в центре Рима.',
+    keyPrograms: [
+      { name: 'Applied Computer Science and Artificial Intelligence', degree: 'Bachelor', lang: 'English', duration: '3 года' },
+      { name: 'Classics and Mediterranean Heritage', degree: 'Bachelor & Master', lang: 'English', duration: '3 года' },
+      { name: 'Aerospace Engineering', degree: 'Master', lang: 'English', duration: '2 года' }
+    ],
+    admissionChecklist: [
+      'Декларация о соответствии (Dichiarazione di Valore / CIMEA)',
+      'Экзамен TOLC-I / TOLC-E или SAT',
+      'Расчет ISEE Parificato для стипендии LazioDiSCo'
+    ],
+    livingCostDetails: {
+      housing: '350 – 550 € (комната в Сан-Лоренцо или Тибуртине)',
+      food: '200 – 250 €',
+      transport: '35 € (годовой проездной ATAC за 50 €)'
+    },
+    websiteUrl: 'https://www.uniroma1.it',
+    landmarkSymbol: 'Колизей & Пантеон'
   }
 ];
 

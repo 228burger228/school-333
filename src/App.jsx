@@ -12,6 +12,7 @@ import FavoritesModal from './components/FavoritesModal';
 import AuthModal from './components/AuthModal';
 import LanguageOnboarding from './components/LanguageOnboarding';
 import AdmissionGuideScreen from './components/AdmissionGuideScreen';
+import FreeAuditModal from './components/FreeAuditModal';
 import Footer from './components/Footer';
 
 import { universities } from './data/universities';
@@ -21,6 +22,15 @@ import { studyDirections } from './data/directions';
 export default function App() {
   // Screens: 'home' | 'countries' | 'directions' | 'universities' | 'countryQuiz' | 'careerQuiz' | 'guide'
   const [activeScreen, setActiveScreen] = useState('home');
+
+  // Audit Modal state
+  const [isAuditModalOpen, setIsAuditModalOpen] = useState(false);
+  const [auditTargetUniversity, setAuditTargetUniversity] = useState(null);
+
+  const handleOpenAudit = (uni = null) => {
+    setAuditTargetUniversity(uni);
+    setIsAuditModalOpen(true);
+  };
 
   // Currently selected country and direction
   const [selectedCountry, setSelectedCountry] = useState(countries[0]); // default Spain
@@ -231,6 +241,7 @@ export default function App() {
         onOpenFavorites={() => setIsFavoritesModalOpen(true)}
         onOpenAuth={() => setIsAuthModalOpen(true)}
         onOpenLanguage={() => setShowLanguageOnboarding(true)}
+        onOpenAudit={() => handleOpenAudit(null)}
         user={user}
         currentLang={currentLang}
       />
@@ -335,6 +346,14 @@ export default function App() {
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
             onNavigateToCatalog={handleOpenCountries}
+            onNavigateToCountryUniversities={(countryId) => {
+              setFilters({
+                ...initialFilters,
+                countryId
+              });
+              setActiveScreen('universities');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
           />
         )}
       </main>
@@ -356,8 +375,19 @@ export default function App() {
           onClose={() => setSelectedUniversityForModal(null)}
           isFavorite={favorites.includes(selectedUniversityForModal.id)}
           onToggleFavorite={handleToggleFavorite}
+          onRequestAudit={handleOpenAudit}
         />
       )}
+
+      {/* Free Express Audit Modal */}
+      <FreeAuditModal
+        isOpen={isAuditModalOpen}
+        onClose={() => {
+          setIsAuditModalOpen(false);
+          setAuditTargetUniversity(null);
+        }}
+        preselectedUniversity={auditTargetUniversity}
+      />
 
       {/* Favorites and Comparison Modal */}
       {isFavoritesModalOpen && (
