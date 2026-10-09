@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- Main Landing & Aggregator -->
+  <url>
+    <loc>https://228burger228.github.io/school-333/</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://228burger228.github.io/school-333/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://228burger228.github.io/school-333/" />
+  </url>
+
+  <!-- 13 European Countries Catalog -->
+  <url>
+    <loc>https://228burger228.github.io/school-333/#countries</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- 3D University Cards & Catalog -->
+  <url>
+    <loc>https://228burger228.github.io/school-333/#universities</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Admission Guide, Timeline & Scholarships (DSU, DAAD, Eiffel) -->
+  <url>
+    <loc>https://228burger228.github.io/school-333/#guide</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Country Selection Quiz -->
+  <url>
+    <loc>https://228burger228.github.io/school-333/#countryQuiz</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Career Orientation Quiz -->
+  <url>
+    <loc>https://228burger228.github.io/school-333/#careerQuiz</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+</urlset>

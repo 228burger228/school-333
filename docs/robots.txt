@@ -1,0 +1,17 @@
+# robots.txt for Maybe abroad? — European Education Navigator
+# Allows all search engine crawlers (Google, Yandex, Bing, DuckDuckGo)
+
+User-agent: *
+Allow: /
+Allow: /images/
+Allow: /stickers/
+Allow: /universities/
+
+# Crawl delay to protect client bandwidth
+Crawl-delay: 1
+
+# Host directive for Yandex
+Host: https://228burger228.github.io
+
+# Path to XML Sitemap
+Sitemap: https://228burger228.github.io/school-333/sitemap.xml
