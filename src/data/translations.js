@@ -199,6 +199,9 @@ export const translations = {
       successTitle: 'Заявка принята, ',
       successDesc: 'Мы получили ваши вводные данные. Методист по поступлению проверит требования и вышлет разбор на почту в течение 24 часов.',
       memoNotice: 'Памятка по стипендиям и дедлайнам уже отправлена на вашу почту.',
+      rateLimitCooldown: 'Пожалуйста, подождите {sec} сек перед следующей отправкой.',
+      rateLimitExceeded: 'Превышен лимит запросов. Попробуйте через {sec} сек.',
+      invalidEmail: 'Пожалуйста, укажите корректный адрес электронной почты.',
       closeBtn: 'Закрыть окно'
     },
     onboarding: {
@@ -432,6 +435,9 @@ export const translations = {
       successTitle: 'Application received, ',
       successDesc: 'We have received your details. Our admissions advisor will check requirements and email you the step-by-step breakdown within 24 hours.',
       memoNotice: 'Scholarship and deadline guides have been sent to your email.',
+      rateLimitCooldown: 'Please wait {sec}s before submitting again.',
+      rateLimitExceeded: 'Too many requests. Please try again in {sec}s.',
+      invalidEmail: 'Please provide a valid email address.',
       closeBtn: 'Close Window'
     },
     onboarding: {

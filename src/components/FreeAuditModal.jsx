@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { X, CheckCircle2, Send, Sparkles, ShieldCheck, Mail, User, Building2 } from 'lucide-react';
+import { X, CheckCircle2, Send, Sparkles, ShieldCheck, Mail, User, Building2, AlertCircle } from 'lucide-react';
 import { getTranslation } from '../data/translations';
+import { checkRateLimit, recordRateLimitAttempt, sanitizeText, isValidEmail } from '../utils/security';
 
 export default function FreeAuditModal({
   isOpen,
@@ -11,6 +12,8 @@ export default function FreeAuditModal({
 }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [botHoneypot, setBotHoneypot] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const t = getTranslation(currentLang);
@@ -19,15 +22,61 @@ export default function FreeAuditModal({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!name.trim() || !email.trim()) return;
+    setErrorMessage('');
+
+    // 1. Anti-bot Honeypot trap: bots fill invisible fields automatically
+    if (botHoneypot.trim()) {
+      // Silently succeed to fool bots without processing
+      setIsLoading(true);
+      setTimeout(() => {
+        setIsLoading(false);
+        setSubmitted(true);
+      }, 500);
+      return;
+    }
+
+    // 2. Input Sanitization
+    const cleanName = sanitizeText(name);
+    const cleanEmail = sanitizeText(email);
+
+    if (!cleanName || !cleanEmail) return;
+
+    // 3. Email syntax verification
+    if (!isValidEmail(cleanEmail)) {
+      setErrorMessage(t.audit.invalidEmail || 'Пожалуйста, укажите корректный адрес электронной почты.');
+      return;
+    }
+
+    // 4. Rate Limiting verification (Max 3 requests / 10 min, 30s cooldown between submits)
+    const rateCheck = checkRateLimit('free_audit', {
+      maxAttempts: 3,
+      windowMs: 10 * 60 * 1000,
+      cooldownMs: 30 * 1000
+    });
+
+    if (!rateCheck.allowed) {
+      if (rateCheck.reason === 'cooldown') {
+        const msg = (t.audit.rateLimitCooldown || 'Пожалуйста, подождите {sec} сек перед следующей отправкой.')
+          .replace('{sec}', rateCheck.remainingSeconds);
+        setErrorMessage(msg);
+      } else {
+        const msg = (t.audit.rateLimitExceeded || 'Превышен лимит запросов. Попробуйте через {sec} сек.')
+          .replace('{sec}', rateCheck.remainingSeconds);
+        setErrorMessage(msg);
+      }
+      return;
+    }
 
     setIsLoading(true);
 
-    // Save lead locally to simulate real CRM lead generation
+    // 5. Record attempt for rate limiter
+    recordRateLimitAttempt('free_audit');
+
+    // Save sanitized lead locally to simulate real CRM lead generation
     const newLead = {
       id: Date.now(),
-      name: name.trim(),
-      email: email.trim(),
+      name: cleanName,
+      email: cleanEmail,
       university: preselectedUniversity ? preselectedUniversity.name : null,
       country: preselectedCountry || (preselectedUniversity ? preselectedUniversity.countryName : null),
       createdAt: new Date().toISOString()
@@ -49,6 +98,8 @@ export default function FreeAuditModal({
   const handleReset = () => {
     setName('');
     setEmail('');
+    setBotHoneypot('');
+    setErrorMessage('');
     setSubmitted(false);
     onClose();
   };
@@ -119,6 +170,26 @@ export default function FreeAuditModal({
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Anti-bot Honeypot trap (hidden from humans, traps automated scrapers) */}
+              <div style={{ position: 'absolute', opacity: 0, zIndex: -1, pointerEvents: 'none', height: 0, overflow: 'hidden' }} aria-hidden="true">
+                <input
+                  type="text"
+                  name="user_organization_hp"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={botHoneypot}
+                  onChange={(e) => setBotHoneypot(e.target.value)}
+                />
+              </div>
+
+              {/* Security Rate Limit & Validation Alert */}
+              {errorMessage && (
+                <div className="flex items-center gap-2 p-3 rounded-xl bg-red-50 border border-red-300/80 text-xs font-bold text-red-900 animate-fadeIn">
+                  <AlertCircle className="w-4 h-4 shrink-0 text-red-700" />
+                  <span>{errorMessage}</span>
+                </div>
+              )}
+
               <div>
                 <label className="block text-xs font-black uppercase tracking-wider text-[#8B0000] mb-1.5">
                   {t.audit.nameLabel}
