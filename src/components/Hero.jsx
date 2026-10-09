@@ -34,7 +34,7 @@ export default function Hero({
 
         {/* Hero Title */}
         <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-[#8B0000] tracking-tight leading-[1.15] max-w-4xl mx-auto mb-6">
-          {t.hero.titleMain} <span className="underline decoration-[#8B0000]/30">{t.hero.titleAccent}</span> {t.hero.titleEnd}
+          {t.hero.titleMain} <span>{t.hero.titleAccent}</span> {t.hero.titleEnd}
         </h1>
 
         {/* Subtitle */}
