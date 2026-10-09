@@ -40,9 +40,13 @@ export default function UniversityFlipCard({
           <div className="relative w-full h-[185px] sm:h-[195px] bg-gradient-to-br from-[#700000] via-[#8B0000] to-[#500000] overflow-hidden shrink-0">
             <img
               src={university.photo}
-              alt={university.name}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              alt={`${university.name} — Кампус университета, ${university.city}, ${university.countryName}`}
+              title={`${university.name} (${university.city})`}
+              width="600"
+              height="338"
+              decoding="async"
               loading="lazy"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               onError={(e) => {
                 e.currentTarget.onerror = null;
                 e.currentTarget.src = 'images/hero_campus.jpg';

@@ -128,7 +128,11 @@ export default function UniversityDetailModal({
         <div className="relative h-60 sm:h-72 w-full overflow-hidden bg-gradient-to-br from-[#700000] via-[#8B0000] to-[#500000]">
           <img
             src={university.photo}
-            alt={university.name}
+            alt={`${university.name} — Главный корпус и кампус, ${university.city}, ${university.countryName}`}
+            title={`${university.name} (${university.city})`}
+            width="1200"
+            height="675"
+            decoding="async"
             className="w-full h-full object-cover opacity-90"
             onError={(e) => {
               e.currentTarget.onerror = null;

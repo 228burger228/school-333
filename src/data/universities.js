@@ -9,7 +9,7 @@ export const universities = [
     flag: '🇪🇸',
     city: 'Барселона',
     qsRank: '#149 в мире (#1 в Испании)',
-    photo: 'universities/spain.jpg',
+    photo: 'universities/uab_barcelona_campus.jpg',
     fields: ['business', 'biomedicine', 'humanities', 'design', 'politics'],
     degrees: ['bachelor', 'master'],
     tuition: {
@@ -61,7 +61,7 @@ export const universities = [
     flag: '🇪🇸',
     city: 'Мадрид',
     qsRank: '#171 в мире',
-    photo: 'universities/spain.jpg',
+    photo: 'universities/ucm_madrid_campus.jpg',
     fields: ['law', 'humanities', 'politics', 'biomedicine', 'health'],
     degrees: ['bachelor', 'master'],
     tuition: {
@@ -114,7 +114,7 @@ export const universities = [
     flag: '🇮🇹',
     city: 'Милан',
     qsRank: '#111 в мире (#7 по Дизайну и Архитектуре)',
-    photo: 'universities/italy.jpg',
+    photo: 'universities/polimi_milan_campus.jpg',
     fields: ['engineering', 'design', 'it', 'architecture'],
     degrees: ['bachelor', 'master'],
     tuition: {
@@ -167,7 +167,7 @@ export const universities = [
     flag: '🇮🇹',
     city: 'Болонья',
     qsRank: '#133 в мире (#1 старейший университет мира, 1088 г.)',
-    photo: 'universities/italy.jpg',
+    photo: 'universities/unibo_bologna_campus.jpg',
     fields: ['law', 'humanities', 'business', 'biomedicine', 'politics'],
     degrees: ['bachelor', 'master'],
     tuition: {
@@ -220,7 +220,7 @@ export const universities = [
     flag: '🇩🇪',
     city: 'Мюнхен',
     qsRank: '#28 в мире (#1 в Германии)',
-    photo: 'universities/germany.jpg',
+    photo: 'universities/tum_munich_campus.jpg',
     fields: ['engineering', 'it', 'business', 'natural_sciences', 'biomedicine'],
     degrees: ['bachelor', 'master'],
     tuition: {
@@ -271,7 +271,7 @@ export const universities = [
     flag: '🇩🇪',
     city: 'Аахен',
     qsRank: '#99 в мире (#2 по машиностроению в Германии)',
-    photo: 'universities/germany.jpg',
+    photo: 'universities/rwth_aachen_campus.jpg',
     fields: ['engineering', 'it', 'natural_sciences'],
     degrees: ['bachelor', 'master'],
     tuition: {
@@ -324,7 +324,7 @@ export const universities = [
     flag: '🇫🇷',
     city: 'Париж',
     qsRank: '#59 в мире',
-    photo: 'universities/france.jpg',
+    photo: 'universities/sorbonne_paris_campus.jpg',
     fields: ['humanities', 'biomedicine', 'natural_sciences', 'health'],
     degrees: ['bachelor', 'master'],
     tuition: {
@@ -375,7 +375,7 @@ export const universities = [
     flag: '🇫🇷',
     city: 'Париж',
     qsRank: '#2 в мире по Политике и Международным отношениям',
-    photo: 'universities/france.jpg',
+    photo: 'universities/sciencespo_paris_campus.jpg',
     fields: ['politics', 'law', 'business', 'humanities'],
     degrees: ['bachelor', 'master'],
     tuition: {
@@ -428,7 +428,7 @@ export const universities = [
     flag: '🇸🇰',
     city: 'Братислава',
     qsRank: '#651 в мире (#1 в Словакии)',
-    photo: 'universities/central.jpg',
+    photo: 'universities/comenius_campus.jpg',
     fields: ['biomedicine', 'law', 'it', 'natural_sciences', 'humanities'],
     degrees: ['bachelor', 'master'],
     tuition: {
@@ -480,7 +480,7 @@ export const universities = [
     flag: '🇵🇹',
     city: 'Лиссабон',
     qsRank: '#266 в мире (#1 в Португалии)',
-    photo: 'universities/spain.jpg',
+    photo: 'universities/ulisboa_campus.jpg',
     fields: ['engineering', 'it', 'design', 'business', 'law'],
     degrees: ['bachelor', 'master'],
     tuition: {
@@ -532,7 +532,7 @@ export const universities = [
     flag: '🇦🇹',
     city: 'Вена',
     qsRank: '#130 в мире',
-    photo: 'universities/central.jpg',
+    photo: 'universities/univie_vienna_campus.jpg',
     fields: ['humanities', 'business', 'law', 'it', 'natural_sciences'],
     degrees: ['bachelor', 'master'],
     tuition: {
@@ -585,7 +585,7 @@ export const universities = [
     flag: '🇫🇮',
     city: 'Хельсинки',
     qsRank: '#115 в мире (#1 в Финляндии)',
-    photo: 'universities/nordic.jpg',
+    photo: 'universities/helsinki_campus.jpg',
     fields: ['natural_sciences', 'biomedicine', 'it', 'health', 'humanities'],
     degrees: ['bachelor', 'master'],
     tuition: {
@@ -638,7 +638,7 @@ export const universities = [
     flag: '🇸🇪',
     city: 'Стокгольм',
     qsRank: '#73 в мире',
-    photo: 'universities/nordic.jpg',
+    photo: 'universities/kth_stockholm_campus.jpg',
     fields: ['engineering', 'it', 'design', 'natural_sciences'],
     degrees: ['bachelor', 'master'],
     tuition: {
@@ -691,7 +691,7 @@ export const universities = [
     flag: '🇳🇴',
     city: 'Осло',
     qsRank: '#117 в мире (#1 в Норвегии)',
-    photo: 'universities/nordic.jpg',
+    photo: 'universities/uio_oslo_campus.jpg',
     fields: ['natural_sciences', 'biomedicine', 'it', 'law', 'humanities'],
     degrees: ['bachelor', 'master'],
     tuition: {
@@ -744,7 +744,7 @@ export const universities = [
     flag: '🇨🇿',
     city: 'Прага',
     qsRank: '#248 в мире (#1 в Центральной Европе)',
-    photo: 'universities/central.jpg',
+    photo: 'universities/charles_prague_campus.jpg',
     fields: ['biomedicine', 'humanities', 'it', 'business', 'law'],
     degrees: ['bachelor', 'master'],
     tuition: {
@@ -797,7 +797,7 @@ export const universities = [
     flag: '🇨🇭',
     city: 'Цюрих',
     qsRank: '#7 в мире (#1 в континентальной Европе)',
-    photo: 'universities/central.jpg',
+    photo: 'universities/eth_zurich_campus.jpg',
     fields: ['engineering', 'it', 'natural_sciences', 'architecture'],
     degrees: ['bachelor', 'master'],
     tuition: {
@@ -850,7 +850,7 @@ export const universities = [
     flag: '🇧🇪',
     city: 'Лёвен',
     qsRank: '#63 в мире (#1 самый инновационный ВУЗ Европы по Reuters)',
-    photo: 'universities/france.jpg',
+    photo: 'universities/kuleuven_campus.jpg',
     fields: ['engineering', 'it', 'law', 'business', 'biomedicine', 'humanities'],
     degrees: ['bachelor', 'master'],
     tuition: {
@@ -903,7 +903,7 @@ export const universities = [
     flag: '🇨🇿',
     city: 'Прага',
     qsRank: '#403 в мире (Топ-1 в Центральной Европе по IT и инженерии)',
-    photo: 'universities/central.jpg',
+    photo: 'universities/cvut_prague_campus.jpg',
     fields: ['it', 'engineering', 'architecture', 'natural_sciences'],
     degrees: ['bachelor', 'master'],
     tuition: {
@@ -956,7 +956,7 @@ export const universities = [
     flag: '🇦🇹',
     city: 'Вена',
     qsRank: '#190 в мире (Ведущий инженерный вуз Австрии)',
-    photo: 'universities/central.jpg',
+    photo: 'universities/tuwien_vienna_campus.jpg',
     fields: ['engineering', 'it', 'architecture', 'natural_sciences'],
     degrees: ['bachelor', 'master'],
     tuition: {
@@ -1009,7 +1009,7 @@ export const universities = [
     flag: '🇸🇰',
     city: 'Братислава',
     qsRank: '#751 в мире (#1 технический ВУЗ Словакии)',
-    photo: 'universities/central.jpg',
+    photo: 'universities/stubratislava_campus.jpg',
     fields: ['engineering', 'it', 'architecture', 'design'],
     degrees: ['bachelor', 'master'],
     tuition: {
@@ -1062,7 +1062,7 @@ export const universities = [
     flag: '🇵🇹',
     city: 'Порту',
     qsRank: '#253 в мире (#1 университет Португалии)',
-    photo: 'universities/spain.jpg',
+    photo: 'universities/uporto_campus.jpg',
     fields: ['engineering', 'biomedicine', 'architecture', 'business', 'natural_sciences'],
     degrees: ['bachelor', 'master'],
     tuition: {
@@ -1115,7 +1115,7 @@ export const universities = [
     flag: '🇫🇮',
     city: 'Эспоо / Хельсинки',
     qsRank: '#109 в мире (#6 в мире по направлению Art & Design)',
-    photo: 'universities/nordic.jpg',
+    photo: 'universities/aalto_campus.jpg',
     fields: ['design', 'it', 'business', 'engineering'],
     degrees: ['bachelor', 'master'],
     tuition: {
@@ -1168,7 +1168,7 @@ export const universities = [
     flag: '🇸🇪',
     city: 'Лунд',
     qsRank: '#75 в мире (#1 университет Швеции)',
-    photo: 'universities/nordic.jpg',
+    photo: 'universities/lund_campus.jpg',
     fields: ['engineering', 'biomedicine', 'law', 'business', 'humanities'],
     degrees: ['bachelor', 'master'],
     tuition: {
@@ -1221,7 +1221,7 @@ export const universities = [
     flag: '🇨🇭',
     city: 'Цюрих',
     qsRank: '#91 в мире (12 Нобелевских лауреатов, включая Эйнштейна)',
-    photo: 'universities/germany.jpg',
+    photo: 'universities/uzh_zurich_campus.jpg',
     fields: ['biomedicine', 'law', 'business', 'natural_sciences', 'humanities'],
     degrees: ['bachelor', 'master'],
     tuition: {
@@ -1274,7 +1274,7 @@ export const universities = [
     flag: '🇧🇪',
     city: 'Гент',
     qsRank: '#159 в мире (Топ-100 по биотехнологиям и ветеринарии)',
-    photo: 'universities/france.jpg',
+    photo: 'universities/ugent_campus.jpg',
     fields: ['biomedicine', 'engineering', 'law', 'natural_sciences', 'business'],
     degrees: ['bachelor', 'master'],
     tuition: {
@@ -1327,7 +1327,7 @@ export const universities = [
     flag: '🇮🇹',
     city: 'Рим',
     qsRank: '#132 в мире (#1 в мире по Classics & Ancient History)',
-    photo: 'universities/italy.jpg',
+    photo: 'universities/sapienza_rome_campus.jpg',
     fields: ['engineering', 'humanities', 'architecture', 'biomedicine', 'politics'],
     degrees: ['bachelor', 'master'],
     tuition: {
