@@ -13,14 +13,17 @@ import {
   Building2,
   GraduationCap
 } from 'lucide-react';
+import { getTranslation } from '../data/translations';
 
 export default function UniversityFlipCard({
   university,
   isFavorite,
   onToggleFavorite,
-  onOpenDetails
+  onOpenDetails,
+  currentLang = 'ru'
 }) {
   const [isFlipped, setIsFlipped] = useState(false);
+  const t = getTranslation(currentLang);
 
   return (
     <div className="w-full h-[510px] perspective-1000 select-none">
@@ -66,7 +69,7 @@ export default function UniversityFlipCard({
                   ? 'bg-[#8B0000] text-[#EFE0CD] shadow-md scale-110'
                   : 'bg-black/40 hover:bg-black/60 text-white'
               }`}
-              title={isFavorite ? 'Удалить из избранного' : 'Добавить в избранное'}
+              title={isFavorite ? t.card.removeFavorite : t.card.addFavorite}
             >
               <Heart className={`w-4 h-4 ${isFavorite ? 'fill-current' : ''}`} />
             </button>
@@ -96,7 +99,7 @@ export default function UniversityFlipCard({
             {/* Key Programs Tags */}
             <div className="mb-2.5">
               <span className="text-[10px] uppercase font-extrabold tracking-wider text-[#8B0000]/70 block mb-1.5">
-                Направления и программы:
+                {t.card.programsLabel}
               </span>
               <div className="flex flex-wrap gap-1.5">
                 {university.keyPrograms.slice(0, 2).map((prog, pIdx) => (
@@ -114,15 +117,15 @@ export default function UniversityFlipCard({
             {/* Quick Metadata Row */}
             <div className="grid grid-cols-2 gap-2 pt-2 border-t border-[#8B0000]/10 text-[11px]">
               <div>
-                <span className="text-[9px] uppercase font-bold text-[#2D1810]/60 block">Языковой порог</span>
+                <span className="text-[9px] uppercase font-bold text-[#2D1810]/60 block">{t.card.langThreshold}</span>
                 <span className="font-extrabold text-[#2D1810]">
-                  {university.languageReq.ielts ? `IELTS ${university.languageReq.ielts}+` : 'Без жесткого теста'}
+                  {university.languageReq.ielts ? `IELTS ${university.languageReq.ielts}+` : t.card.noStrictTest}
                 </span>
               </div>
               <div>
-                <span className="text-[9px] uppercase font-bold text-[#2D1810]/60 block">Стипендиальная база</span>
+                <span className="text-[9px] uppercase font-bold text-[#2D1810]/60 block">{t.card.scholarshipBase}</span>
                 <span className="font-extrabold text-[#8B0000] truncate block">
-                  {university.scholarship.available ? university.scholarship.name.split(' ')[0] + ' ' + (university.scholarship.name.split(' ')[1] || '') : 'Гос. субсидии'}
+                  {university.scholarship.available ? university.scholarship.name.split(' ')[0] + ' ' + (university.scholarship.name.split(' ')[1] || '') : t.card.stateSubsidies}
                 </span>
               </div>
             </div>
@@ -132,7 +135,7 @@ export default function UniversityFlipCard({
           <div className="px-4 py-3 bg-[#FAF5EE] flex items-center justify-between border-t border-[#8B0000]/15 text-xs shrink-0">
             <div>
               <span className="text-[10px] uppercase font-extrabold tracking-wider text-[#8B0000]/80 block">
-                Стоимость обучения
+                {t.card.tuitionLabel}
               </span>
               <span className="font-black text-[#8B0000] text-sm tracking-tight">
                 {university.tuition.text}
@@ -146,7 +149,7 @@ export default function UniversityFlipCard({
               }}
               className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#8B0000] hover:bg-[#630000] text-[#EFE0CD] font-black text-xs shadow-xs transition-colors cursor-pointer"
             >
-              <span>Параметры</span>
+              <span>{t.card.parametersBtn}</span>
               <RotateCw className="w-3.5 h-3.5" />
             </button>
           </div>
@@ -182,7 +185,7 @@ export default function UniversityFlipCard({
           <div className="space-y-2.5 my-auto py-2 text-xs">
             {/* Tuition */}
             <div className="p-2.5 rounded-xl bg-[#EFE0CD]/60 border border-[#8B0000]/15 flex items-center justify-between">
-              <span className="text-[#2D1810]/70 font-bold">Стоимость в год:</span>
+              <span className="text-[#2D1810]/70 font-bold">{t.card.tuitionPerYear || t.card.tuitionLabel}:</span>
               <span className="font-black text-[#8B0000]">
                 {university.tuition.text}
               </span>
@@ -190,9 +193,11 @@ export default function UniversityFlipCard({
 
             {/* Languages */}
             <div className="p-2.5 rounded-xl bg-[#EFE0CD]/60 border border-[#8B0000]/15 flex items-center justify-between">
-              <span className="text-[#2D1810]/70 font-bold">Язык обучения:</span>
+              <span className="text-[#2D1810]/70 font-bold">{t.card.teachingLang || 'Язык обучения:'}</span>
               <span className="font-extrabold text-[#2D1810]">
-                {university.languageReq.ielts ? `Английский (IELTS ${university.languageReq.ielts})` : 'Национальный / EN'}
+                {university.languageReq.ielts
+                  ? `${currentLang === 'en' ? 'English' : 'Английский'} (IELTS ${university.languageReq.ielts})`
+                  : (currentLang === 'en' ? 'National / English' : 'Национальный / EN')}
               </span>
             </div>
 
@@ -200,7 +205,7 @@ export default function UniversityFlipCard({
             <div className="p-2.5 rounded-xl bg-[#8B0000]/10 border border-[#8B0000]/25">
               <span className="text-[10px] uppercase font-extrabold text-[#8B0000] flex items-center gap-1 mb-0.5">
                 <Sparkles className="w-3 h-3 text-[#8B0000]" />
-                Стипендии и гранты:
+                {t.card.scholarshipsAndGrants || 'Стипендии и гранты:'}
               </span>
               <span className="font-extrabold text-[#2D1810] block line-clamp-1">
                 {university.scholarship.name}
@@ -214,7 +219,7 @@ export default function UniversityFlipCard({
             <div className="p-2.5 rounded-xl bg-[#EFE0CD]/60 border border-[#8B0000]/15">
               <span className="text-[10px] uppercase font-extrabold text-[#2D1810]/70 flex items-center gap-1 mb-0.5">
                 <CheckCircle2 className="w-3 h-3 text-[#8B0000]" />
-                Требования к документам:
+                {t.card.requirementsDoc}
               </span>
               <p className="text-[11px] text-[#2D1810] font-medium line-clamp-2">
                 {university.admissionChecklist[0]} • {university.admissionChecklist[1]}
@@ -229,14 +234,14 @@ export default function UniversityFlipCard({
               className="inline-flex items-center gap-1 px-3.5 py-2 rounded-xl text-xs font-bold text-[#8B0000] bg-[#8B0000]/10 hover:bg-[#8B0000]/20 transition-colors cursor-pointer"
             >
               <RotateCw className="w-3.5 h-3.5" />
-              <span>Лицевая сторона</span>
+              <span>{t.card.flipFront}</span>
             </button>
 
             <button
               onClick={() => onOpenDetails(university)}
               className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#8B0000] hover:bg-[#630000] text-[#EFE0CD] text-xs font-black rounded-xl shadow-md transition-all cursor-pointer"
             >
-              <span>Подробнее</span>
+              <span>{t.card.detailsBtn}</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>

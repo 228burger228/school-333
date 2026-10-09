@@ -14,6 +14,7 @@ import {
   Globe,
   Printer
 } from 'lucide-react';
+import { getTranslation } from '../data/translations';
 
 export default function UniversityDetailModal({
   university,
@@ -21,9 +22,11 @@ export default function UniversityDetailModal({
   onClose,
   isFavorite,
   onToggleFavorite,
-  onRequestAudit
+  onRequestAudit,
+  currentLang = 'ru'
 }) {
   const [activeTab, setActiveTab] = useState('programs');
+  const t = getTranslation(currentLang);
 
   const handlePrintChecklist = () => {
     const printWindow = window.open('', '_blank');
@@ -196,7 +199,7 @@ export default function UniversityDetailModal({
                 : 'border-transparent text-[#2D1810]/70 hover:text-[#8B0000]'
             }`}
           >
-            Программы обучения
+            {t.modal.tabPrograms}
           </button>
           <button
             onClick={() => setActiveTab('admission')}
@@ -206,7 +209,7 @@ export default function UniversityDetailModal({
                 : 'border-transparent text-[#2D1810]/70 hover:text-[#8B0000]'
             }`}
           >
-            Требования & Документы
+            {t.modal.tabRequirements}
           </button>
           <button
             onClick={() => setActiveTab('scholarships')}
@@ -216,7 +219,7 @@ export default function UniversityDetailModal({
                 : 'border-transparent text-[#2D1810]/70 hover:text-[#8B0000]'
             }`}
           >
-            Стипендии & Гранты
+            {t.modal.tabTuition}
           </button>
           <button
             onClick={() => setActiveTab('costs')}
@@ -226,7 +229,7 @@ export default function UniversityDetailModal({
                 : 'border-transparent text-[#2D1810]/70 hover:text-[#8B0000]'
             }`}
           >
-            Стоимость жизни
+            {t.modal.tabLiving}
           </button>
         </div>
 
@@ -237,7 +240,7 @@ export default function UniversityDetailModal({
             <div className="space-y-4">
               <div>
                 <h4 className="text-xs font-bold uppercase tracking-wider text-[#8B0000] mb-2">
-                  Об университете
+                  {currentLang === 'en' ? 'About University' : 'Об университете'}
                 </h4>
                 <p className="text-xs sm:text-sm text-[#2D1810]/85 leading-relaxed">
                   {university.overview}
@@ -246,7 +249,7 @@ export default function UniversityDetailModal({
 
               <div>
                 <h4 className="text-xs font-bold uppercase tracking-wider text-[#8B0000] mb-3">
-                  Популярные программы обучения
+                  {t.modal.flagshipPrograms}
                 </h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {university.keyPrograms.map((prog, idx) => (
@@ -261,7 +264,7 @@ export default function UniversityDetailModal({
                         {prog.name}
                       </h5>
                       <span className="inline-block text-[11px] bg-[#FAF5EE] text-[#8B0000] px-2 py-0.5 rounded-md font-semibold border border-[#8B0000]/15">
-                        Язык: {prog.lang}
+                        {currentLang === 'en' ? 'Language:' : 'Язык:'} {prog.lang}
                       </span>
                     </div>
                   ))}
@@ -275,7 +278,7 @@ export default function UniversityDetailModal({
             <div className="space-y-4">
               <div className="bg-[#EFE0CD] p-4 rounded-2xl border border-[#8B0000]/20">
                 <span className="text-xs font-bold uppercase tracking-wider text-[#8B0000] block mb-1">
-                  Языковые требования
+                  {t.modal.langReq}
                 </span>
                 <p className="text-xs sm:text-sm text-[#2D1810] font-medium">
                   {university.languageReq.examDescription}
@@ -288,7 +291,7 @@ export default function UniversityDetailModal({
 
               <div>
                 <h4 className="text-xs font-bold uppercase tracking-wider text-[#8B0000] mb-3">
-                  Чек-лист документов для поступления
+                  {t.modal.docsList}
                 </h4>
                 <div className="space-y-2">
                   {university.admissionChecklist.map((step, idx) => (
@@ -303,7 +306,7 @@ export default function UniversityDetailModal({
               <div className="p-3.5 bg-[#8B0000]/10 rounded-2xl border border-[#8B0000]/20 text-xs text-[#8B0000] font-semibold flex items-center gap-2">
                 <Calendar className="w-4 h-4 text-[#8B0000] shrink-0" />
                 <span>
-                  <strong>Срок подачи документов:</strong> {university.deadline}
+                  <strong>{t.modal.deadline}</strong> {university.deadline}
                 </span>
               </div>
             </div>
@@ -314,14 +317,14 @@ export default function UniversityDetailModal({
             <div className="space-y-4">
               <div className="p-4 rounded-2xl bg-[#EFE0CD] border border-[#8B0000]/20">
                 <span className="text-xs font-bold text-[#8B0000] uppercase tracking-wider block mb-1">
-                  Стоимость обучения
+                  {t.modal.tuitionCost}
                 </span>
                 <p className="text-lg font-black text-[#8B0000]">
                   {university.tuition.text}
                 </p>
                 {university.tuition.isFree && (
                   <span className="inline-block mt-1 text-xs font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-md">
-                    ✓ Доступно бесплатное высшее образование
+                    {currentLang === 'en' ? '✓ Tuition-free higher education available' : '✓ Доступно бесплатное высшее образование'}
                   </span>
                 )}
               </div>
@@ -333,7 +336,7 @@ export default function UniversityDetailModal({
                     <span>{university.scholarship.name}</span>
                   </div>
                   <span className="text-xs font-bold text-[#2D1810] block mb-2">
-                    Покрытие: {university.scholarship.coverage}
+                    {t.modal.coverage} {university.scholarship.coverage}
                   </span>
                   <p className="text-xs sm:text-sm text-[#2D1810]/90 leading-relaxed">
                     {university.scholarship.description}
@@ -348,17 +351,17 @@ export default function UniversityDetailModal({
             <div className="space-y-4">
               <div className="flex items-center justify-between p-4 bg-[#EFE0CD] rounded-2xl border border-[#8B0000]/20">
                 <span className="text-xs font-bold text-[#8B0000] uppercase">
-                  Ориентировочные расходы в месяц:
+                  {t.modal.monthlyLiving}
                 </span>
                 <span className="text-lg font-black text-[#8B0000]">
-                  ~{university.livingCostMonth} € / мес
+                  ~{university.livingCostMonth} € / {currentLang === 'en' ? 'mo' : 'мес'}
                 </span>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div className="p-3.5 bg-[#FAF5EE] rounded-2xl border border-[#8B0000]/15 text-xs">
                   <span className="text-[#8B0000] block font-bold mb-1 uppercase tracking-wider text-[10px]">
-                    Жилье / Общежитие
+                    {t.modal.housing}
                   </span>
                   <span className="font-bold text-[#2D1810]">
                     {university.livingCostDetails.housing}
@@ -366,7 +369,7 @@ export default function UniversityDetailModal({
                 </div>
                 <div className="p-3.5 bg-[#FAF5EE] rounded-2xl border border-[#8B0000]/15 text-xs">
                   <span className="text-[#8B0000] block font-bold mb-1 uppercase tracking-wider text-[10px]">
-                    Питание
+                    {t.modal.food}
                   </span>
                   <span className="font-bold text-[#2D1810]">
                     {university.livingCostDetails.food}
@@ -374,7 +377,7 @@ export default function UniversityDetailModal({
                 </div>
                 <div className="p-3.5 bg-[#FAF5EE] rounded-2xl border border-[#8B0000]/15 text-xs">
                   <span className="text-[#8B0000] block font-bold mb-1 uppercase tracking-wider text-[10px]">
-                    Транспорт
+                    {t.modal.transport}
                   </span>
                   <span className="font-bold text-[#2D1810]">
                     {university.livingCostDetails.transport}
@@ -395,19 +398,19 @@ export default function UniversityDetailModal({
                   ? 'bg-[#8B0000] text-[#EFE0CD] border-[#8B0000]'
                   : 'bg-white border-[#8B0000]/25 text-[#8B0000] hover:bg-[#FAF5EE]'
               }`}
-              title="Сохранить в избранное"
+              title={isFavorite ? t.card.removeFavorite : t.card.addFavorite}
             >
               <Heart className={`w-4 h-4 ${isFavorite ? 'fill-current' : ''}`} />
-              <span className="hidden sm:inline">{isFavorite ? 'В избранном' : 'В избранное'}</span>
+              <span className="hidden sm:inline">{isFavorite ? t.modal.inFavorites : t.modal.favoriteBtn}</span>
             </button>
 
             <button
               onClick={handlePrintChecklist}
               className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-white border border-[#8B0000]/30 hover:border-[#8B0000] text-[#8B0000] text-xs font-bold transition-all shadow-2xs cursor-pointer"
-              title="Скачать или распечатать чек-лист поступления в PDF"
+              title="PDF"
             >
               <Printer className="w-4 h-4" />
-              <span>Чек-лист (PDF)</span>
+              <span>{t.modal.printChecklist}</span>
             </button>
           </div>
 
@@ -421,7 +424,7 @@ export default function UniversityDetailModal({
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-2.5 bg-[#FAF5EE] hover:bg-[#FAF5EE]/80 border-2 border-[#8B0000] text-[#8B0000] text-xs sm:text-sm font-black rounded-xl shadow-2xs transition-all cursor-pointer"
               >
                 <Sparkles className="w-3.5 h-3.5 text-[#8B0000]" />
-                <span>Оценить шансы</span>
+                <span>{t.modal.assessChances}</span>
               </button>
             )}
 
@@ -431,7 +434,7 @@ export default function UniversityDetailModal({
               rel="noopener noreferrer"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-5 py-2.5 bg-[#8B0000] hover:bg-[#630000] text-[#EFE0CD] text-xs sm:text-sm font-black rounded-xl shadow-md transition-all cursor-pointer"
             >
-              <span>Сайт ВУЗа</span>
+              <span>{t.modal.websiteBtn}</span>
               <ExternalLink className="w-3.5 h-3.5" />
             </a>
           </div>

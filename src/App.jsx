@@ -271,6 +271,7 @@ export default function App() {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
               onAggregate={handleAggregatorSubmit}
+              currentLang={currentLang}
             />
           </div>
         )}
@@ -319,6 +320,7 @@ export default function App() {
             favorites={favorites}
             onToggleFavorite={handleToggleFavorite}
             onOpenDetails={(uni) => setSelectedUniversityForModal(uni)}
+            currentLang={currentLang}
           />
         )}
 
@@ -354,6 +356,7 @@ export default function App() {
               setActiveScreen('universities');
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
+            currentLang={currentLang}
           />
         )}
       </main>
@@ -376,6 +379,7 @@ export default function App() {
           isFavorite={favorites.includes(selectedUniversityForModal.id)}
           onToggleFavorite={handleToggleFavorite}
           onRequestAudit={handleOpenAudit}
+          currentLang={currentLang}
         />
       )}
 
@@ -387,6 +391,7 @@ export default function App() {
           setAuditTargetUniversity(null);
         }}
         preselectedUniversity={auditTargetUniversity}
+        currentLang={currentLang}
       />
 
       {/* Favorites and Comparison Modal */}
@@ -415,8 +420,10 @@ export default function App() {
       {/* Language Onboarding */}
       {showLanguageOnboarding && (
         <LanguageOnboarding
+          currentLang={currentLang}
           onSelectLanguage={(lang) => {
             setCurrentLang(lang);
+            localStorage.setItem('euro_lang', lang);
             setShowLanguageOnboarding(false);
           }}
           onClose={() => setShowLanguageOnboarding(false)}
@@ -424,7 +431,7 @@ export default function App() {
       )}
 
       {/* Footer */}
-      <Footer onNavigate={(screen) => setActiveScreen(screen)} />
+      <Footer onNavigate={(screen) => setActiveScreen(screen)} currentLang={currentLang} />
     </div>
   );
 }

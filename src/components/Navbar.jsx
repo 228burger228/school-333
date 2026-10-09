@@ -13,6 +13,7 @@ import {
   Sparkles
 } from 'lucide-react';
 import { languages } from '../data/languages';
+import { getTranslation } from '../data/translations';
 
 export default function Navbar({
   activeScreen,
@@ -28,6 +29,7 @@ export default function Navbar({
 }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const langObj = languages.find((l) => l.code === currentLang) || languages[0];
+  const t = getTranslation(currentLang);
 
   return (
     <header className="sticky top-0 z-40 bg-[#FAF5EE]/95 backdrop-blur-md border-b border-[#8B0000]/15 shadow-xs">
@@ -46,7 +48,7 @@ export default function Navbar({
                 Maybe <span className="text-[#630000]">abroad?</span>
               </span>
               <span className="block text-[9px] uppercase font-bold tracking-widest text-[#2D1810]/60 -mt-1">
-                Поступление в Европу
+                {t.nav.brandSub}
               </span>
             </div>
           </div>
@@ -64,7 +66,7 @@ export default function Navbar({
               title="Перейти к списку стран"
             >
               <span className="text-base tracking-widest font-black">⋯</span>
-              <span>Страны Европы</span>
+              <span>{t.nav.countriesBtn}</span>
             </button>
 
             <button
@@ -76,7 +78,7 @@ export default function Navbar({
               }`}
             >
               <Search className="w-4 h-4" />
-              Все университеты
+              {t.nav.allUnis}
             </button>
 
             <button
@@ -88,7 +90,7 @@ export default function Navbar({
               }`}
             >
               <BookOpen className="w-4 h-4" />
-              Гид & Стипендии
+              {t.nav.guide}
             </button>
 
             <button
@@ -100,7 +102,7 @@ export default function Navbar({
               }`}
             >
               <Compass className="w-4 h-4" />
-              Тест стран
+              {t.nav.countryQuiz}
             </button>
 
             <button
@@ -112,7 +114,7 @@ export default function Navbar({
               }`}
             >
               <Briefcase className="w-4 h-4" />
-              Профориентация
+              {t.nav.careerQuiz}
             </button>
           </nav>
 
@@ -150,17 +152,17 @@ export default function Navbar({
               title="Бесплатный расчет шансов на поступление"
             >
               <Sparkles className="w-3.5 h-3.5" />
-              <span>Оценка шансов</span>
+              <span>{t.nav.auditBtn}</span>
             </button>
 
             {/* Profile Button */}
             <button
               onClick={onOpenAuth}
-              className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#8B0000] hover:bg-[#630000] text-[#EFE0CD] text-xs sm:text-sm font-bold shadow-xs transition-all"
+              className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#8B0000] hover:bg-[#630000] text-[#EFE0CD] text-xs sm:text-sm font-bold shadow-xs transition-all cursor-pointer"
             >
               <User className="w-4 h-4" />
               <span className="hidden sm:inline">
-                {user ? user.name : 'Кабинет'}
+                {user ? user.name : t.nav.cabinet}
               </span>
             </button>
 
@@ -188,7 +190,7 @@ export default function Navbar({
           >
             <span className="flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-[#8B0000]" />
-              <span>Бесплатный экспресс-аудит шансов</span>
+              <span>{t.nav.mobileAudit}</span>
             </span>
             <span>→</span>
           </button>
@@ -200,7 +202,7 @@ export default function Navbar({
             }}
             className="w-full flex items-center justify-between px-4 py-3 rounded-2xl bg-[#8B0000] text-[#EFE0CD] font-black text-sm shadow-md"
           >
-            <span>⋯ Выбрать страну (13 стран)</span>
+            <span>{t.nav.mobileCountries}</span>
             <span className="text-lg">→</span>
           </button>
 
@@ -212,7 +214,7 @@ export default function Navbar({
             className="w-full flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-bold text-[#8B0000] hover:bg-[#8B0000]/10"
           >
             <Search className="w-4 h-4" />
-            Все университеты
+            {t.nav.allUnis}
           </button>
 
           <button
@@ -223,7 +225,7 @@ export default function Navbar({
             className="w-full flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-bold text-[#8B0000] hover:bg-[#8B0000]/10"
           >
             <BookOpen className="w-4 h-4" />
-            Гид и стипендии
+            {t.nav.guide}
           </button>
 
           <button
@@ -234,7 +236,7 @@ export default function Navbar({
             className="w-full flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-bold text-[#2D1810] hover:bg-[#8B0000]/10"
           >
             <Compass className="w-4 h-4 text-[#8B0000]" />
-            Тест: Какая страна подходит?
+            {t.nav.countryQuiz}
           </button>
 
           <button
@@ -245,7 +247,7 @@ export default function Navbar({
             className="w-full flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-bold text-[#2D1810] hover:bg-[#8B0000]/10"
           >
             <Briefcase className="w-4 h-4 text-[#8B0000]" />
-            Профориентационный тест
+            {t.nav.careerQuiz}
           </button>
         </div>
       )}

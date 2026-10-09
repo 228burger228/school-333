@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import { countries } from '../data/countries';
 import ProgramAggregator from './ProgramAggregator';
+import { getTranslation } from '../data/translations';
 
 export default function Hero({
   onOpenCountries,
@@ -18,24 +19,27 @@ export default function Hero({
   onStartCountryQuiz,
   onStartCareerQuiz,
   onOpenGuide,
-  onAggregate
+  onAggregate,
+  currentLang = 'ru'
 }) {
+  const t = getTranslation(currentLang);
+
   return (
     <section className="relative overflow-hidden pt-8 pb-16 sm:pt-14 sm:pb-20 text-center bg-[#EFE0CD]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Top Tagline (без блика, "десятка вкладок") */}
+        {/* Top Tagline */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#8B0000]/10 border border-[#8B0000]/25 text-[#8B0000] text-xs sm:text-sm font-bold tracking-wide mb-6">
-          <span>Образование в Европе без стресса и десятка вкладок</span>
+          <span>{t.hero.badge}</span>
         </div>
 
-        {/* Hero Title (без волнистого подчеркивания) */}
+        {/* Hero Title */}
         <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-[#8B0000] tracking-tight leading-[1.15] max-w-4xl mx-auto mb-6">
-          Поступление в Европу — проще, ближе и понятнее
+          {t.hero.titleMain} <span className="underline decoration-[#8B0000]/30">{t.hero.titleAccent}</span> {t.hero.titleEnd}
         </h1>
 
-        {/* Subtitle ("десятка сайтов") */}
+        {/* Subtitle */}
         <p className="text-sm sm:text-lg text-[#2D1810]/85 max-w-2xl mx-auto leading-relaxed mb-8 font-medium">
-          Превращаем самостоятельное исследование десятка сайтов в ясный пошаговый маршрут: от выбора страны и направления до конкретного университета и стипендии.
+          {t.hero.subtitle}
         </p>
 
         {/* PRIMARY ACTION BUTTONS */}
@@ -46,7 +50,7 @@ export default function Hero({
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-[#8B0000] hover:bg-[#630000] text-[#EFE0CD] text-sm sm:text-base font-black rounded-2xl shadow-xl shadow-[#8B0000]/25 hover:-translate-y-0.5 transition-all group cursor-pointer"
           >
             <span className="text-xl font-black tracking-widest group-hover:scale-125 transition-transform">⋯</span>
-            <span>Выбрать страну (13 стран)</span>
+            <span>{t.hero.btnChooseCountry}</span>
             <ArrowRight className="w-4 h-4 text-[#EFE0CD]" />
           </button>
 
@@ -55,17 +59,17 @@ export default function Hero({
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 bg-[#FAF5EE] hover:bg-white text-[#8B0000] border-2 border-[#8B0000]/30 hover:border-[#8B0000] text-sm sm:text-base font-bold rounded-2xl shadow-sm hover:shadow-md transition-all cursor-pointer"
           >
             <Compass className="w-5 h-5 text-[#8B0000]" />
-            <span>Какая страна мне бы подошла?</span>
+            <span>{t.hero.btnMatchCountry}</span>
           </button>
         </div>
 
         {/* АГРЕГАТОР ПРОГРАММ (Прил. 4) */}
-        <ProgramAggregator onAggregate={onAggregate} />
+        <ProgramAggregator onAggregate={onAggregate} currentLang={currentLang} />
 
         {/* Плашка: Свобода выбора международное признание и гранты (Прил. 3) */}
         <div className="max-w-4xl mx-auto mb-12 rounded-3xl p-6 sm:p-8 bg-[#FAF5EE] border-2 border-[#8B0000]/25 shadow-md text-center">
           <h3 className="text-xl sm:text-3xl font-black text-[#8B0000] tracking-tight">
-            Свобода выбора международное признание и гранты
+            {t.hero.bannerTitle}
           </h3>
         </div>
 
@@ -74,13 +78,13 @@ export default function Hero({
           <div className="flex items-center justify-between gap-2 mb-3">
             <span className="text-xs font-black uppercase tracking-wider text-[#8B0000] flex items-center gap-1.5">
               <span>⋯</span>
-              <span>13 доступных направлений Европы:</span>
+              <span>{t.hero.availableDirections}</span>
             </span>
             <button
               onClick={onOpenCountries}
               className="text-xs font-bold text-[#8B0000] hover:underline cursor-pointer"
             >
-              Смотреть все →
+              {t.hero.seeAll}
             </button>
           </div>
 
@@ -102,13 +106,13 @@ export default function Hero({
         <div className="max-w-6xl mx-auto mb-16 text-left">
           <div className="text-center max-w-2xl mx-auto mb-8">
             <span className="text-xs font-black uppercase tracking-wider text-[#8B0000] block mb-1">
-              Ценность для абитуриента
+              {t.hero.badge}
             </span>
             <h2 className="text-2xl sm:text-4xl font-black text-[#8B0000] tracking-tight">
-              Почему стоит воспользоваться Maybe abroad?
+              {t.hero.whyTitle}
             </h2>
             <p className="text-xs sm:text-sm text-[#2D1810]/75 mt-2 font-medium">
-              Вместо десятков разрозненных форумов и сайтов посольств — единая проверенная платформа с точными цифрами и дедлайнами.
+              {t.hero.subtitle}
             </p>
           </div>
 
@@ -118,10 +122,10 @@ export default function Hero({
                 0€
               </div>
               <h3 className="text-sm font-black text-[#8B0000] mb-1.5">
-                Гранты и бесплатная учеба
+                {t.hero.why1Title}
               </h3>
               <p className="text-xs text-[#2D1810]/80 leading-relaxed font-medium">
-                Германия, Чехия и Словакия без оплаты за обучение. Стипендии DSU в Италии до 7 500 €/год с бесплатным общежитием.
+                {t.hero.why1Desc}
               </p>
             </div>
 
@@ -130,10 +134,10 @@ export default function Hero({
                 ✓
               </div>
               <h3 className="text-sm font-black text-[#8B0000] mb-1.5">
-                Без сюрпризов в правилах
+                {t.hero.why2Title}
               </h3>
               <p className="text-xs text-[#2D1810]/80 leading-relaxed font-medium">
-                Пошаговые чек-листы документов: апостиль, омологация UNEDasiss, дедлайны и минимальные баллы языковых сертификатов.
+                {t.hero.why2Desc}
               </p>
             </div>
 
@@ -142,10 +146,10 @@ export default function Hero({
                 ⚡
               </div>
               <h3 className="text-sm font-black text-[#8B0000] mb-1.5">
-                Агрегатор за 60 секунд
+                {t.hero.why3Title}
               </h3>
               <p className="text-xs text-[#2D1810]/80 leading-relaxed font-medium">
-                Укажите текущий уровень языка и желаемое финансирование — алгоритм мгновенно подберет целевые европейские университеты.
+                {t.hero.why3Desc}
               </p>
             </div>
 
@@ -154,10 +158,10 @@ export default function Hero({
                 EU
               </div>
               <h3 className="text-sm font-black text-[#8B0000] mb-1.5">
-                Визы и старт карьеры
+                {t.hero.why4Title}
               </h3>
               <p className="text-xs text-[#2D1810]/80 leading-relaxed font-medium">
-                От 12 до 24 месяцев визы на поиск работы в Европе после окончания ВУЗа и международное признание полученного диплома.
+                {t.hero.why4Desc}
               </p>
             </div>
           </div>
@@ -170,7 +174,7 @@ export default function Hero({
           </div>
           <div className="relative flex justify-center">
             <span className="bg-[#EFE0CD] px-5 py-1 rounded-full border border-[#8B0000]/20 text-xs font-black uppercase tracking-widest text-[#8B0000] shadow-2xs">
-              Навигация и ключевые предложения
+              {t.hero.navDivider}
             </span>
           </div>
         </div>
@@ -185,10 +189,10 @@ export default function Hero({
               ⋯
             </div>
             <h3 className="text-base font-black text-[#8B0000] mb-1">
-              1. Страны и культура
+              {t.hero.card1Title}
             </h3>
             <p className="text-xs text-[#2D1810]/75 leading-relaxed font-medium">
-              13 стран, вузы, гранты, стипендии и международное образование.
+              {t.hero.card1Desc}
             </p>
           </div>
 
@@ -200,10 +204,10 @@ export default function Hero({
               <Briefcase className="w-5 h-5" />
             </div>
             <h3 className="text-base font-black text-[#8B0000] mb-1">
-              2. 10 направлений
+              {t.hero.card2Title}
             </h3>
             <p className="text-xs text-[#2D1810]/75 leading-relaxed font-medium">
-              IT, международные отношения, медицина и другие профили.
+              {t.hero.card2Desc}
             </p>
           </div>
 
@@ -215,10 +219,10 @@ export default function Hero({
               <Search className="w-5 h-5" />
             </div>
             <h3 className="text-base font-black text-[#8B0000] mb-1">
-              3. 3D-карточки ВУЗов
+              {t.hero.card3Title}
             </h3>
             <p className="text-xs text-[#2D1810]/75 leading-relaxed font-medium">
-              Фотография на лицевой стороне, а при перевороте — гранты и цены.
+              {t.hero.card3Desc}
             </p>
           </div>
 
@@ -230,10 +234,10 @@ export default function Hero({
               <BookOpen className="w-5 h-5" />
             </div>
             <h3 className="text-base font-black text-[#8B0000] mb-1">
-              4. Гид и стипендии
+              {t.hero.card4Title}
             </h3>
             <p className="text-xs text-[#2D1810]/75 leading-relaxed font-medium">
-              Таймлайн 2026/2027, стипендии DSU/DAAD и ответы на сложные вопросы.
+              {t.hero.card4Desc}
             </p>
           </div>
         </div>

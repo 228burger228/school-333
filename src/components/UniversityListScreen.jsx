@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import UniversityFlipCard from './UniversityFlipCard';
 import { countries } from '../data/countries';
 import { studyDirections } from '../data/directions';
+import { getTranslation } from '../data/translations';
 import {
   ArrowLeft,
   Filter,
@@ -23,8 +24,21 @@ export default function UniversityListScreen({
   onBackToDirections,
   favorites,
   onToggleFavorite,
-  onOpenDetails
+  onOpenDetails,
+  currentLang = 'ru'
 }) {
+  const t = getTranslation(currentLang);
+
+  const getCountryName = (c) => {
+    if (!c) return '';
+    return (t.countryNames && t.countryNames[c.id]) || c.name;
+  };
+
+  const getDirectionName = (d) => {
+    if (!d) return '';
+    return (t.directionNames && t.directionNames[d.id]) || d.shortTitle || d.title;
+  };
+
   const handleCountryChange = (cId) => {
     setFilters((prev) => ({
       ...prev,
@@ -48,22 +62,22 @@ export default function UniversityListScreen({
           className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#8B0000]/10 hover:bg-[#8B0000]/15 text-[#8B0000] text-xs sm:text-sm font-bold transition-all border border-[#8B0000]/20"
         >
           <ArrowLeft className="w-4 h-4" />
-          <span>К выбору направлений</span>
+          <span>{t.unis.backToDirections}</span>
         </button>
 
         <div className="flex flex-wrap items-center gap-2 text-xs">
           {selectedCountry && (
             <span className="px-3 py-1 rounded-full bg-[#EFE0CD] border border-[#8B0000]/25 text-[#8B0000] font-black">
-              {selectedCountry.flag} {selectedCountry.name}
+              {selectedCountry.flag} {getCountryName(selectedCountry)}
             </span>
           )}
           {selectedDirection && (
             <span className="px-3 py-1 rounded-full bg-[#8B0000] text-[#EFE0CD] font-bold">
-              {selectedDirection.icon} {selectedDirection.shortTitle}
+              {selectedDirection.icon} {getDirectionName(selectedDirection)}
             </span>
           )}
           <span className="text-[#2D1810]/70 font-semibold ml-1">
-            Найдено: <strong>{universities.length}</strong> ВУЗов
+            {t.unis.foundCount} <strong>{universities.length}</strong> {t.unis.unisSuffix}
           </span>
         </div>
       </div>
@@ -71,10 +85,10 @@ export default function UniversityListScreen({
       {/* Main Title */}
       <div className="mb-6">
         <h1 className="text-3xl sm:text-4xl font-black text-[#8B0000] tracking-tight">
-          Подходящие университеты
+          {t.unis.title}
         </h1>
         <p className="text-xs sm:text-sm text-[#2D1810]/80 mt-1">
-          Нажмите на карточку, чтобы перевернуть её и посмотреть стоимость, стипендии и условия поступления.
+          {t.unis.subtitle}
         </p>
       </div>
 
@@ -83,7 +97,7 @@ export default function UniversityListScreen({
         <div className="flex items-center justify-between gap-2 mb-4 pb-3 border-b border-[#8B0000]/10">
           <div className="flex items-center gap-2 text-sm font-black text-[#8B0000]">
             <Filter className="w-4 h-4" />
-            <span>Фильтры программ</span>
+            <span>{t.unis.filtersTitle}</span>
           </div>
 
           <button
@@ -91,7 +105,7 @@ export default function UniversityListScreen({
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold text-[#8B0000] hover:bg-[#8B0000]/10 transition-colors"
           >
             <RotateCcw className="w-3.5 h-3.5" />
-            <span>Сбросить все</span>
+            <span>{t.unis.resetAll}</span>
           </button>
         </div>
 
@@ -100,7 +114,7 @@ export default function UniversityListScreen({
           <Search className="w-4 h-4 text-[#8B0000]/60 absolute left-3.5 top-1/2 -translate-y-1/2" />
           <input
             type="text"
-            placeholder="Поиск по названию университета, городу или программе..."
+            placeholder={t.unis.searchPlaceholder}
             value={filters.searchQuery}
             onChange={(e) => setFilters((prev) => ({ ...prev, searchQuery: e.target.value }))}
             className="w-full pl-10 pr-4 py-2.5 bg-[#EFE0CD]/60 border border-[#8B0000]/20 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#8B0000] focus:bg-white text-[#2D1810]"
@@ -112,17 +126,17 @@ export default function UniversityListScreen({
           {/* Country Selector */}
           <div>
             <label className="block text-[11px] font-bold uppercase tracking-wider text-[#8B0000] mb-1">
-              Страна:
+              {t.unis.filterCountryLabel}
             </label>
             <select
               value={filters.countryId}
               onChange={(e) => handleCountryChange(e.target.value)}
               className="w-full px-3 py-2 bg-white border border-[#8B0000]/20 rounded-xl text-xs font-bold text-[#2D1810] focus:outline-none focus:ring-2 focus:ring-[#8B0000]"
             >
-              <option value="all">Все 13 стран Европы</option>
+              <option value="all">{t.unis.filterCountry}</option>
               {countries.map((c) => (
                 <option key={c.id} value={c.id}>
-                  {c.flag} {c.name}
+                  {c.flag} {getCountryName(c)}
                 </option>
               ))}
             </select>
@@ -131,17 +145,17 @@ export default function UniversityListScreen({
           {/* Direction Selector */}
           <div>
             <label className="block text-[11px] font-bold uppercase tracking-wider text-[#8B0000] mb-1">
-              Направление:
+              {t.unis.filterDirectionLabel}
             </label>
             <select
               value={filters.directionId}
               onChange={(e) => handleDirectionChange(e.target.value)}
               className="w-full px-3 py-2 bg-white border border-[#8B0000]/20 rounded-xl text-xs font-bold text-[#2D1810] focus:outline-none focus:ring-2 focus:ring-[#8B0000]"
             >
-              <option value="all">Все направления</option>
+              <option value="all">{t.unis.filterDirection}</option>
               {studyDirections.map((d) => (
                 <option key={d.id} value={d.id}>
-                  {d.icon} {d.shortTitle}
+                  {d.icon} {getDirectionName(d)}
                 </option>
               ))}
             </select>
@@ -150,33 +164,33 @@ export default function UniversityListScreen({
           {/* Tuition Budget */}
           <div>
             <label className="block text-[11px] font-bold uppercase tracking-wider text-[#8B0000] mb-1">
-              Стоимость обучения:
+              {t.unis.filterTuitionLabel}
             </label>
             <select
               value={filters.tuitionRange}
               onChange={(e) => setFilters((prev) => ({ ...prev, tuitionRange: e.target.value }))}
               className="w-full px-3 py-2 bg-white border border-[#8B0000]/20 rounded-xl text-xs font-bold text-[#2D1810] focus:outline-none focus:ring-2 focus:ring-[#8B0000]"
             >
-              <option value="all">Любая стоимость</option>
-              <option value="free">Бесплатное обучение (0 €)</option>
-              <option value="low">До 3 000 € / год</option>
-              <option value="mid">От 3 000 € до 8 000 € / год</option>
+              <option value="all">{t.unis.filterTuition}</option>
+              <option value="free">{t.unis.filterTuitionFree}</option>
+              <option value="low">{t.unis.filterTuitionLow}</option>
+              <option value="mid">{t.unis.filterTuitionMid}</option>
             </select>
           </div>
 
           {/* Language exam & options */}
           <div>
             <label className="block text-[11px] font-bold uppercase tracking-wider text-[#8B0000] mb-1">
-              Экзамен / Английский:
+              {t.unis.filterExamLabel}
             </label>
             <select
               value={filters.examRequirement}
               onChange={(e) => setFilters((prev) => ({ ...prev, examRequirement: e.target.value }))}
               className="w-full px-3 py-2 bg-white border border-[#8B0000]/20 rounded-xl text-xs font-bold text-[#2D1810] focus:outline-none focus:ring-2 focus:ring-[#8B0000]"
             >
-              <option value="all">Все варианты</option>
-              <option value="noExam">Без жесткого IELTS / с нуля</option>
-              <option value="englishOnly">Англоязычные программы</option>
+              <option value="all">{t.unis.examAll}</option>
+              <option value="noExam">{t.unis.examNoExam}</option>
+              <option value="englishOnly">{t.unis.examEnglishOnly}</option>
             </select>
           </div>
         </div>
@@ -190,7 +204,7 @@ export default function UniversityListScreen({
               onChange={(e) => setFilters((prev) => ({ ...prev, onlyScholarships: e.target.checked }))}
               className="w-4 h-4 rounded text-[#8B0000] focus:ring-[#8B0000] border-[#8B0000]/30"
             />
-            <span>Только с гарантированными стипендиями (DSU, DAAD, Eiffel)</span>
+            <span>{t.unis.filterOnlyScholarships}</span>
           </label>
 
           <label className="inline-flex items-center gap-2 cursor-pointer select-none">
@@ -200,7 +214,7 @@ export default function UniversityListScreen({
               onChange={(e) => setFilters((prev) => ({ ...prev, onlyFree: e.target.checked }))}
               className="w-4 h-4 rounded text-[#8B0000] focus:ring-[#8B0000] border-[#8B0000]/30"
             />
-            <span>Только 0 € за обучение в госвузах</span>
+            <span>{t.unis.filterOnlyFree}</span>
           </label>
         </div>
       </div>
@@ -215,6 +229,7 @@ export default function UniversityListScreen({
               isFavorite={favorites.includes(uni.id)}
               onToggleFavorite={onToggleFavorite}
               onOpenDetails={onOpenDetails}
+              currentLang={currentLang}
             />
           ))}
         </div>
@@ -223,16 +238,16 @@ export default function UniversityListScreen({
         <div className="bg-[#FAF5EE] rounded-3xl border-2 border-[#8B0000]/20 p-12 text-center max-w-lg mx-auto my-8">
           <div className="text-4xl mb-3">🔍</div>
           <h3 className="text-xl font-black text-[#8B0000] mb-2">
-            По заданным фильтрам ничего не найдено
+            {t.unis.emptyTitle}
           </h3>
           <p className="text-xs sm:text-sm text-[#2D1810]/70 mb-6">
-            Попробуйте выбрать «Все 13 стран Европы» или снять галочку бесплатного обучения.
+            {t.unis.emptyDesc}
           </p>
           <button
             onClick={onResetFilters}
             className="px-5 py-2.5 bg-[#8B0000] hover:bg-[#630000] text-[#EFE0CD] rounded-xl text-xs sm:text-sm font-bold shadow-md transition-colors"
           >
-            Сбросить фильтры
+            {t.unis.resetFilters}
           </button>
         </div>
       )}
