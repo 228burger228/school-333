@@ -13,6 +13,7 @@ import AuthModal from './components/AuthModal';
 import LanguageOnboarding from './components/LanguageOnboarding';
 import AdmissionGuideScreen from './components/AdmissionGuideScreen';
 import FreeAuditModal from './components/FreeAuditModal';
+import FloatingQuickNav from './components/FloatingQuickNav';
 import Footer from './components/Footer';
 
 import { universities } from './data/universities';
@@ -429,6 +430,20 @@ export default function App() {
           onClose={() => setShowLanguageOnboarding(false)}
         />
       )}
+
+      {/* Floating Quick Navigation Dock */}
+      <FloatingQuickNav
+        activeScreen={activeScreen}
+        onNavigate={(screen) => {
+          setActiveScreen(screen);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
+        onOpenCountries={handleOpenCountries}
+        favoritesCount={favorites.length}
+        onOpenFavorites={() => setIsFavoritesModalOpen(true)}
+        onOpenAudit={() => handleOpenAudit(null)}
+        currentLang={currentLang}
+      />
 
       {/* Footer */}
       <Footer onNavigate={(screen) => setActiveScreen(screen)} currentLang={currentLang} />

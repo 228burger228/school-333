@@ -6,7 +6,7 @@ export default function Footer({ onNavigate, currentLang = 'ru' }) {
   const t = getTranslation(currentLang);
 
   return (
-    <footer className="bg-[#500000] text-[#EFE0CD] pt-14 pb-10 border-t-4 border-[#8B0000] text-left">
+    <footer className="bg-[#500000] text-[#EFE0CD] pt-14 pb-24 sm:pb-12 border-t-4 border-[#8B0000] text-left">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 pb-10 border-b border-[#8B0000]/40">
           {/* Column 1: Brand & Academic Mission */}
