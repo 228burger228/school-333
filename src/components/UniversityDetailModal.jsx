@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   X,
   Heart,
@@ -27,6 +27,16 @@ export default function UniversityDetailModal({
 }) {
   const [activeTab, setActiveTab] = useState('programs');
   const t = getTranslation(currentLang);
+
+  useEffect(() => {
+    if (isOpen) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [isOpen]);
 
   const handlePrintChecklist = () => {
     const printWindow = window.open('', '_blank');
@@ -119,9 +129,9 @@ export default function UniversityDetailModal({
   if (!isOpen || !university) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/75 backdrop-blur-md overflow-y-auto animate-fadeIn">
+    <div className="fixed inset-0 z-50 flex items-start sm:items-center justify-center p-2.5 sm:p-4 bg-black/75 backdrop-blur-md overflow-y-auto animate-fadeIn">
       <div
-        className="relative w-full max-w-3xl bg-[#FAF5EE] rounded-3xl shadow-2xl border-2 border-[#8B0000]/30 overflow-hidden my-6 text-left"
+        className="relative w-full max-w-3xl bg-[#FAF5EE] rounded-3xl shadow-2xl border-2 border-[#8B0000]/30 overflow-hidden my-3 sm:my-8 text-left"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Banner with Campus Photo */}
@@ -393,11 +403,11 @@ export default function UniversityDetailModal({
         </div>
 
         {/* Modal Footer with Action Buttons */}
-        <div className="p-4 sm:p-6 bg-[#EFE0CD]/50 border-t border-[#8B0000]/15 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <div className="flex items-center gap-2 w-full sm:w-auto">
+        <div className="p-4 sm:p-6 bg-[#EFE0CD]/50 border-t border-[#8B0000]/15 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+          <div className="flex items-center justify-between sm:justify-start gap-2 w-full sm:w-auto">
             <button
               onClick={() => onToggleFavorite(university.id)}
-              className={`inline-flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-xl border text-xs font-bold transition-all ${
+              className={`inline-flex items-center justify-center gap-1.5 px-3.5 py-2.5 min-h-[42px] rounded-xl border text-xs font-bold transition-all cursor-pointer ${
                 isFavorite
                   ? 'bg-[#8B0000] text-[#EFE0CD] border-[#8B0000]'
                   : 'bg-white border-[#8B0000]/25 text-[#8B0000] hover:bg-[#FAF5EE]'
@@ -405,12 +415,12 @@ export default function UniversityDetailModal({
               title={isFavorite ? t.card.removeFavorite : t.card.addFavorite}
             >
               <Heart className={`w-4 h-4 ${isFavorite ? 'fill-current' : ''}`} />
-              <span className="hidden sm:inline">{isFavorite ? t.modal.inFavorites : t.modal.favoriteBtn}</span>
+              <span>{isFavorite ? t.modal.inFavorites : t.modal.favoriteBtn}</span>
             </button>
 
             <button
               onClick={handlePrintChecklist}
-              className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-white border border-[#8B0000]/30 hover:border-[#8B0000] text-[#8B0000] text-xs font-bold transition-all shadow-2xs cursor-pointer"
+              className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2.5 min-h-[42px] rounded-xl bg-white border border-[#8B0000]/30 hover:border-[#8B0000] text-[#8B0000] text-xs font-bold transition-all shadow-2xs cursor-pointer"
               title="PDF"
             >
               <Printer className="w-4 h-4" />
@@ -418,14 +428,14 @@ export default function UniversityDetailModal({
             </button>
           </div>
 
-          <div className="flex items-center gap-2 w-full sm:w-auto">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full sm:w-auto">
             {onRequestAudit && (
               <button
                 onClick={() => {
                   onClose();
                   onRequestAudit(university);
                 }}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-2.5 bg-[#FAF5EE] hover:bg-[#FAF5EE]/80 border-2 border-[#8B0000] text-[#8B0000] text-xs sm:text-sm font-black rounded-xl shadow-2xs transition-all cursor-pointer"
+                className="w-full sm:w-auto min-h-[42px] inline-flex items-center justify-center gap-1.5 px-4 py-2.5 bg-[#FAF5EE] hover:bg-[#FAF5EE]/80 border-2 border-[#8B0000] text-[#8B0000] text-xs sm:text-sm font-black rounded-xl shadow-2xs transition-all cursor-pointer"
               >
                 <Sparkles className="w-3.5 h-3.5 text-[#8B0000]" />
                 <span>{t.modal.assessChances}</span>
@@ -436,7 +446,7 @@ export default function UniversityDetailModal({
               href={university.websiteUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-5 py-2.5 bg-[#8B0000] hover:bg-[#630000] text-[#EFE0CD] text-xs sm:text-sm font-black rounded-xl shadow-md transition-all cursor-pointer"
+              className="w-full sm:w-auto min-h-[42px] inline-flex items-center justify-center gap-1.5 px-5 py-2.5 bg-[#8B0000] hover:bg-[#630000] text-[#EFE0CD] text-xs sm:text-sm font-black rounded-xl shadow-md transition-all cursor-pointer text-center"
             >
               <span>{t.modal.websiteBtn}</span>
               <ExternalLink className="w-3.5 h-3.5" />

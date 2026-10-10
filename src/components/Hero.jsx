@@ -33,7 +33,7 @@ export default function Hero({
         </div>
 
         {/* Hero Title */}
-        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-[#8B0000] tracking-tight leading-[1.15] max-w-4xl mx-auto mb-6">
+        <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#8B0000] tracking-tight leading-[1.15] max-w-4xl mx-auto mb-5 sm:mb-6">
           {t.hero.titleMain} <span>{t.hero.titleAccent}</span> {t.hero.titleEnd}
         </h1>
 

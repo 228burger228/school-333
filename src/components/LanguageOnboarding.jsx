@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { languages } from '../data/languages';
 import { Globe, ArrowRight, Check, Sparkles, X } from 'lucide-react';
 import { getTranslation } from '../data/translations';
@@ -8,6 +8,14 @@ export default function LanguageOnboarding({ onSelectLanguage, onClose, currentL
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const [selectedLang, setSelectedLang] = useState(currentLang);
   const [flipped, setFlipped] = useState(false);
+
+  useEffect(() => {
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, []);
 
   const t = getTranslation(selectedLang);
   const current = languages[currentIndex];
@@ -38,8 +46,8 @@ export default function LanguageOnboarding({ onSelectLanguage, onClose, currentL
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/75 backdrop-blur-md animate-fadeIn">
-      <div className="relative w-full max-w-xl bg-[#FAF5EE] rounded-3xl shadow-2xl border-2 border-[#8B0000]/25 p-5 sm:p-8 flex flex-col items-center text-center overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-start sm:items-center justify-center p-3 sm:p-4 bg-black/75 backdrop-blur-md overflow-y-auto animate-fadeIn">
+      <div className="relative w-full max-w-xl bg-[#FAF5EE] rounded-3xl shadow-2xl border-2 border-[#8B0000]/25 p-5 sm:p-8 flex flex-col items-center text-center overflow-hidden my-4 sm:my-8">
         {/* Close Button */}
         <button
           onClick={onClose}

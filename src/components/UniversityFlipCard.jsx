@@ -26,7 +26,7 @@ export default function UniversityFlipCard({
   const t = getTranslation(currentLang);
 
   return (
-    <div className="w-full h-[510px] perspective-1000 select-none">
+    <div className="w-full h-[490px] sm:h-[510px] perspective-1000 select-none">
       <div
         className={`relative w-full h-full duration-500 transform-style-3d rounded-3xl transition-transform cursor-pointer ${
           isFlipped ? 'rotate-y-180' : ''
@@ -37,7 +37,7 @@ export default function UniversityFlipCard({
         <div className="absolute inset-0 backface-hidden rounded-3xl overflow-hidden bg-[#FAF5EE] border-2 border-[#8B0000]/20 shadow-md hover:shadow-xl hover:border-[#8B0000] transition-all flex flex-col justify-between">
           
           {/* Top: University Campus Photo Banner */}
-          <div className="relative w-full h-[185px] sm:h-[195px] bg-gradient-to-br from-[#700000] via-[#8B0000] to-[#500000] overflow-hidden shrink-0">
+          <div className="relative w-full h-[180px] sm:h-[195px] bg-gradient-to-br from-[#700000] via-[#8B0000] to-[#500000] overflow-hidden shrink-0">
             <img
               src={university.photo}
               alt={`${university.name} — Кампус университета, ${university.city}, ${university.countryName}`}
@@ -68,7 +68,7 @@ export default function UniversityFlipCard({
                 e.stopPropagation();
                 onToggleFavorite(university.id);
               }}
-              className={`absolute top-3 right-3 p-2.5 rounded-full backdrop-blur-md transition-all ${
+              className={`absolute top-3 right-3 p-2.5 rounded-full backdrop-blur-md transition-all cursor-pointer ${
                 isFavorite
                   ? 'bg-[#8B0000] text-[#EFE0CD] shadow-md scale-110'
                   : 'bg-black/40 hover:bg-black/60 text-white'
@@ -87,22 +87,22 @@ export default function UniversityFlipCard({
                   {university.countryName}, {university.city}
                 </span>
               </div>
-              <h3 className="text-lg sm:text-xl font-black text-white leading-tight drop-shadow-md line-clamp-1">
+              <h3 className="text-base sm:text-xl font-black text-white leading-tight drop-shadow-md line-clamp-1">
                 {university.name}
               </h3>
             </div>
           </div>
 
           {/* Middle: Заполняем свободное пространство ключевой пользой (Программы, Гранты, Описание) */}
-          <div className="p-4 flex-1 flex flex-col justify-between text-left">
+          <div className="p-3.5 sm:p-4 flex-1 flex flex-col justify-between text-left">
             {/* Overview Snippet */}
-            <p className="text-xs text-[#2D1810]/80 font-medium leading-relaxed line-clamp-2 mb-2.5">
+            <p className="text-xs text-[#2D1810]/80 font-medium leading-relaxed line-clamp-2 mb-2">
               {university.overview}
             </p>
 
             {/* Key Programs Tags */}
-            <div className="mb-2.5">
-              <span className="text-[10px] uppercase font-extrabold tracking-wider text-[#8B0000]/70 block mb-1.5">
+            <div className="mb-2">
+              <span className="text-[10px] uppercase font-extrabold tracking-wider text-[#8B0000]/70 block mb-1">
                 {t.card.programsLabel}
               </span>
               <div className="flex flex-wrap gap-1.5">
@@ -122,7 +122,7 @@ export default function UniversityFlipCard({
             <div className="grid grid-cols-2 gap-2 pt-2 border-t border-[#8B0000]/10 text-[11px]">
               <div>
                 <span className="text-[9px] uppercase font-bold text-[#2D1810]/60 block">{t.card.langThreshold}</span>
-                <span className="font-extrabold text-[#2D1810]">
+                <span className="font-extrabold text-[#2D1810] truncate block">
                   {university.languageReq.ielts ? `IELTS ${university.languageReq.ielts}+` : t.card.noStrictTest}
                 </span>
               </div>
@@ -136,26 +136,43 @@ export default function UniversityFlipCard({
           </div>
 
           {/* Bottom Bar: Строгая академическая типографика */}
-          <div className="px-4 py-3 bg-[#FAF5EE] flex items-center justify-between border-t border-[#8B0000]/15 text-xs shrink-0">
-            <div>
-              <span className="text-[10px] uppercase font-extrabold tracking-wider text-[#8B0000]/80 block">
+          <div className="px-3.5 sm:px-4 py-2.5 sm:py-3 bg-[#FAF5EE] flex items-center justify-between border-t border-[#8B0000]/15 text-xs shrink-0 gap-2">
+            <div className="min-w-0 flex-1">
+              <span className="text-[9px] sm:text-[10px] uppercase font-extrabold tracking-wider text-[#8B0000]/80 block truncate">
                 {t.card.tuitionLabel}
               </span>
-              <span className="font-black text-[#8B0000] text-sm tracking-tight">
+              <span className="font-black text-[#8B0000] text-xs sm:text-sm tracking-tight truncate block">
                 {university.tuition.text}
               </span>
             </div>
 
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                setIsFlipped(true);
-              }}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#8B0000] hover:bg-[#630000] text-[#EFE0CD] font-black text-xs shadow-xs transition-colors cursor-pointer"
-            >
-              <span>{t.card.parametersBtn}</span>
-              <RotateCw className="w-3.5 h-3.5" />
-            </button>
+            <div className="flex items-center gap-1.5 shrink-0">
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onOpenDetails(university);
+                }}
+                className="inline-flex items-center gap-1 px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xl bg-white border border-[#8B0000]/30 hover:bg-[#8B0000]/5 text-[#8B0000] font-black text-xs shadow-2xs transition-colors cursor-pointer"
+                title="Открыть подробности"
+              >
+                <span>{t.card.detailsBtn}</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsFlipped(true);
+                }}
+                className="inline-flex items-center gap-1 px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xl bg-[#8B0000] hover:bg-[#630000] text-[#EFE0CD] font-black text-xs shadow-xs transition-colors cursor-pointer"
+                title="Параметры и требования"
+              >
+                <span className="hidden sm:inline">{t.card.parametersBtn}</span>
+                <RotateCw className="w-3.5 h-3.5" />
+              </button>
+            </div>
           </div>
         </div>
 

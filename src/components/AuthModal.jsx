@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   X,
   User,
@@ -25,6 +25,16 @@ export default function AuthModal({
     targetDegree: user ? user.targetDegree : 'bachelor'
   });
 
+  useEffect(() => {
+    if (isOpen) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   const handleSubmit = (e) => {
@@ -44,9 +54,9 @@ export default function AuthModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md animate-fadeIn">
+    <div className="fixed inset-0 z-50 flex items-start sm:items-center justify-center p-3 sm:p-4 bg-black/75 backdrop-blur-md overflow-y-auto animate-fadeIn">
       <div
-        className="relative w-full max-w-md bg-[#FAF5EE] rounded-3xl shadow-2xl border-2 border-[#8B0000]/25 p-6 sm:p-8 text-left"
+        className="relative w-full max-w-md bg-[#FAF5EE] rounded-3xl shadow-2xl border-2 border-[#8B0000]/25 p-5 sm:p-8 text-left my-4 sm:my-8"
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -125,7 +135,7 @@ export default function AuthModal({
                     placeholder="Например: Александр"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full pl-10 pr-4 py-2.5 bg-[#EFE0CD]/50 border border-[#8B0000]/20 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#8B0000] focus:bg-white text-[#2D1810]"
+                    className="w-full pl-10 pr-4 py-2.5 bg-[#EFE0CD]/50 border border-[#8B0000]/20 rounded-xl text-[16px] sm:text-xs md:text-sm focus:outline-none focus:ring-2 focus:ring-[#8B0000] focus:bg-white text-[#2D1810]"
                   />
                 </div>
               </div>
@@ -141,7 +151,7 @@ export default function AuthModal({
                     placeholder="student@example.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full pl-10 pr-4 py-2.5 bg-[#EFE0CD]/50 border border-[#8B0000]/20 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#8B0000] focus:bg-white text-[#2D1810]"
+                    className="w-full pl-10 pr-4 py-2.5 bg-[#EFE0CD]/50 border border-[#8B0000]/20 rounded-xl text-[16px] sm:text-xs md:text-sm focus:outline-none focus:ring-2 focus:ring-[#8B0000] focus:bg-white text-[#2D1810]"
                   />
                 </div>
               </div>
@@ -154,7 +164,7 @@ export default function AuthModal({
                   <select
                     value={formData.intakeYear}
                     onChange={(e) => setFormData({ ...formData, intakeYear: e.target.value })}
-                    className="w-full px-3 py-2.5 bg-white border border-[#8B0000]/20 rounded-xl text-xs font-bold text-[#2D1810] focus:outline-none focus:ring-2 focus:ring-[#8B0000]"
+                    className="w-full px-3 py-2.5 bg-white border border-[#8B0000]/20 rounded-xl text-[16px] sm:text-xs font-bold text-[#2D1810] focus:outline-none focus:ring-2 focus:ring-[#8B0000] cursor-pointer"
                   >
                     <option value="2026/2027">2026 / 2027</option>
                     <option value="2027/2028">2027 / 2028</option>
@@ -168,7 +178,7 @@ export default function AuthModal({
                   <select
                     value={formData.targetDegree}
                     onChange={(e) => setFormData({ ...formData, targetDegree: e.target.value })}
-                    className="w-full px-3 py-2.5 bg-white border border-[#8B0000]/20 rounded-xl text-xs font-bold text-[#2D1810] focus:outline-none focus:ring-2 focus:ring-[#8B0000]"
+                    className="w-full px-3 py-2.5 bg-white border border-[#8B0000]/20 rounded-xl text-[16px] sm:text-xs font-bold text-[#2D1810] focus:outline-none focus:ring-2 focus:ring-[#8B0000] cursor-pointer"
                   >
                     <option value="bachelor">Бакалавриат</option>
                     <option value="master">Магистратура</option>

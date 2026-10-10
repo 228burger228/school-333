@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, CheckCircle2, Send, Sparkles, ShieldCheck, Mail, User, Building2, AlertCircle } from 'lucide-react';
 import { getTranslation } from '../data/translations';
 import { checkRateLimit, recordRateLimitAttempt, sanitizeText, isValidEmail } from '../utils/security';
@@ -17,6 +17,16 @@ export default function FreeAuditModal({
   const [submitted, setSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const t = getTranslation(currentLang);
+
+  useEffect(() => {
+    if (isOpen) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
@@ -105,9 +115,9 @@ export default function FreeAuditModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/75 backdrop-blur-md overflow-y-auto animate-fadeIn">
+    <div className="fixed inset-0 z-50 flex items-start sm:items-center justify-center p-2.5 sm:p-4 bg-black/75 backdrop-blur-md overflow-y-auto animate-fadeIn">
       <div
-        className="relative w-full max-w-lg bg-[#FAF5EE] rounded-3xl shadow-2xl border-2 border-[#8B0000]/25 overflow-hidden my-6 text-left"
+        className="relative w-full max-w-lg bg-[#FAF5EE] rounded-3xl shadow-2xl border-2 border-[#8B0000]/25 overflow-hidden my-3 sm:my-6 text-left"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Top Header */}
@@ -204,7 +214,7 @@ export default function FreeAuditModal({
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder={t.audit.namePlaceholder}
-                    className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white border border-[#8B0000]/20 text-xs sm:text-sm text-[#2D1810] placeholder-[#2D1810]/40 focus:outline-none focus:border-[#8B0000] focus:ring-1 focus:ring-[#8B0000]"
+                    className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white border border-[#8B0000]/20 text-[16px] sm:text-xs md:text-sm text-[#2D1810] placeholder-[#2D1810]/40 focus:outline-none focus:border-[#8B0000] focus:ring-1 focus:ring-[#8B0000]"
                   />
                 </div>
               </div>
@@ -223,7 +233,7 @@ export default function FreeAuditModal({
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder={t.audit.emailPlaceholder}
-                    className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white border border-[#8B0000]/20 text-xs sm:text-sm text-[#2D1810] placeholder-[#2D1810]/40 focus:outline-none focus:border-[#8B0000] focus:ring-1 focus:ring-[#8B0000]"
+                    className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white border border-[#8B0000]/20 text-[16px] sm:text-xs md:text-sm text-[#2D1810] placeholder-[#2D1810]/40 focus:outline-none focus:border-[#8B0000] focus:ring-1 focus:ring-[#8B0000]"
                   />
                 </div>
               </div>

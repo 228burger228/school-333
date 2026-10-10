@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import UniversityFlipCard from './UniversityFlipCard';
 import { countries } from '../data/countries';
 import { studyDirections } from '../data/directions';
@@ -11,7 +11,9 @@ import {
   Sparkles,
   Check,
   Globe,
-  Euro
+  Euro,
+  ChevronDown,
+  ChevronUp
 } from 'lucide-react';
 
 export default function UniversityListScreen({
@@ -27,7 +29,20 @@ export default function UniversityListScreen({
   onOpenDetails,
   currentLang = 'ru'
 }) {
+  const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false);
   const t = getTranslation(currentLang);
+
+  const activeFiltersCount = useMemo(() => {
+    let count = 0;
+    if (filters.countryId !== 'all') count++;
+    if (filters.directionId !== 'all') count++;
+    if (filters.tuitionRange !== 'all') count++;
+    if (filters.examRequirement !== 'all') count++;
+    if (filters.onlyScholarships) count++;
+    if (filters.onlyFree) count++;
+    if (filters.searchQuery?.trim()) count++;
+    return count;
+  }, [filters]);
 
   const getCountryName = (c) => {
     if (!c) return '';
@@ -93,129 +108,145 @@ export default function UniversityListScreen({
       </div>
 
       {/* Simultaneous Live Filters Panel */}
-      <div className="bg-[#FAF5EE] rounded-3xl p-5 sm:p-6 border-2 border-[#8B0000]/20 shadow-sm mb-8">
-        <div className="flex items-center justify-between gap-2 mb-4 pb-3 border-b border-[#8B0000]/10">
-          <div className="flex items-center gap-2 text-sm font-black text-[#8B0000]">
-            <Filter className="w-4 h-4" />
-            <span>{t.unis.filtersTitle}</span>
-          </div>
-
+      <div className="bg-[#FAF5EE] rounded-3xl p-4 sm:p-6 border-2 border-[#8B0000]/20 shadow-sm mb-8">
+        <div className="flex items-center justify-between gap-2 mb-3 pb-3 border-b border-[#8B0000]/10">
           <button
-            onClick={onResetFilters}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold text-[#8B0000] hover:bg-[#8B0000]/10 transition-colors"
+            type="button"
+            onClick={() => setIsMobileFiltersOpen(!isMobileFiltersOpen)}
+            className="flex items-center gap-2 text-sm font-black text-[#8B0000] cursor-pointer hover:opacity-85 transition-opacity"
           >
-            <RotateCcw className="w-3.5 h-3.5" />
-            <span>{t.unis.resetAll}</span>
+            <Filter className="w-4 h-4 text-[#8B0000]" />
+            <span>{t.unis.filtersTitle}</span>
+            {activeFiltersCount > 0 && (
+              <span className="bg-[#8B0000] text-[#EFE0CD] text-[10px] font-black px-2 py-0.5 rounded-full shadow-2xs">
+                {activeFiltersCount}
+              </span>
+            )}
+            <span className="md:hidden ml-1 p-1 rounded-lg bg-[#8B0000]/10 text-[#8B0000]">
+              {isMobileFiltersOpen ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+            </span>
           </button>
+
+          <div className="flex items-center gap-2">
+            <button
+              onClick={onResetFilters}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold text-[#8B0000] hover:bg-[#8B0000]/10 transition-colors cursor-pointer"
+            >
+              <RotateCcw className="w-3.5 h-3.5" />
+              <span>{t.unis.resetAll}</span>
+            </button>
+          </div>
         </div>
 
-        {/* Search Input */}
-        <div className="relative mb-4">
-          <Search className="w-4 h-4 text-[#8B0000]/60 absolute left-3.5 top-1/2 -translate-y-1/2" />
+        {/* Search Input (always visible for quick lookup) */}
+        <div className="relative mb-3">
+          <Search className="w-4 h-4 text-[#8B0000]/60 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
           <input
             type="text"
             placeholder={t.unis.searchPlaceholder}
             value={filters.searchQuery}
             onChange={(e) => setFilters((prev) => ({ ...prev, searchQuery: e.target.value }))}
-            className="w-full pl-10 pr-4 py-2.5 bg-[#EFE0CD]/60 border border-[#8B0000]/20 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#8B0000] focus:bg-white text-[#2D1810]"
+            className="w-full pl-10 pr-4 py-2.5 bg-[#EFE0CD]/60 border border-[#8B0000]/20 rounded-xl text-[16px] sm:text-xs md:text-sm focus:outline-none focus:ring-2 focus:ring-[#8B0000] focus:bg-white text-[#2D1810]"
           />
         </div>
 
-        {/* Filter Dropdowns & Checkboxes in Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-          {/* Country Selector */}
-          <div>
-            <label className="block text-[11px] font-bold uppercase tracking-wider text-[#8B0000] mb-1">
-              {t.unis.filterCountryLabel}
-            </label>
-            <select
-              value={filters.countryId}
-              onChange={(e) => handleCountryChange(e.target.value)}
-              className="w-full px-3 py-2 bg-white border border-[#8B0000]/20 rounded-xl text-xs font-bold text-[#2D1810] focus:outline-none focus:ring-2 focus:ring-[#8B0000]"
-            >
-              <option value="all">{t.unis.filterCountry}</option>
-              {countries.map((c) => (
-                <option key={c.id} value={c.id}>
-                  {c.flag} {getCountryName(c)}
-                </option>
-              ))}
-            </select>
+        {/* Collapsible Dropdowns & Checkboxes on Mobile / Always visible on Desktop */}
+        <div className={`${isMobileFiltersOpen ? 'block animate-fadeIn' : 'hidden md:block'}`}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-1">
+            {/* Country Selector */}
+            <div>
+              <label className="block text-[11px] font-bold uppercase tracking-wider text-[#8B0000] mb-1">
+                {t.unis.filterCountryLabel}
+              </label>
+              <select
+                value={filters.countryId}
+                onChange={(e) => handleCountryChange(e.target.value)}
+                className="w-full px-3 py-2 bg-white border border-[#8B0000]/20 rounded-xl text-[16px] sm:text-xs font-bold text-[#2D1810] focus:outline-none focus:ring-2 focus:ring-[#8B0000] cursor-pointer"
+              >
+                <option value="all">{t.unis.filterCountry}</option>
+                {countries.map((c) => (
+                  <option key={c.id} value={c.id}>
+                    {c.flag} {getCountryName(c)}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Direction Selector */}
+            <div>
+              <label className="block text-[11px] font-bold uppercase tracking-wider text-[#8B0000] mb-1">
+                {t.unis.filterDirectionLabel}
+              </label>
+              <select
+                value={filters.directionId}
+                onChange={(e) => handleDirectionChange(e.target.value)}
+                className="w-full px-3 py-2 bg-white border border-[#8B0000]/20 rounded-xl text-[16px] sm:text-xs font-bold text-[#2D1810] focus:outline-none focus:ring-2 focus:ring-[#8B0000] cursor-pointer"
+              >
+                <option value="all">{t.unis.filterDirection}</option>
+                {studyDirections.map((d) => (
+                  <option key={d.id} value={d.id}>
+                    {d.icon} {getDirectionName(d)}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Tuition Budget */}
+            <div>
+              <label className="block text-[11px] font-bold uppercase tracking-wider text-[#8B0000] mb-1">
+                {t.unis.filterTuitionLabel}
+              </label>
+              <select
+                value={filters.tuitionRange}
+                onChange={(e) => setFilters((prev) => ({ ...prev, tuitionRange: e.target.value }))}
+                className="w-full px-3 py-2 bg-white border border-[#8B0000]/20 rounded-xl text-[16px] sm:text-xs font-bold text-[#2D1810] focus:outline-none focus:ring-2 focus:ring-[#8B0000] cursor-pointer"
+              >
+                <option value="all">{t.unis.filterTuition}</option>
+                <option value="free">{t.unis.filterTuitionFree}</option>
+                <option value="low">{t.unis.filterTuitionLow}</option>
+                <option value="mid">{t.unis.filterTuitionMid}</option>
+              </select>
+            </div>
+
+            {/* Language exam & options */}
+            <div>
+              <label className="block text-[11px] font-bold uppercase tracking-wider text-[#8B0000] mb-1">
+                {t.unis.filterExamLabel}
+              </label>
+              <select
+                value={filters.examRequirement}
+                onChange={(e) => setFilters((prev) => ({ ...prev, examRequirement: e.target.value }))}
+                className="w-full px-3 py-2 bg-white border border-[#8B0000]/20 rounded-xl text-[16px] sm:text-xs font-bold text-[#2D1810] focus:outline-none focus:ring-2 focus:ring-[#8B0000] cursor-pointer"
+              >
+                <option value="all">{t.unis.examAll}</option>
+                <option value="noExam">{t.unis.examNoExam}</option>
+                <option value="englishOnly">{t.unis.examEnglishOnly}</option>
+              </select>
+            </div>
           </div>
 
-          {/* Direction Selector */}
-          <div>
-            <label className="block text-[11px] font-bold uppercase tracking-wider text-[#8B0000] mb-1">
-              {t.unis.filterDirectionLabel}
+          {/* Checkboxes Row */}
+          <div className="mt-3.5 pt-3 border-t border-[#8B0000]/10 flex flex-wrap gap-4 text-xs font-bold text-[#2D1810]">
+            <label className="inline-flex items-center gap-2 cursor-pointer select-none">
+              <input
+                type="checkbox"
+                checked={filters.onlyScholarships}
+                onChange={(e) => setFilters((prev) => ({ ...prev, onlyScholarships: e.target.checked }))}
+                className="w-4 h-4 rounded text-[#8B0000] focus:ring-[#8B0000] border-[#8B0000]/30"
+              />
+              <span>{t.unis.filterOnlyScholarships}</span>
             </label>
-            <select
-              value={filters.directionId}
-              onChange={(e) => handleDirectionChange(e.target.value)}
-              className="w-full px-3 py-2 bg-white border border-[#8B0000]/20 rounded-xl text-xs font-bold text-[#2D1810] focus:outline-none focus:ring-2 focus:ring-[#8B0000]"
-            >
-              <option value="all">{t.unis.filterDirection}</option>
-              {studyDirections.map((d) => (
-                <option key={d.id} value={d.id}>
-                  {d.icon} {getDirectionName(d)}
-                </option>
-              ))}
-            </select>
-          </div>
 
-          {/* Tuition Budget */}
-          <div>
-            <label className="block text-[11px] font-bold uppercase tracking-wider text-[#8B0000] mb-1">
-              {t.unis.filterTuitionLabel}
+            <label className="inline-flex items-center gap-2 cursor-pointer select-none">
+              <input
+                type="checkbox"
+                checked={filters.onlyFree}
+                onChange={(e) => setFilters((prev) => ({ ...prev, onlyFree: e.target.checked }))}
+                className="w-4 h-4 rounded text-[#8B0000] focus:ring-[#8B0000] border-[#8B0000]/30"
+              />
+              <span>{t.unis.filterOnlyFree}</span>
             </label>
-            <select
-              value={filters.tuitionRange}
-              onChange={(e) => setFilters((prev) => ({ ...prev, tuitionRange: e.target.value }))}
-              className="w-full px-3 py-2 bg-white border border-[#8B0000]/20 rounded-xl text-xs font-bold text-[#2D1810] focus:outline-none focus:ring-2 focus:ring-[#8B0000]"
-            >
-              <option value="all">{t.unis.filterTuition}</option>
-              <option value="free">{t.unis.filterTuitionFree}</option>
-              <option value="low">{t.unis.filterTuitionLow}</option>
-              <option value="mid">{t.unis.filterTuitionMid}</option>
-            </select>
           </div>
-
-          {/* Language exam & options */}
-          <div>
-            <label className="block text-[11px] font-bold uppercase tracking-wider text-[#8B0000] mb-1">
-              {t.unis.filterExamLabel}
-            </label>
-            <select
-              value={filters.examRequirement}
-              onChange={(e) => setFilters((prev) => ({ ...prev, examRequirement: e.target.value }))}
-              className="w-full px-3 py-2 bg-white border border-[#8B0000]/20 rounded-xl text-xs font-bold text-[#2D1810] focus:outline-none focus:ring-2 focus:ring-[#8B0000]"
-            >
-              <option value="all">{t.unis.examAll}</option>
-              <option value="noExam">{t.unis.examNoExam}</option>
-              <option value="englishOnly">{t.unis.examEnglishOnly}</option>
-            </select>
-          </div>
-        </div>
-
-        {/* Checkboxes Row */}
-        <div className="mt-4 pt-3 border-t border-[#8B0000]/10 flex flex-wrap gap-4 text-xs font-bold text-[#2D1810]">
-          <label className="inline-flex items-center gap-2 cursor-pointer select-none">
-            <input
-              type="checkbox"
-              checked={filters.onlyScholarships}
-              onChange={(e) => setFilters((prev) => ({ ...prev, onlyScholarships: e.target.checked }))}
-              className="w-4 h-4 rounded text-[#8B0000] focus:ring-[#8B0000] border-[#8B0000]/30"
-            />
-            <span>{t.unis.filterOnlyScholarships}</span>
-          </label>
-
-          <label className="inline-flex items-center gap-2 cursor-pointer select-none">
-            <input
-              type="checkbox"
-              checked={filters.onlyFree}
-              onChange={(e) => setFilters((prev) => ({ ...prev, onlyFree: e.target.checked }))}
-              className="w-4 h-4 rounded text-[#8B0000] focus:ring-[#8B0000] border-[#8B0000]/30"
-            />
-            <span>{t.unis.filterOnlyFree}</span>
-          </label>
         </div>
       </div>
 

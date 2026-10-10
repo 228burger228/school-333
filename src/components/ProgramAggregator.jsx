@@ -46,14 +46,14 @@ export default function ProgramAggregator({ onAggregate }) {
 
   return (
     <div className="w-full max-w-4xl mx-auto my-10 text-left">
-      <div className="bg-[#8B0000] text-[#EFE0CD] rounded-3xl p-6 sm:p-10 shadow-2xl border-4 border-[#FAF5EE]/30 relative overflow-hidden">
+      <div className="bg-[#8B0000] text-[#EFE0CD] rounded-3xl p-4 sm:p-10 shadow-2xl border-2 sm:border-4 border-[#FAF5EE]/30 relative overflow-hidden">
         {/* Декоративный фоновый герб/акцент */}
         <div className="absolute -top-10 -right-10 text-9xl text-white/5 pointer-events-none select-none font-serif font-black">
           ?
         </div>
 
         {/* Заголовок агрегатора */}
-        <div className="text-center max-w-2xl mx-auto mb-8">
+        <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-8">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#FAF5EE]/15 border border-[#FAF5EE]/25 text-[#FAF5EE] text-xs font-black uppercase tracking-wider mb-2">
             <span>Умный подбор 2026/2027</span>
           </div>
@@ -66,7 +66,7 @@ export default function ProgramAggregator({ onAggregate }) {
         </div>
 
         {/* Форма агрегатора (макет Прил. 4) */}
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
           {/* 1. Почта */}
           <div>
             <label className="block text-xs sm:text-sm font-extrabold uppercase tracking-wider text-[#FAF5EE] mb-2 flex items-center gap-2">
@@ -79,7 +79,7 @@ export default function ProgramAggregator({ onAggregate }) {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="name@example.com (для сохранения подборки и дедлайнов)"
-              className="w-full px-4 py-3.5 rounded-2xl bg-[#FAF5EE] text-[#2D1810] placeholder-[#2D1810]/50 font-bold text-sm sm:text-base border-2 border-transparent focus:border-[#FAF5EE] focus:outline-none shadow-inner"
+              className="w-full px-4 py-3 sm:py-3.5 rounded-2xl bg-[#FAF5EE] text-[#2D1810] placeholder-[#2D1810]/50 font-bold text-[16px] sm:text-base border-2 border-transparent focus:border-[#FAF5EE] focus:outline-none shadow-inner"
             />
           </div>
 
@@ -92,7 +92,7 @@ export default function ProgramAggregator({ onAggregate }) {
             <select
               value={originCountry}
               onChange={(e) => setOriginCountry(e.target.value)}
-              className="w-full px-4 py-3.5 rounded-2xl bg-[#FAF5EE] text-[#2D1810] font-bold text-sm sm:text-base border-2 border-transparent focus:border-[#FAF5EE] focus:outline-none cursor-pointer shadow-inner"
+              className="w-full px-4 py-3 sm:py-3.5 rounded-2xl bg-[#FAF5EE] text-[#2D1810] font-bold text-[16px] sm:text-base border-2 border-transparent focus:border-[#FAF5EE] focus:outline-none cursor-pointer shadow-inner"
             >
               <option value="Казахстан">🇰🇿 Казахстан</option>
               <option value="Беларусь">🇧🇾 Беларусь</option>
@@ -117,7 +117,7 @@ export default function ProgramAggregator({ onAggregate }) {
               <select
                 value={selectedLanguage}
                 onChange={(e) => setSelectedLanguage(e.target.value)}
-                className="w-full px-4 py-3.5 rounded-2xl bg-[#FAF5EE] text-[#2D1810] font-bold text-sm sm:text-base border-2 border-transparent focus:border-[#FAF5EE] focus:outline-none cursor-pointer shadow-inner"
+                className="w-full px-4 py-3 sm:py-3.5 rounded-2xl bg-[#FAF5EE] text-[#2D1810] font-bold text-[16px] sm:text-base border-2 border-transparent focus:border-[#FAF5EE] focus:outline-none cursor-pointer shadow-inner"
               >
                 <option value="Английский">🇬🇧 Английский (English)</option>
                 <option value="Немецкий">🇩🇪 Немецкий (Deutsch)</option>
@@ -136,7 +136,7 @@ export default function ProgramAggregator({ onAggregate }) {
               <select
                 value={languageLevel}
                 onChange={(e) => setLanguageLevel(e.target.value)}
-                className="w-full px-4 py-3.5 rounded-2xl bg-[#FAF5EE] text-[#2D1810] font-bold text-sm sm:text-base border-2 border-transparent focus:border-[#FAF5EE] focus:outline-none cursor-pointer shadow-inner"
+                className="w-full px-4 py-3 sm:py-3.5 rounded-2xl bg-[#FAF5EE] text-[#2D1810] font-bold text-[16px] sm:text-base border-2 border-transparent focus:border-[#FAF5EE] focus:outline-none cursor-pointer shadow-inner"
               >
                 <option value="A1-A2">A1 – A2 (Начальный)</option>
                 <option value="B1">B1 (Средний базовый)</option>
@@ -158,7 +158,7 @@ export default function ProgramAggregator({ onAggregate }) {
               <select
                 value={selectedExam}
                 onChange={(e) => setSelectedExam(e.target.value)}
-                className="w-full px-4 py-3.5 rounded-2xl bg-[#FAF5EE] text-[#2D1810] font-bold text-sm sm:text-base border-2 border-transparent focus:border-[#FAF5EE] focus:outline-none cursor-pointer shadow-inner"
+                className="w-full px-4 py-3 sm:py-3.5 rounded-2xl bg-[#FAF5EE] text-[#2D1810] font-bold text-[16px] sm:text-base border-2 border-transparent focus:border-[#FAF5EE] focus:outline-none cursor-pointer shadow-inner"
               >
                 <option value="IELTS">IELTS Academic</option>
                 <option value="TOEFL">TOEFL iBT</option>
@@ -180,7 +180,7 @@ export default function ProgramAggregator({ onAggregate }) {
                 value={examScore}
                 onChange={(e) => setExamScore(e.target.value)}
                 placeholder="Например: 6.5 / 90 / 1350 / планирую сдать"
-                className="w-full px-4 py-3.5 rounded-2xl bg-[#FAF5EE] text-[#2D1810] placeholder-[#2D1810]/50 font-bold text-sm sm:text-base border-2 border-transparent focus:border-[#FAF5EE] focus:outline-none shadow-inner"
+                className="w-full px-4 py-3 sm:py-3.5 rounded-2xl bg-[#FAF5EE] text-[#2D1810] placeholder-[#2D1810]/50 font-bold text-[16px] sm:text-base border-2 border-transparent focus:border-[#FAF5EE] focus:outline-none shadow-inner"
               />
             </div>
           </div>
@@ -195,7 +195,7 @@ export default function ProgramAggregator({ onAggregate }) {
               <label
                 className={`p-4 rounded-2xl border-2 cursor-pointer transition-all flex flex-col justify-between ${
                   fundingOption === 'free'
-                    ? 'bg-[#FAF5EE] text-[#8B0000] border-[#FAF5EE] shadow-lg scale-102 font-black'
+                    ? 'bg-[#FAF5EE] text-[#8B0000] border-[#FAF5EE] shadow-lg sm:scale-102 font-black'
                     : 'bg-[#FAF5EE]/10 text-[#FAF5EE] border-[#FAF5EE]/25 hover:bg-[#FAF5EE]/20 font-bold'
                 }`}
               >
@@ -224,7 +224,7 @@ export default function ProgramAggregator({ onAggregate }) {
               <label
                 className={`p-4 rounded-2xl border-2 cursor-pointer transition-all flex flex-col justify-between ${
                   fundingOption === 'scholarship'
-                    ? 'bg-[#FAF5EE] text-[#8B0000] border-[#FAF5EE] shadow-lg scale-102 font-black'
+                    ? 'bg-[#FAF5EE] text-[#8B0000] border-[#FAF5EE] shadow-lg sm:scale-102 font-black'
                     : 'bg-[#FAF5EE]/10 text-[#FAF5EE] border-[#FAF5EE]/25 hover:bg-[#FAF5EE]/20 font-bold'
                 }`}
               >
@@ -253,7 +253,7 @@ export default function ProgramAggregator({ onAggregate }) {
               <label
                 className={`p-4 rounded-2xl border-2 cursor-pointer transition-all flex flex-col justify-between ${
                   fundingOption === 'commercial'
-                    ? 'bg-[#FAF5EE] text-[#8B0000] border-[#FAF5EE] shadow-lg scale-102 font-black'
+                    ? 'bg-[#FAF5EE] text-[#8B0000] border-[#FAF5EE] shadow-lg sm:scale-102 font-black'
                     : 'bg-[#FAF5EE]/10 text-[#FAF5EE] border-[#FAF5EE]/25 hover:bg-[#FAF5EE]/20 font-bold'
                 }`}
               >

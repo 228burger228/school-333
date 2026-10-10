@@ -13,15 +13,27 @@
   html {
     scroll-behavior: smooth;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    overflow-x: hidden;
   }
 
   body {
     background-color: var(--color-linen);
     color: #2D1810;
     min-height: 100vh;
+    overflow-x: hidden;
     selection-background-color: var(--color-burgundy);
     selection-color: var(--color-linen-light);
+    -webkit-tap-highlight-color: transparent;
   }
+}
+
+/* Hide scrollbar utility for mobile horizontal tabs */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 /* 3D Card Flip styles for University Cards & Language Onboarding */

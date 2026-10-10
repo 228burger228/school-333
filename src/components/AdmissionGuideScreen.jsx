@@ -69,11 +69,11 @@ export default function AdmissionGuideScreen({
         </p>
       </div>
 
-      {/* Tabs Switcher */}
-      <div className="flex flex-wrap gap-2 mb-8 bg-[#FAF5EE] p-2 rounded-2xl border-2 border-[#8B0000]/15 w-fit">
+      {/* Tabs Switcher (Horizontal Touch Scroll on Mobile) */}
+      <div className="flex overflow-x-auto no-scrollbar gap-2 mb-8 bg-[#FAF5EE] p-2 rounded-2xl border-2 border-[#8B0000]/15 w-full sm:w-fit max-w-full">
         <button
           onClick={() => setActiveTab('roadmap')}
-          className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all ${
+          className={`inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all shrink-0 cursor-pointer min-h-[44px] ${
             activeTab === 'roadmap'
               ? 'bg-[#8B0000] text-[#EFE0CD] shadow-sm'
               : 'text-[#8B0000] hover:bg-[#8B0000]/10'
@@ -85,7 +85,7 @@ export default function AdmissionGuideScreen({
 
         <button
           onClick={() => setActiveTab('scholarships')}
-          className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all ${
+          className={`inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all shrink-0 cursor-pointer min-h-[44px] ${
             activeTab === 'scholarships'
               ? 'bg-[#8B0000] text-[#EFE0CD] shadow-sm'
               : 'text-[#8B0000] hover:bg-[#8B0000]/10'
@@ -97,7 +97,7 @@ export default function AdmissionGuideScreen({
 
         <button
           onClick={() => setActiveTab('faq')}
-          className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all ${
+          className={`inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all shrink-0 cursor-pointer min-h-[44px] ${
             activeTab === 'faq'
               ? 'bg-[#8B0000] text-[#EFE0CD] shadow-sm'
               : 'text-[#8B0000] hover:bg-[#8B0000]/10'
@@ -109,7 +109,7 @@ export default function AdmissionGuideScreen({
 
         <button
           onClick={() => setActiveTab('costs')}
-          className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all ${
+          className={`inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all shrink-0 cursor-pointer min-h-[44px] ${
             activeTab === 'costs'
               ? 'bg-[#8B0000] text-[#EFE0CD] shadow-sm'
               : 'text-[#8B0000] hover:bg-[#8B0000]/10'
@@ -267,8 +267,26 @@ export default function AdmissionGuideScreen({
             </p>
           </div>
 
-          {/* 13 Country Selector Pills */}
-          <div className="flex flex-wrap gap-2">
+          {/* Mobile Dropdown for 13 Countries */}
+          <div className="block sm:hidden">
+            <label className="block text-xs font-black uppercase tracking-wider text-[#8B0000] mb-1.5">
+              Выберите страну:
+            </label>
+            <select
+              value={selectedCostCountryId}
+              onChange={(e) => setSelectedCostCountryId(e.target.value)}
+              className="w-full px-4 py-3 bg-[#FAF5EE] border-2 border-[#8B0000]/30 rounded-2xl text-[16px] font-bold text-[#8B0000] focus:outline-none focus:border-[#8B0000] cursor-pointer shadow-2xs"
+            >
+              {countryLivingCosts.map((c) => (
+                <option key={c.id} value={c.id}>
+                  {c.flag} {c.countryName} (~{c.totalAvg} €/мес)
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Desktop 13 Country Selector Pills */}
+          <div className="hidden sm:flex flex-wrap gap-2">
             {countryLivingCosts.map((c) => {
               const isSelected = c.id === selectedCostCountryId;
               return (
