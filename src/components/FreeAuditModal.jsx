@@ -8,10 +8,12 @@ export default function FreeAuditModal({
   onClose,
   preselectedUniversity = null,
   preselectedCountry = null,
-  currentLang = 'ru'
+  currentLang = 'ru',
+  onOpenLegal
 }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [agreedToPolicy, setAgreedToPolicy] = useState(true);
   const [botHoneypot, setBotHoneypot] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
@@ -32,6 +34,7 @@ export default function FreeAuditModal({
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!agreedToPolicy) return;
     setErrorMessage('');
 
     // 1. Anti-bot Honeypot trap: bots fill invisible fields automatically
@@ -246,11 +249,32 @@ export default function FreeAuditModal({
                 </span>
               </div>
 
+              {/* Legal Consent Checkbox (152-ФЗ & GDPR compliance) */}
+              <label className="flex items-start gap-2.5 text-[11px] sm:text-xs text-[#2D1810]/85 cursor-pointer select-none pt-1">
+                <input
+                  type="checkbox"
+                  required
+                  checked={agreedToPolicy}
+                  onChange={(e) => setAgreedToPolicy(e.target.checked)}
+                  className="mt-0.5 rounded border-[#8B0000]/40 text-[#8B0000] focus:ring-[#8B0000] accent-[#8B0000] shrink-0 w-4 h-4 cursor-pointer"
+                />
+                <span className="leading-snug">
+                  Я подтверждаю возраст 16+ и даю согласие на обработку персональных данных в соответствии с{' '}
+                  <button
+                    type="button"
+                    onClick={() => onOpenLegal && onOpenLegal('privacy')}
+                    className="text-[#8B0000] font-black underline hover:text-[#630000] inline cursor-pointer"
+                  >
+                    Политикой конфиденциальности
+                  </button>
+                </span>
+              </label>
+
               {/* Submit Button */}
               <div className="pt-2">
                 <button
                   type="submit"
-                  disabled={isLoading || !name.trim() || !email.trim()}
+                  disabled={isLoading || !name.trim() || !email.trim() || !agreedToPolicy}
                   className="w-full inline-flex items-center justify-center gap-2 py-3 px-6 rounded-xl bg-[#8B0000] hover:bg-[#630000] disabled:opacity-50 text-[#EFE0CD] font-black text-sm shadow-md transition-all cursor-pointer"
                 >
                   {isLoading ? (

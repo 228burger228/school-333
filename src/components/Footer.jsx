@@ -1,8 +1,8 @@
 import React from 'react';
-import { GraduationCap, Heart, Sparkles, Globe, Compass, Briefcase, Award, BookOpen, ShieldCheck } from 'lucide-react';
+import { GraduationCap, Heart, Sparkles, Globe, Compass, Briefcase, Award, BookOpen, ShieldCheck, Mail } from 'lucide-react';
 import { getTranslation } from '../data/translations';
 
-export default function Footer({ onNavigate, currentLang = 'ru' }) {
+export default function Footer({ onNavigate, currentLang = 'ru', onOpenLegal }) {
   const t = getTranslation(currentLang);
 
   return (
@@ -112,11 +112,48 @@ export default function Footer({ onNavigate, currentLang = 'ru' }) {
           </div>
         </div>
 
-        {/* Bottom Imprint */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#EFE0CD]/60 font-medium">
-          <p>© 2026 {t.footer.copyright}</p>
-          <div className="flex items-center gap-2 text-[#EFE0CD]/75">
-            <span>{t.footer.paletteNote}</span>
+        {/* Bottom Imprint & Legal Compliance (152-ФЗ, GDPR, 16+) */}
+        <div className="pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-[#EFE0CD]/75 font-medium border-t border-[#8B0000]/30 mt-6">
+          <div className="flex flex-wrap items-center gap-3">
+            <span
+              className="inline-flex items-center justify-center px-2 py-0.5 rounded-md bg-[#8B0000] text-[#EFE0CD] font-black text-[11px] border border-[#EFE0CD]/25 shadow-xs"
+              title="Возрастное ограничение 16+ (152-ФЗ и GDPR)"
+            >
+              16+
+            </span>
+            <p>© 2026 {t.footer.copyright}</p>
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[11px] sm:text-xs">
+            <button
+              onClick={() => onOpenLegal && onOpenLegal('privacy')}
+              className="hover:text-white underline underline-offset-2 transition-colors cursor-pointer"
+            >
+              {currentLang === 'en' ? 'Privacy Policy' : 'Политика конфиденциальности'}
+            </button>
+            <span className="text-[#EFE0CD]/30">•</span>
+            <button
+              onClick={() => onOpenLegal && onOpenLegal('terms')}
+              className="hover:text-white underline underline-offset-2 transition-colors cursor-pointer"
+            >
+              {currentLang === 'en' ? 'Terms of Service' : 'Пользовательское соглашение'}
+            </button>
+            <span className="text-[#EFE0CD]/30">•</span>
+            <button
+              onClick={() => onOpenLegal && onOpenLegal('cookies')}
+              className="hover:text-white underline underline-offset-2 transition-colors cursor-pointer"
+            >
+              {currentLang === 'en' ? 'Cookies' : 'Cookies'}
+            </button>
+            <span className="text-[#EFE0CD]/30">•</span>
+            <a
+              href="mailto:privacy@europath.app"
+              className="hover:text-white transition-colors flex items-center gap-1 font-semibold"
+              title="Обращения по персональным данным и регламенту"
+            >
+              <Mail className="w-3.5 h-3.5" />
+              <span>privacy@europath.app</span>
+            </a>
           </div>
         </div>
       </div>

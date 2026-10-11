@@ -7,7 +7,9 @@ import {
   GraduationCap,
   CheckCircle2,
   LogOut,
-  Sparkles
+  Sparkles,
+  ShieldCheck,
+  ShieldAlert
 } from 'lucide-react';
 
 export default function AuthModal({
@@ -16,7 +18,8 @@ export default function AuthModal({
   user,
   onLogin,
   onLogout,
-  favoritesCount
+  favoritesCount,
+  onOpenLegal
 }) {
   const [formData, setFormData] = useState({
     name: user ? user.name : '',
@@ -24,6 +27,8 @@ export default function AuthModal({
     intakeYear: user ? user.intakeYear : '2026/2027',
     targetDegree: user ? user.targetDegree : 'bachelor'
   });
+  const [agreedToPolicy, setAgreedToPolicy] = useState(true);
+  const [showDeleteInfo, setShowDeleteInfo] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
@@ -39,7 +44,7 @@ export default function AuthModal({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.name.trim()) return;
+    if (!formData.name.trim() || !agreedToPolicy) return;
 
     const userData = {
       name: formData.name,
@@ -101,11 +106,41 @@ export default function AuthModal({
                 onLogout();
                 onClose();
               }}
-              className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-[#8B0000]/10 hover:bg-[#8B0000]/20 text-[#8B0000] rounded-xl text-xs sm:text-sm font-bold transition-colors"
+              className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-[#8B0000]/10 hover:bg-[#8B0000]/20 text-[#8B0000] rounded-xl text-xs sm:text-sm font-bold transition-colors cursor-pointer"
             >
               <LogOut className="w-4 h-4" />
               <span>Выйти из аккаунта</span>
             </button>
+
+            {/* Right to Erasure / Support Request (152-ФЗ & GDPR compliance without danger of auto-deletion) */}
+            <div className="mt-4 pt-3 border-t border-[#8B0000]/15">
+              <button
+                type="button"
+                onClick={() => setShowDeleteInfo(!showDeleteInfo)}
+                className="text-[11px] font-bold text-[#8B0000]/80 hover:text-[#8B0000] flex items-center justify-between w-full py-1.5 px-2 rounded-xl hover:bg-[#8B0000]/5 transition-colors cursor-pointer"
+              >
+                <span className="flex items-center gap-1.5">
+                  <ShieldAlert className="w-3.5 h-3.5 text-[#8B0000]" />
+                  <span>Удаление данных (по запросу в поддержку)</span>
+                </span>
+                <span className="text-[10px]">{showDeleteInfo ? '▲' : '▼'}</span>
+              </button>
+
+              {showDeleteInfo && (
+                <div className="mt-2 p-3 bg-amber-50 rounded-xl border border-amber-200/80 text-[11px] text-amber-950 space-y-2 animate-fadeIn text-left">
+                  <p className="leading-relaxed">
+                    Для защиты ваших академических досье и результатов отбора удаление персональных данных производится оператором по официальному запросу (ст. 14, 21 152-ФЗ и ст. 17 GDPR).
+                  </p>
+                  <a
+                    href={`mailto:privacy@europath.app?subject=${encodeURIComponent(`Запрос на отзыв согласия и удаление данных: ${user.name} (${user.email})`)}`}
+                    className="inline-flex items-center gap-1 text-xs font-black text-[#8B0000] hover:underline"
+                  >
+                    <Mail className="w-3.5 h-3.5" />
+                    <span>Направить запрос в поддержку (privacy@europath.app) →</span>
+                  </a>
+                </div>
+              )}
+            </div>
           </div>
         ) : (
           /* Registration Form View */
@@ -186,9 +221,31 @@ export default function AuthModal({
                 </div>
               </div>
 
+              {/* Legal Consent Checkbox (152-ФЗ & GDPR compliance) */}
+              <label className="flex items-start gap-2.5 text-[11px] sm:text-xs text-[#2D1810]/85 cursor-pointer select-none pt-1">
+                <input
+                  type="checkbox"
+                  required
+                  checked={agreedToPolicy}
+                  onChange={(e) => setAgreedToPolicy(e.target.checked)}
+                  className="mt-0.5 rounded border-[#8B0000]/40 text-[#8B0000] focus:ring-[#8B0000] accent-[#8B0000] shrink-0 w-4 h-4 cursor-pointer"
+                />
+                <span className="leading-snug">
+                  Подтверждаю возраст 16+ и соглашаюсь с{' '}
+                  <button
+                    type="button"
+                    onClick={() => onOpenLegal && onOpenLegal('privacy')}
+                    className="text-[#8B0000] font-black underline hover:text-[#630000] inline cursor-pointer"
+                  >
+                    Политикой конфиденциальности
+                  </button>
+                </span>
+              </label>
+
               <button
                 type="submit"
-                className="w-full mt-2 py-3 bg-[#8B0000] hover:bg-[#630000] text-[#EFE0CD] rounded-xl text-xs sm:text-sm font-black shadow-md shadow-[#8B0000]/25 transition-all"
+                disabled={!formData.name.trim() || !agreedToPolicy}
+                className="w-full mt-2 py-3 bg-[#8B0000] hover:bg-[#630000] disabled:opacity-50 text-[#EFE0CD] rounded-xl text-xs sm:text-sm font-black shadow-md shadow-[#8B0000]/25 transition-all cursor-pointer"
               >
                 Сохранить профиль и войти
               </button>

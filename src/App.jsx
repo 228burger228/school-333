@@ -14,6 +14,8 @@ import LanguageOnboarding from './components/LanguageOnboarding';
 import AdmissionGuideScreen from './components/AdmissionGuideScreen';
 import FreeAuditModal from './components/FreeAuditModal';
 import FloatingQuickNav from './components/FloatingQuickNav';
+import LegalModal from './components/LegalModal';
+import CookieConsentBanner from './components/CookieConsentBanner';
 import Footer from './components/Footer';
 
 import { universities } from './data/universities';
@@ -31,6 +33,15 @@ export default function App() {
   const handleOpenAudit = (uni = null) => {
     setAuditTargetUniversity(uni);
     setIsAuditModalOpen(true);
+  };
+
+  // Legal Compliance Modal state (152-ФЗ / GDPR)
+  const [isLegalModalOpen, setIsLegalModalOpen] = useState(false);
+  const [activeLegalTab, setActiveLegalTab] = useState('privacy');
+
+  const handleOpenLegal = (tab = 'privacy') => {
+    setActiveLegalTab(tab);
+    setIsLegalModalOpen(true);
   };
 
   // Currently selected country and direction
@@ -393,6 +404,7 @@ export default function App() {
         }}
         preselectedUniversity={auditTargetUniversity}
         currentLang={currentLang}
+        onOpenLegal={handleOpenLegal}
       />
 
       {/* Favorites and Comparison Modal */}
@@ -415,8 +427,17 @@ export default function App() {
           onLogin={(userData) => setUser(userData)}
           onLogout={() => setUser(null)}
           favoritesCount={favorites.length}
+          onOpenLegal={handleOpenLegal}
         />
       )}
+
+      {/* Legal Compliance Modal (152-ФЗ & GDPR) */}
+      <LegalModal
+        isOpen={isLegalModalOpen}
+        onClose={() => setIsLegalModalOpen(false)}
+        initialTab={activeLegalTab}
+        currentLang={currentLang}
+      />
 
       {/* Language Onboarding */}
       {showLanguageOnboarding && (
@@ -430,6 +451,12 @@ export default function App() {
           onClose={() => setShowLanguageOnboarding(false)}
         />
       )}
+
+      {/* Cookie Consent Banner */}
+      <CookieConsentBanner
+        onOpenLegal={handleOpenLegal}
+        currentLang={currentLang}
+      />
 
       {/* Floating Quick Navigation Dock */}
       <FloatingQuickNav
@@ -446,7 +473,11 @@ export default function App() {
       />
 
       {/* Footer */}
-      <Footer onNavigate={(screen) => setActiveScreen(screen)} currentLang={currentLang} />
+      <Footer
+        onNavigate={(screen) => setActiveScreen(screen)}
+        currentLang={currentLang}
+        onOpenLegal={handleOpenLegal}
+      />
     </div>
   );
 }
