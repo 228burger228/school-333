@@ -283,6 +283,7 @@ export default function App() {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
               onAggregate={handleAggregatorSubmit}
+              onOpenAudit={() => handleOpenAudit(null)}
               currentLang={currentLang}
             />
           </div>

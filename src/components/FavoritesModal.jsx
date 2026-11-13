@@ -103,94 +103,195 @@ export default function FavoritesModal({
               </button>
             </div>
           ) : viewMode === 'compare' ? (
-            /* Comparison Table View */
-            <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs sm:text-sm border-collapse">
+            /* Comparison Table View (Side-by-Side Matrix) */
+            <div className="overflow-x-auto -mx-2 sm:mx-0 rounded-2xl border border-[#8B0000]/15 bg-white/70">
+              <table className="w-full text-left text-xs sm:text-sm border-collapse min-w-[620px]">
                 <thead>
-                  <tr className="border-b border-[#8B0000]/20">
-                    <th className="py-3 px-3 font-bold text-[#8B0000] uppercase tracking-wider text-[11px] w-1/4">
+                  <tr className="border-b border-[#8B0000]/20 bg-[#EFE0CD]/60">
+                    <th className="py-3.5 px-3 sm:px-4 font-bold text-[#8B0000] uppercase tracking-wider text-[11px] w-44 sticky left-0 bg-[#EFE0CD] z-20 border-r border-[#8B0000]/15">
                       Критерий
                     </th>
                     {favoriteUniversities.map((u) => (
-                      <th key={u.id} className="py-3 px-3 font-bold text-[#2D1810] w-1/3">
-                        <div className="flex items-center gap-1.5 mb-1">
-                          <span>{u.flag}</span>
-                          <span className="font-extrabold text-[#8B0000]">{u.name}</span>
+                      <th key={u.id} className="py-3.5 px-3 sm:px-4 font-bold text-[#2D1810] min-w-[200px] align-top">
+                        <div className="flex items-start justify-between gap-2">
+                          <div className="flex items-center gap-1.5 mb-1">
+                            <span className="text-base shrink-0">{u.flag}</span>
+                            <span className="font-extrabold text-[#8B0000] line-clamp-1">{u.name}</span>
+                          </div>
+                          <button
+                            onClick={() => onToggleFavorite(u.id)}
+                            className="text-[#8B0000]/50 hover:text-[#8B0000] p-1 rounded-md hover:bg-[#8B0000]/10 transition-colors shrink-0"
+                            title="Убрать из сравнения"
+                          >
+                            <Trash2 className="w-3.5 h-3.5" />
+                          </button>
                         </div>
-                        <span className="text-[11px] text-[#2D1810]/60 block font-normal">
+                        <span className="text-[11px] text-[#2D1810]/70 block font-medium">
                           {u.city}, {u.countryName}
                         </span>
                       </th>
                     ))}
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#8B0000]/10">
-                  <tr>
-                    <td className="py-3 px-3 font-bold text-[#8B0000]">Рейтинг QS:</td>
+                <tbody className="divide-y divide-[#8B0000]/10 text-xs">
+                  {/* Рейтинг QS */}
+                  <tr className="hover:bg-[#EFE0CD]/20 transition-colors">
+                    <td className="py-3 px-3 sm:px-4 font-bold text-[#8B0000] sticky left-0 bg-[#FAF5EE] z-10 border-r border-[#8B0000]/15">
+                      Рейтинг QS:
+                    </td>
                     {favoriteUniversities.map((u) => (
-                      <td key={u.id} className="py-3 px-3 font-bold text-[#2D1810]">
-                        {u.qsRank}
+                      <td key={u.id} className="py-3 px-3 sm:px-4 font-bold text-[#2D1810]">
+                        <span className="inline-block bg-[#EFE0CD] px-2 py-0.5 rounded-md font-extrabold text-[#8B0000]">
+                          {u.qsRank}
+                        </span>
                       </td>
                     ))}
                   </tr>
-                  <tr>
-                    <td className="py-3 px-3 font-bold text-[#8B0000]">Обучение в год:</td>
+
+                  {/* Стоимость обучения */}
+                  <tr className="hover:bg-[#EFE0CD]/20 transition-colors">
+                    <td className="py-3 px-3 sm:px-4 font-bold text-[#8B0000] sticky left-0 bg-[#FAF5EE] z-10 border-r border-[#8B0000]/15">
+                      Обучение в год:
+                    </td>
                     {favoriteUniversities.map((u) => (
-                      <td key={u.id} className="py-3 px-3 font-black text-[#8B0000]">
-                        {u.tuition.text}
-                      </td>
-                    ))}
-                  </tr>
-                  <tr>
-                    <td className="py-3 px-3 font-bold text-[#8B0000]">Стипендия:</td>
-                    {favoriteUniversities.map((u) => (
-                      <td key={u.id} className="py-3 px-3">
-                        {u.scholarship.available ? (
-                          <span className="font-bold text-[#8B0000] bg-[#8B0000]/10 px-2 py-0.5 rounded-md inline-block">
-                            {u.scholarship.name}
-                          </span>
+                      <td key={u.id} className="py-3 px-3 sm:px-4">
+                        {u.tuition.isFree ? (
+                          <div className="space-y-0.5">
+                            <span className="font-black text-[#8B0000] bg-[#8B0000]/10 px-2 py-0.5 rounded-md inline-block">
+                              0 € (Бесплатно)
+                            </span>
+                            <span className="block text-[11px] text-[#2D1810]/70">Государственный ВУЗ</span>
+                          </div>
                         ) : (
-                          <span className="text-[#2D1810]/50">Базовые</span>
+                          <div className="space-y-0.5">
+                            <span className="font-black text-[#8B0000]">{u.tuition.text}</span>
+                          </div>
                         )}
                       </td>
                     ))}
                   </tr>
-                  <tr>
-                    <td className="py-3 px-3 font-bold text-[#8B0000]">Языковой экзамен:</td>
+
+                  {/* Стипендии и гранты */}
+                  <tr className="hover:bg-[#EFE0CD]/20 transition-colors">
+                    <td className="py-3 px-3 sm:px-4 font-bold text-[#8B0000] sticky left-0 bg-[#FAF5EE] z-10 border-r border-[#8B0000]/15">
+                      Стипендия:
+                    </td>
                     {favoriteUniversities.map((u) => (
-                      <td key={u.id} className="py-3 px-3 text-[#2D1810]">
-                        IELTS {u.languageReq.ielts} / TOEFL {u.languageReq.toefl}
+                      <td key={u.id} className="py-3 px-3 sm:px-4">
+                        {u.scholarship.available ? (
+                          <div className="space-y-1">
+                            <span className="font-bold text-[#8B0000] bg-[#8B0000]/10 px-2 py-0.5 rounded-md inline-block text-[11px]">
+                              {u.scholarship.name}
+                            </span>
+                            {u.scholarship.coverage && (
+                              <p className="text-[11px] text-[#2D1810]/75 leading-tight">
+                                {u.scholarship.coverage}
+                              </p>
+                            )}
+                          </div>
+                        ) : (
+                          <span className="text-[#2D1810]/60 italic">Базовые гранты</span>
+                        )}
                       </td>
                     ))}
                   </tr>
-                  <tr>
-                    <td className="py-3 px-3 font-bold text-[#8B0000]">Расходы в месяц:</td>
+
+                  {/* Языковые требования */}
+                  <tr className="hover:bg-[#EFE0CD]/20 transition-colors">
+                    <td className="py-3 px-3 sm:px-4 font-bold text-[#8B0000] sticky left-0 bg-[#FAF5EE] z-10 border-r border-[#8B0000]/15">
+                      Языковой порог:
+                    </td>
                     {favoriteUniversities.map((u) => (
-                      <td key={u.id} className="py-3 px-3 font-bold text-[#2D1810]">
-                        ~{u.livingCostMonth} € / мес
+                      <td key={u.id} className="py-3 px-3 sm:px-4">
+                        <div className="font-bold text-[#2D1810]">
+                          IELTS {u.languageReq.ielts} / TOEFL {u.languageReq.toefl}
+                        </div>
+                        {u.languageReq.noExamOption && (
+                          <span className="text-[10px] text-[#8B0000] font-semibold bg-[#8B0000]/10 px-1.5 py-0.5 rounded mt-1 inline-block">
+                            Возможна подача без теста
+                          </span>
+                        )}
                       </td>
                     ))}
                   </tr>
-                  <tr>
-                    <td className="py-3 px-3 font-bold text-[#8B0000]">Дедлайн подачи:</td>
+
+                  {/* Расходы на проживание */}
+                  <tr className="hover:bg-[#EFE0CD]/20 transition-colors">
+                    <td className="py-3 px-3 sm:px-4 font-bold text-[#8B0000] sticky left-0 bg-[#FAF5EE] z-10 border-r border-[#8B0000]/15">
+                      Расходы на жизнь:
+                    </td>
                     {favoriteUniversities.map((u) => (
-                      <td key={u.id} className="py-3 px-3 text-[#2D1810] font-medium">
+                      <td key={u.id} className="py-3 px-3 sm:px-4">
+                        <div className="font-extrabold text-[#2D1810]">
+                          ~{u.livingCostMonth} € / мес
+                        </div>
+                        {u.livingCostDetails?.housing && (
+                          <div className="text-[11px] text-[#2D1810]/70 mt-0.5">
+                            Жилье: {u.livingCostDetails.housing}
+                          </div>
+                        )}
+                      </td>
+                    ))}
+                  </tr>
+
+                  {/* Студенческая работа в ЕС */}
+                  <tr className="hover:bg-[#EFE0CD]/20 transition-colors">
+                    <td className="py-3 px-3 sm:px-4 font-bold text-[#8B0000] sticky left-0 bg-[#FAF5EE] z-10 border-r border-[#8B0000]/15">
+                      Право на работу:
+                    </td>
+                    {favoriteUniversities.map((u) => (
+                      <td key={u.id} className="py-3 px-3 sm:px-4 text-[#2D1810] font-medium">
+                        <span className="inline-flex items-center gap-1 text-[11px]">
+                          <span>до 20 ч / неделю (виза ЕС)</span>
+                        </span>
+                      </td>
+                    ))}
+                  </tr>
+
+                  {/* Дедлайн подачи */}
+                  <tr className="hover:bg-[#EFE0CD]/20 transition-colors">
+                    <td className="py-3 px-3 sm:px-4 font-bold text-[#8B0000] sticky left-0 bg-[#FAF5EE] z-10 border-r border-[#8B0000]/15">
+                      Дедлайн подачи:
+                    </td>
+                    {favoriteUniversities.map((u) => (
+                      <td key={u.id} className="py-3 px-3 sm:px-4 text-[#2D1810] font-semibold text-[11px]">
                         {u.deadline}
                       </td>
                     ))}
                   </tr>
-                  <tr>
-                    <td className="py-3 px-3 font-bold text-[#8B0000]">Действие:</td>
+
+                  {/* Ключевые программы */}
+                  <tr className="hover:bg-[#EFE0CD]/20 transition-colors">
+                    <td className="py-3 px-3 sm:px-4 font-bold text-[#8B0000] sticky left-0 bg-[#FAF5EE] z-10 border-r border-[#8B0000]/15">
+                      Популярные курсы:
+                    </td>
                     {favoriteUniversities.map((u) => (
-                      <td key={u.id} className="py-3 px-3">
+                      <td key={u.id} className="py-3 px-3 sm:px-4 text-[#2D1810]/80 text-[11px] leading-tight">
+                        {u.keyPrograms.slice(0, 2).map((p, idx) => (
+                          <div key={idx} className="mb-1 truncate" title={p.name}>
+                            • {p.name}
+                          </div>
+                        ))}
+                      </td>
+                    ))}
+                  </tr>
+
+                  {/* Действие */}
+                  <tr>
+                    <td className="py-3.5 px-3 sm:px-4 font-bold text-[#8B0000] sticky left-0 bg-[#FAF5EE] z-10 border-r border-[#8B0000]/15">
+                      Действие:
+                    </td>
+                    {favoriteUniversities.map((u) => (
+                      <td key={u.id} className="py-3.5 px-3 sm:px-4">
                         <button
                           onClick={() => {
                             onClose();
                             onSelectUniversity(u);
                           }}
-                          className="px-3 py-1.5 bg-[#8B0000] hover:bg-[#630000] text-[#EFE0CD] rounded-lg text-xs font-bold transition-colors"
+                          className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-3.5 py-2 bg-[#8B0000] hover:bg-[#630000] text-[#EFE0CD] rounded-xl text-xs font-bold transition-all shadow-2xs cursor-pointer"
                         >
-                          Подробнее
+                          <span>Подробнее</span>
+                          <ArrowRight className="w-3.5 h-3.5" />
                         </button>
                       </td>
                     ))}
