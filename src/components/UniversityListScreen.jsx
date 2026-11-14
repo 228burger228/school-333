@@ -36,6 +36,7 @@ export default function UniversityListScreen({
     let count = 0;
     if (filters.countryId !== 'all') count++;
     if (filters.directionId !== 'all') count++;
+    if (filters.degree && filters.degree !== 'all') count++;
     if (filters.tuitionRange !== 'all') count++;
     if (filters.examRequirement !== 'all') count++;
     if (filters.onlyScholarships) count++;
@@ -148,6 +149,35 @@ export default function UniversityListScreen({
             onChange={(e) => setFilters((prev) => ({ ...prev, searchQuery: e.target.value }))}
             className="w-full pl-10 pr-4 py-2.5 bg-[#EFE0CD]/60 border border-[#8B0000]/20 rounded-xl text-[16px] sm:text-xs md:text-sm focus:outline-none focus:ring-2 focus:ring-[#8B0000] focus:bg-white text-[#2D1810]"
           />
+        </div>
+
+        {/* Quick Degree Filter Pills (Bachelor, Master, PhD / Аспирантура) */}
+        <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-3.5 pt-0.5">
+          <span className="text-[11px] font-black text-[#8B0000] uppercase tracking-wider mr-1">
+            {t.unis.filterDegreeLabel || 'Ступень:'}
+          </span>
+          {[
+            { id: 'all', label: t.unis.degreeAll || 'Все ступени' },
+            { id: 'bachelor', label: t.unis.degreeBachelor || '🎓 Бакалавриат' },
+            { id: 'master', label: t.unis.degreeMaster || '📜 Магистратура' },
+            { id: 'phd', label: t.unis.degreePhd || '🔬 Аспирантура (PhD)' }
+          ].map((deg) => {
+            const isActive = (filters.degree || 'all') === deg.id;
+            return (
+              <button
+                key={deg.id}
+                type="button"
+                onClick={() => setFilters((prev) => ({ ...prev, degree: deg.id }))}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer border ${
+                  isActive
+                    ? 'bg-[#8B0000] text-[#EFE0CD] border-[#8B0000] shadow-xs scale-102'
+                    : 'bg-white hover:bg-[#8B0000]/10 text-[#2D1810] border-[#8B0000]/20'
+                }`}
+              >
+                {deg.label}
+              </button>
+            );
+          })}
         </div>
 
         {/* Collapsible Dropdowns & Checkboxes on Mobile / Always visible on Desktop */}

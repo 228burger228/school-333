@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { Sparkles, CheckCircle2, AlertCircle, ArrowRight, TrendingUp, HelpCircle } from 'lucide-react';
 
 export default function ChanceEstimator({ onApplyFilters, onOpenAudit }) {
+  const [degree, setDegree] = useState('bachelor'); // 'bachelor' | 'master' | 'phd'
   const [gpa, setGpa] = useState(4.3);
   const [languageLevel, setLanguageLevel] = useState('b2'); // 'a2' | 'b1' | 'b2' | 'c1' | 'noTest'
   const [budget, setBudget] = useState('free'); // 'free' | 'low' | 'any'
@@ -25,16 +26,25 @@ export default function ChanceEstimator({ onApplyFilters, onOpenAudit }) {
     const finalScore = Math.min(96, Math.max(45, score));
 
     let verdict = 'Высокие шансы на прямое зачисление и стипендию!';
-    let recommendation = 'Вы проходите по конкурсу большинства европейских госвузов. Рекомендуем обратить внимание на Германию (0 €) и Италию со стипендией DSU.';
-    let suggestedCountry = 'Германия, Италия, Австрия';
+    let recommendation =
+      degree === 'phd'
+        ? 'Отличный профиль для подачи на оплачиваемую позицию докторанта (PhD) со стипендией/окладом 1 600 – 3 900 €/мес. Рекомендуем подготовить Research Proposal и связаться с научным руководителем.'
+        : 'Вы проходите по конкурсу большинства европейских госвузов. Рекомендуем обратить внимание на Германию (0 €) и Италию со стипендией DSU.';
+    let suggestedCountry = degree === 'phd' ? 'Швейцария, Германия, Франция, Италия' : 'Германия, Италия, Австрия';
 
     if (finalScore < 65) {
       verdict = 'Хорошие шансы при выборе программ с внутренним тестом или Foundation.';
-      recommendation = 'Рекомендуется рассмотреть подготовительные отделения (Studienkolleg / Prep Year) или страны с лояльным порогом (Чехия, Испания).';
+      recommendation =
+        degree === 'phd'
+          ? 'Для докторантуры потребуется подтянуть публикации и академический английский. Рассмотрите программы с предварительным отбором в Чехии или Польше.'
+          : 'Рекомендуется рассмотреть подготовительные отделения (Studienkolleg / Prep Year) или страны с лояльным порогом (Чехия, Испания).';
       suggestedCountry = 'Чехия, Испания, Польша';
     } else if (finalScore < 80) {
       verdict = 'Уверенные шансы на поступление в большинство университетов ЕС.';
-      recommendation = 'Ваш профиль конкурентоспособен. Главный фокус — сильное мотивационное письмо (SOP) и своевременная подача документов.';
+      recommendation =
+        degree === 'phd'
+          ? 'Конкурентный профиль для аспирантуры. Главный акцент — академическое резюме Europass и релевантность темы диссертации грантовой программе.'
+          : 'Ваш профиль конкурентоспособен. Главный фокус — сильное мотивационное письмо (SOP) и своевременная подача документов.';
       suggestedCountry = 'Италия, Испания, Франция';
     }
 
@@ -44,11 +54,12 @@ export default function ChanceEstimator({ onApplyFilters, onOpenAudit }) {
       recommendation,
       suggestedCountry
     };
-  }, [gpa, languageLevel, budget]);
+  }, [degree, gpa, languageLevel, budget]);
 
   const handleAction = () => {
     if (onApplyFilters) {
       onApplyFilters({
+        targetDegree: degree,
         fundingOption: budget,
         selectedLanguage: 'en',
         selectedExam: languageLevel === 'noTest' ? 'Пока не сдавал' : 'IELTS'
@@ -76,6 +87,33 @@ export default function ChanceEstimator({ onApplyFilters, onOpenAudit }) {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Controls Column */}
         <div className="lg:col-span-7 space-y-6">
+          {/* Degree Level Selector */}
+          <div>
+            <label className="block text-xs sm:text-sm font-extrabold text-[#2D1810] mb-2">
+              Целевая ступень европейского образования:
+            </label>
+            <div className="grid grid-cols-3 gap-2">
+              {[
+                { id: 'bachelor', label: '🎓 Бакалавриат' },
+                { id: 'master', label: '📜 Магистратура' },
+                { id: 'phd', label: '🔬 Аспирантура (PhD)' }
+              ].map((d) => (
+                <button
+                  key={d.id}
+                  type="button"
+                  onClick={() => setDegree(d.id)}
+                  className={`py-2 px-2.5 rounded-xl text-xs font-bold border transition-all cursor-pointer text-center ${
+                    degree === d.id
+                      ? 'bg-[#8B0000] text-[#EFE0CD] border-[#8B0000] shadow-xs'
+                      : 'bg-white hover:bg-[#EFE0CD]/50 text-[#2D1810] border-[#8B0000]/20'
+                  }`}
+                >
+                  {d.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
           {/* GPA Slider */}
           <div>
             <div className="flex justify-between items-center mb-2">

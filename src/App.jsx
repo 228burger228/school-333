@@ -92,6 +92,7 @@ export default function App() {
     searchQuery: '',
     countryId: 'all',
     directionId: 'all',
+    degree: 'all', // 'all' | 'bachelor' | 'master' | 'phd'
     tuitionRange: 'all', // 'all' | 'free' | 'low' | 'mid'
     onlyScholarships: false,
     onlyFree: false,
@@ -180,6 +181,13 @@ export default function App() {
         }
       }
 
+      // Degree filter (bachelor, master, phd)
+      if (filters.degree && filters.degree !== 'all') {
+        if (!u.degrees || !u.degrees.includes(filters.degree)) {
+          return false;
+        }
+      }
+
       // Tuition range
       if (filters.tuitionRange === 'free' && !u.tuition.isFree) {
         return false;
@@ -227,9 +235,10 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleAggregatorSubmit = ({ fundingOption, selectedLanguage, selectedExam }) => {
+  const handleAggregatorSubmit = ({ fundingOption, selectedLanguage, selectedExam, targetDegree }) => {
     setFilters((prev) => ({
       ...initialFilters,
+      degree: targetDegree || 'all',
       tuitionRange: fundingOption === 'free' ? 'free' : 'all',
       onlyFree: fundingOption === 'free',
       onlyScholarships: fundingOption === 'scholarship',
@@ -428,6 +437,7 @@ export default function App() {
           onLogin={(userData) => setUser(userData)}
           onLogout={() => setUser(null)}
           favoritesCount={favorites.length}
+          favorites={favorites}
           onOpenLegal={handleOpenLegal}
         />
       )}

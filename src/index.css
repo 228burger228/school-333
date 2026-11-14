@@ -130,3 +130,18 @@
 .animate-fadeIn {
   animation: fadeIn 0.35s ease-out forwards;
 }
+
+/* Print styles for Admission Roadmap Export */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  nav, footer, .print\:hidden {
+    display: none !important;
+  }
+  .print\:fixed {
+    position: static !important;
+  }
+}
+

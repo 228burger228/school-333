@@ -46,7 +46,7 @@ export default function Hero({
                 </span>
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 border border-white/20 text-xs font-bold text-[#EFE0CD]">
                   <span>•</span>
-                  <span>Гранты DSU до 8 000 €/год</span>
+                  <span>Бакалавриат • Магистратура • PhD</span>
                 </span>
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs font-bold text-[#EFE0CD]/80">
                   Интейки 2026/2027

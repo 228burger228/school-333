@@ -11,7 +11,7 @@ export const universities = [
     qsRank: '#149 в мире (#1 в Испании)',
     photo: 'universities/uab_barcelona_campus.jpg',
     fields: ['business', 'biomedicine', 'humanities', 'design', 'politics'],
-    degrees: ['bachelor', 'master'],
+    degrees: ['bachelor', 'master', 'phd'],
     tuition: {
       amount: 2200,
       text: '2 200 – 4 100 € / год (госвуз)',
@@ -63,7 +63,7 @@ export const universities = [
     qsRank: '#171 в мире',
     photo: 'universities/ucm_madrid_campus.jpg',
     fields: ['law', 'humanities', 'politics', 'biomedicine', 'health'],
-    degrees: ['bachelor', 'master'],
+    degrees: ['bachelor', 'master', 'phd'],
     tuition: {
       amount: 2500,
       text: '2 500 – 4 500 € / год',
@@ -116,7 +116,7 @@ export const universities = [
     qsRank: '#111 в мире (#7 по Дизайну и Архитектуре)',
     photo: 'universities/polimi_milan_campus.jpg',
     fields: ['engineering', 'design', 'it', 'architecture'],
-    degrees: ['bachelor', 'master'],
+    degrees: ['bachelor', 'master', 'phd'],
     tuition: {
       amount: 890,
       text: '890 – 3 890 € / год (0 € по стипендии DSU)',
@@ -169,7 +169,7 @@ export const universities = [
     qsRank: '#133 в мире (#1 старейший университет мира, 1088 г.)',
     photo: 'universities/unibo_bologna_campus.jpg',
     fields: ['law', 'humanities', 'business', 'biomedicine', 'politics'],
-    degrees: ['bachelor', 'master'],
+    degrees: ['bachelor', 'master', 'phd'],
     tuition: {
       amount: 157,
       text: '157 – 2 800 € / год (по ISEE снижается до 157 €)',
@@ -222,7 +222,7 @@ export const universities = [
     qsRank: '#28 в мире (#1 в Германии)',
     photo: 'universities/tum_munich_campus.jpg',
     fields: ['engineering', 'it', 'business', 'natural_sciences', 'biomedicine'],
-    degrees: ['bachelor', 'master'],
+    degrees: ['bachelor', 'master', 'phd'],
     tuition: {
       amount: 150,
       text: '~150 € / семестр (0 € за само обучение)',
@@ -273,7 +273,7 @@ export const universities = [
     qsRank: '#99 в мире (#2 по машиностроению в Германии)',
     photo: 'universities/rwth_aachen_campus.jpg',
     fields: ['engineering', 'it', 'natural_sciences'],
-    degrees: ['bachelor', 'master'],
+    degrees: ['bachelor', 'master', 'phd'],
     tuition: {
       amount: 320,
       text: '320 € / семестр (включает проездной по всей Германии)',
@@ -326,7 +326,7 @@ export const universities = [
     qsRank: '#59 в мире',
     photo: 'universities/sorbonne_paris_campus.jpg',
     fields: ['humanities', 'biomedicine', 'natural_sciences', 'health'],
-    degrees: ['bachelor', 'master'],
+    degrees: ['bachelor', 'master', 'phd'],
     tuition: {
       amount: 175,
       text: '175 € (Bachelor) / 243 € (Master) в год',
@@ -377,7 +377,7 @@ export const universities = [
     qsRank: '#2 в мире по Политике и Международным отношениям',
     photo: 'universities/sciencespo_paris_campus.jpg',
     fields: ['politics', 'law', 'business', 'humanities'],
-    degrees: ['bachelor', 'master'],
+    degrees: ['bachelor', 'master', 'phd'],
     tuition: {
       amount: 14000,
       text: 'От 0 € по стипендиям до 14 000 € / год',
@@ -430,7 +430,7 @@ export const universities = [
     qsRank: '#651 в мире (#1 в Словакии)',
     photo: 'universities/comenius_campus.jpg',
     fields: ['biomedicine', 'law', 'it', 'natural_sciences', 'humanities'],
-    degrees: ['bachelor', 'master'],
+    degrees: ['bachelor', 'master', 'phd'],
     tuition: {
       amount: 0,
       text: '0 € (на словацком языке) / от 2 500 € (на английском)',
@@ -482,7 +482,7 @@ export const universities = [
     qsRank: '#266 в мире (#1 в Португалии)',
     photo: 'universities/ulisboa_campus.jpg',
     fields: ['engineering', 'it', 'design', 'business', 'law'],
-    degrees: ['bachelor', 'master'],
+    degrees: ['bachelor', 'master', 'phd'],
     tuition: {
       amount: 1500,
       text: '1 500 – 3 500 € / год (очень доступно)',
@@ -534,7 +534,7 @@ export const universities = [
     qsRank: '#130 в мире',
     photo: 'universities/univie_vienna_campus.jpg',
     fields: ['humanities', 'business', 'law', 'it', 'natural_sciences'],
-    degrees: ['bachelor', 'master'],
+    degrees: ['bachelor', 'master', 'phd'],
     tuition: {
       amount: 726,
       text: '726 € / семестр (~1 450 € / год)',
@@ -587,7 +587,7 @@ export const universities = [
     qsRank: '#115 в мире (#1 в Финляндии)',
     photo: 'universities/helsinki_campus.jpg',
     fields: ['natural_sciences', 'biomedicine', 'it', 'health', 'humanities'],
-    degrees: ['bachelor', 'master'],
+    degrees: ['bachelor', 'master', 'phd'],
     tuition: {
       amount: 13000,
       text: '0 € (EU) / 13 000 € (Non-EU, гранты до 100%)',
@@ -640,7 +640,7 @@ export const universities = [
     qsRank: '#73 в мире',
     photo: 'universities/kth_stockholm_campus.jpg',
     fields: ['engineering', 'it', 'design', 'natural_sciences'],
-    degrees: ['bachelor', 'master'],
+    degrees: ['bachelor', 'master', 'phd'],
     tuition: {
       amount: 0,
       text: '0 € (EU) / 13 000 – 16 000 € (Non-EU)',
@@ -693,7 +693,7 @@ export const universities = [
     qsRank: '#117 в мире (#1 в Норвегии)',
     photo: 'universities/uio_oslo_campus.jpg',
     fields: ['natural_sciences', 'biomedicine', 'it', 'law', 'humanities'],
-    degrees: ['bachelor', 'master'],
+    degrees: ['bachelor', 'master', 'phd'],
     tuition: {
       amount: 11000,
       text: '8 000 – 13 000 € / год (госвуз)',
@@ -746,7 +746,7 @@ export const universities = [
     qsRank: '#248 в мире (#1 в Центральной Европе)',
     photo: 'universities/charles_prague_campus.jpg',
     fields: ['biomedicine', 'humanities', 'it', 'business', 'law'],
-    degrees: ['bachelor', 'master'],
+    degrees: ['bachelor', 'master', 'phd'],
     tuition: {
       amount: 0,
       text: '0 € (на чешском языке) / 3 200 – 5 500 € (на английском)',
@@ -799,7 +799,7 @@ export const universities = [
     qsRank: '#7 в мире (#1 в континентальной Европе)',
     photo: 'universities/eth_zurich_campus.jpg',
     fields: ['engineering', 'it', 'natural_sciences', 'architecture'],
-    degrees: ['bachelor', 'master'],
+    degrees: ['bachelor', 'master', 'phd'],
     tuition: {
       amount: 730,
       text: '730 CHF (~760 €) за семестр в госвузе №7 в мире!',
@@ -852,7 +852,7 @@ export const universities = [
     qsRank: '#63 в мире (#1 самый инновационный ВУЗ Европы по Reuters)',
     photo: 'universities/kuleuven_campus.jpg',
     fields: ['engineering', 'it', 'law', 'business', 'biomedicine', 'humanities'],
-    degrees: ['bachelor', 'master'],
+    degrees: ['bachelor', 'master', 'phd'],
     tuition: {
       amount: 1100,
       text: '1 100 – 3 500 € / год (госвуз)',
@@ -905,7 +905,7 @@ export const universities = [
     qsRank: '#403 в мире (Топ-1 в Центральной Европе по IT и инженерии)',
     photo: 'universities/cvut_prague_campus.jpg',
     fields: ['it', 'engineering', 'architecture', 'natural_sciences'],
-    degrees: ['bachelor', 'master'],
+    degrees: ['bachelor', 'master', 'phd'],
     tuition: {
       amount: 0,
       text: '0 € на чешском / ~3 800 € на английском',
@@ -958,7 +958,7 @@ export const universities = [
     qsRank: '#190 в мире (Ведущий инженерный вуз Австрии)',
     photo: 'universities/tuwien_vienna_campus.jpg',
     fields: ['engineering', 'it', 'architecture', 'natural_sciences'],
-    degrees: ['bachelor', 'master'],
+    degrees: ['bachelor', 'master', 'phd'],
     tuition: {
       amount: 726,
       text: '726 € / семестр (~1 450 € / год)',
@@ -1011,7 +1011,7 @@ export const universities = [
     qsRank: '#751 в мире (#1 технический ВУЗ Словакии)',
     photo: 'universities/stubratislava_campus.jpg',
     fields: ['engineering', 'it', 'architecture', 'design'],
-    degrees: ['bachelor', 'master'],
+    degrees: ['bachelor', 'master', 'phd'],
     tuition: {
       amount: 0,
       text: '0 € на словацком языке (госвуз)',
@@ -1064,7 +1064,7 @@ export const universities = [
     qsRank: '#253 в мире (#1 университет Португалии)',
     photo: 'universities/uporto_campus.jpg',
     fields: ['engineering', 'biomedicine', 'architecture', 'business', 'natural_sciences'],
-    degrees: ['bachelor', 'master'],
+    degrees: ['bachelor', 'master', 'phd'],
     tuition: {
       amount: 1925,
       text: '1 925 – 3 500 € / год (госвуз)',
@@ -1117,7 +1117,7 @@ export const universities = [
     qsRank: '#109 в мире (#6 в мире по направлению Art & Design)',
     photo: 'universities/aalto_campus.jpg',
     fields: ['design', 'it', 'business', 'engineering'],
-    degrees: ['bachelor', 'master'],
+    degrees: ['bachelor', 'master', 'phd'],
     tuition: {
       amount: 12000,
       text: '12 000 – 15 000 € / год (гранты до 100%)',
@@ -1170,7 +1170,7 @@ export const universities = [
     qsRank: '#75 в мире (#1 университет Швеции)',
     photo: 'universities/lund_campus.jpg',
     fields: ['engineering', 'biomedicine', 'law', 'business', 'humanities'],
-    degrees: ['bachelor', 'master'],
+    degrees: ['bachelor', 'master', 'phd'],
     tuition: {
       amount: 11500,
       text: '11 500 – 16 000 € / год (гранты SI до 100%)',
@@ -1223,7 +1223,7 @@ export const universities = [
     qsRank: '#91 в мире (12 Нобелевских лауреатов, включая Эйнштейна)',
     photo: 'universities/uzh_zurich_campus.jpg',
     fields: ['biomedicine', 'law', 'business', 'natural_sciences', 'humanities'],
-    degrees: ['bachelor', 'master'],
+    degrees: ['bachelor', 'master', 'phd'],
     tuition: {
       amount: 1450,
       text: '1 450 CHF (~1 500 €) / год (госвуз)',
@@ -1276,7 +1276,7 @@ export const universities = [
     qsRank: '#159 в мире (Топ-100 по биотехнологиям и ветеринарии)',
     photo: 'universities/ugent_campus.jpg',
     fields: ['biomedicine', 'engineering', 'law', 'natural_sciences', 'business'],
-    degrees: ['bachelor', 'master'],
+    degrees: ['bachelor', 'master', 'phd'],
     tuition: {
       amount: 1100,
       text: '1 100 – 3 200 € / год (госвуз)',
@@ -1329,7 +1329,7 @@ export const universities = [
     qsRank: '#132 в мире (#1 в мире по Classics & Ancient History)',
     photo: 'universities/sapienza_rome_campus.jpg',
     fields: ['engineering', 'humanities', 'architecture', 'biomedicine', 'politics'],
-    degrees: ['bachelor', 'master'],
+    degrees: ['bachelor', 'master', 'phd'],
     tuition: {
       amount: 1000,
       text: '1 000 – 2 900 € / год (госвуз, по ISEE от 0 €)',

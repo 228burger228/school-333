@@ -104,6 +104,56 @@ export default function SuccessStories({ onOpenDetails, onStartSearch }) {
         quote: 'Французская система CAF возвращает студентам до 40% стоимости аренды жилья ежемесячно, даже иностранцам. Это очень помогает в Париже.',
         highlight: 'Субсидия CAF на жилье'
       }
+    ],
+    phd: [
+      {
+        id: 'story-7',
+        name: 'Максим Л.',
+        age: '26 лет',
+        from: 'Минск',
+        gpa: '4.9 / 5.0 (Магистратура)',
+        language: 'IELTS 7.5',
+        targetUni: 'ETH Zurich',
+        country: 'Швейцария',
+        flag: '🇨🇭',
+        program: 'PhD in Quantum Information & Machine Learning',
+        tuition: '0 CHF (Официальный контракт сотрудника)',
+        scholarship: 'Зарплата исследователя 3 900 CHF / мес (~4 100 €)',
+        quote: 'В Европе PhD — это не просто учеба, а полноценная оплачиваемая исследовательская работа. Главное — заранее найти профессора (PI) и согласовать Research Proposal.',
+        highlight: 'Оклад исследователя 3 900 CHF'
+      },
+      {
+        id: 'story-8',
+        name: 'Анна Д.',
+        age: '25 лет',
+        from: 'Астана',
+        gpa: '4.8 / 5.0 (Диплом с отличием)',
+        language: 'TOEFL 102',
+        targetUni: 'Sorbonne University / CNRS',
+        country: 'Франция',
+        flag: '🇫🇷',
+        program: 'Doctoral Track in Computational Biology',
+        tuition: '0 € (Трудовой договор со станцией CNRS)',
+        scholarship: 'Грант Marie Skłodowska-Curie 2 200 € / мес',
+        quote: 'Европейские гранты Marie Curie покрывают переезд всей семьи, полную медицинскую страховку и дают бюджет на участие в международных конференциях.',
+        highlight: 'Грант Marie Curie 2 200 €'
+      },
+      {
+        id: 'story-9',
+        name: 'Артем Т.',
+        age: '27 лет',
+        from: 'Самара',
+        gpa: '4.6 / 5.0 (Инженерный диплом)',
+        language: 'IELTS 7.0',
+        targetUni: 'Politecnico di Milano (PoliMi)',
+        country: 'Италия',
+        flag: '🇮🇹',
+        program: 'PhD in Mechanical & Energy Engineering',
+        tuition: '0 € (Госдотация)',
+        scholarship: 'Финансирование PNRR 1 650 € / мес чистыми',
+        quote: 'Конкурс в докторантуру Миланского политеха прозрачен: комиссия оценивает научные публикации и презентацию проекта. Обучение на 100% на английском.',
+        highlight: 'Грант PNRR 1 650 € / мес'
+      }
     ]
   };
 
@@ -128,10 +178,10 @@ export default function SuccessStories({ onOpenDetails, onStartSearch }) {
           </div>
 
           {/* Segmented Degree Control */}
-          <div className="inline-flex p-1.5 rounded-2xl bg-[#EFE0CD] border border-[#8B0000]/20 self-start md:self-center">
+          <div className="inline-flex flex-wrap p-1.5 rounded-2xl bg-[#EFE0CD] border border-[#8B0000]/20 self-start md:self-center gap-1">
             <button
               onClick={() => setActiveDegree('bachelor')}
-              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+              className={`px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
                 activeDegree === 'bachelor'
                   ? 'bg-[#8B0000] text-[#EFE0CD] shadow-sm'
                   : 'text-[#2D1810]/80 hover:text-[#8B0000]'
@@ -141,13 +191,23 @@ export default function SuccessStories({ onOpenDetails, onStartSearch }) {
             </button>
             <button
               onClick={() => setActiveDegree('master')}
-              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+              className={`px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
                 activeDegree === 'master'
                   ? 'bg-[#8B0000] text-[#EFE0CD] shadow-sm'
                   : 'text-[#2D1810]/80 hover:text-[#8B0000]'
               }`}
             >
               Магистратура (1–2 года)
+            </button>
+            <button
+              onClick={() => setActiveDegree('phd')}
+              className={`px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                activeDegree === 'phd'
+                  ? 'bg-[#8B0000] text-[#EFE0CD] shadow-sm'
+                  : 'text-[#2D1810]/80 hover:text-[#8B0000]'
+              }`}
+            >
+              Аспирантура (PhD • 3–4 года)
             </button>
           </div>
         </div>

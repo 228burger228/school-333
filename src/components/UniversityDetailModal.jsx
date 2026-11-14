@@ -12,7 +12,8 @@ import {
   MapPin,
   Clock,
   Globe,
-  Printer
+  Printer,
+  GraduationCap
 } from 'lucide-react';
 import { getTranslation } from '../data/translations';
 
@@ -259,6 +260,34 @@ export default function UniversityDetailModal({
                 <p className="text-xs sm:text-sm text-[#2D1810]/85 leading-relaxed">
                   {university.overview}
                 </p>
+              </div>
+
+              {/* European Degree Tiers Available */}
+              <div className="p-4 rounded-2xl bg-white border border-[#8B0000]/15">
+                <h4 className="text-xs font-bold uppercase tracking-wider text-[#8B0000] mb-2.5 flex items-center gap-2">
+                  <GraduationCap className="w-4 h-4 text-[#8B0000]" />
+                  <span>Ступени высшего образования в вузе (Болонская система):</span>
+                </h4>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                  <div className="p-3 rounded-xl bg-[#FAF5EE] border border-[#8B0000]/15">
+                    <span className="text-xs font-black text-[#8B0000] block mb-0.5">🎓 Бакалавриат</span>
+                    <span className="text-[11px] text-[#2D1810]/70 font-medium block">
+                      3–4 года • Первое высшее по аттестату или через Foundation / Studienkolleg
+                    </span>
+                  </div>
+                  <div className="p-3 rounded-xl bg-[#FAF5EE] border border-[#8B0000]/15">
+                    <span className="text-xs font-black text-[#8B0000] block mb-0.5">📜 Магистратура</span>
+                    <span className="text-[11px] text-[#2D1810]/70 font-medium block">
+                      1–2 года • Углубленный трек по диплому бакалавра и транскрипту
+                    </span>
+                  </div>
+                  <div className="p-3 rounded-xl bg-[#FAF5EE] border border-[#8B0000]/15">
+                    <span className="text-xs font-black text-[#8B0000] block mb-0.5">🔬 Аспирантура (PhD)</span>
+                    <span className="text-[11px] text-[#2D1810]/70 font-medium block">
+                      3–4 года • Оплачиваемая научная ставка 1 400 – 2 500 €/мес (гражданский контракт)
+                    </span>
+                  </div>
+                </div>
               </div>
 
               <div>

@@ -9,6 +9,7 @@ export default function ProgramAggregator({ onAggregate }) {
   const [selectedExam, setSelectedExam] = useState('IELTS');
   const [examScore, setExamScore] = useState('6.5');
   const [fundingOption, setFundingOption] = useState('free'); // 'free' | 'scholarship' | 'commercial'
+  const [targetDegree, setTargetDegree] = useState('bachelor'); // 'bachelor' | 'master' | 'phd'
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = (e) => {
@@ -20,6 +21,7 @@ export default function ProgramAggregator({ onAggregate }) {
       localStorage.setItem('euro_aggregator_query', JSON.stringify({
         email,
         originCountry,
+        targetDegree,
         selectedLanguage,
         languageLevel,
         selectedExam,
@@ -35,6 +37,7 @@ export default function ProgramAggregator({ onAggregate }) {
       onAggregate({
         email,
         originCountry,
+        targetDegree,
         selectedLanguage,
         languageLevel,
         selectedExam,
@@ -106,6 +109,44 @@ export default function ProgramAggregator({ onAggregate }) {
               <option value="Молдова">🇲🇩 Молдова</option>
               <option value="Другая страна">🌍 Другая страна</option>
             </select>
+          </div>
+
+          {/* 3. Ступень высшего образования (Бакалавриат / Магистратура / Аспирантура PhD) */}
+          <div>
+            <label className="block text-xs sm:text-sm font-extrabold uppercase tracking-wider text-[#FAF5EE] mb-2 flex items-center gap-2">
+              <BookOpen className="w-4 h-4 text-[#EFE0CD]" />
+              <span>Целевая ступень высшего образования:</span>
+            </label>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+              {[
+                { id: 'bachelor', label: '🎓 Бакалавриат (3–4 г.)', desc: 'Первое высшее по аттестату' },
+                { id: 'master', label: '📜 Магистратура (1–2 г.)', desc: 'Углубленная специальность' },
+                { id: 'phd', label: '🔬 Аспирантура / PhD (3–4 г.)', desc: 'Контракт исследователя с окладом' }
+              ].map((deg) => (
+                <label
+                  key={deg.id}
+                  onClick={() => setTargetDegree(deg.id)}
+                  className={`p-3 rounded-2xl border-2 cursor-pointer transition-all flex flex-col justify-between ${
+                    targetDegree === deg.id
+                      ? 'bg-[#FAF5EE] text-[#8B0000] border-[#FAF5EE] shadow-md font-black'
+                      : 'bg-[#FAF5EE]/10 text-[#FAF5EE] border-[#FAF5EE]/25 hover:bg-[#FAF5EE]/20 font-bold'
+                  }`}
+                >
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-xs sm:text-sm">{deg.label}</span>
+                    <input
+                      type="radio"
+                      name="targetDegree"
+                      value={deg.id}
+                      checked={targetDegree === deg.id}
+                      onChange={() => setTargetDegree(deg.id)}
+                      className="accent-[#8B0000]"
+                    />
+                  </div>
+                  <span className="text-[10px] opacity-80">{deg.desc}</span>
+                </label>
+              ))}
+            </div>
           </div>
 
           {/* 3. Вы говорите на европейских языках? На каких? На каком уровне? */}

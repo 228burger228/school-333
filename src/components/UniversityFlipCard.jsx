@@ -60,6 +60,9 @@ export default function UniversityFlipCard({
                 <Award className="w-3.5 h-3.5 text-[#8B0000]" />
                 <span>{university.qsRank}</span>
               </span>
+              <span className="bg-[#FAF5EE]/95 backdrop-blur-md px-2.5 py-1 rounded-full text-[10px] font-black text-[#2D1810] shadow-sm hidden sm:inline-flex items-center gap-1 border border-[#8B0000]/20">
+                🎓 BSc • MSc • PhD
+              </span>
             </div>
 
             {/* Favorite Button */}
@@ -101,7 +104,7 @@ export default function UniversityFlipCard({
             </p>
 
             {/* Key Programs Tags */}
-            <div className="mb-2">
+            <div className="mb-1.5">
               <span className="text-[10px] uppercase font-extrabold tracking-wider text-[#8B0000]/70 block mb-1">
                 {t.card.programsLabel}
               </span>
@@ -116,6 +119,14 @@ export default function UniversityFlipCard({
                   </span>
                 ))}
               </div>
+            </div>
+
+            {/* Degree Levels Indicator */}
+            <div className="flex items-center gap-1.5 mb-2">
+              <span className="text-[9px] uppercase font-bold text-[#2D1810]/60 mr-0.5">Ступени:</span>
+              <span className="px-2 py-0.5 rounded-md bg-[#8B0000]/10 text-[#8B0000] text-[10px] font-extrabold" title="Бакалавриат">🎓 Bachelor</span>
+              <span className="px-2 py-0.5 rounded-md bg-[#8B0000]/10 text-[#8B0000] text-[10px] font-extrabold" title="Магистратура">📜 Master</span>
+              <span className="px-2 py-0.5 rounded-md bg-[#8B0000]/15 text-[#8B0000] text-[10px] font-black" title="Аспирантура (PhD)">🔬 PhD</span>
             </div>
 
             {/* Quick Metadata Row */}
@@ -219,6 +230,14 @@ export default function UniversityFlipCard({
                 {university.languageReq.ielts
                   ? `${currentLang === 'en' ? 'English' : 'Английский'} (IELTS ${university.languageReq.ielts})`
                   : (currentLang === 'en' ? 'National / English' : 'Национальный / EN')}
+              </span>
+            </div>
+
+            {/* Degrees Available */}
+            <div className="p-2 rounded-xl bg-[#EFE0CD]/60 border border-[#8B0000]/15 flex items-center justify-between">
+              <span className="text-[#2D1810]/70 font-bold text-[11px]">Ступени образования:</span>
+              <span className="font-extrabold text-[#8B0000] text-[11px]">
+                🎓 BSc • 📜 MSc • 🔬 PhD
               </span>
             </div>
 
