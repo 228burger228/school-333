@@ -28,6 +28,8 @@ export default function Navbar({
   currentLang
 }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [isNearFooter, setIsNearFooter] = useState(false);
   const langObj = languages.find((l) => l.code === currentLang) || languages[0];
   const t = getTranslation(currentLang);
 
@@ -41,8 +43,69 @@ export default function Navbar({
     }
   }, [mobileMenuOpen]);
 
+  // Detect when footer enters the viewport (to prevent header from obstructing footer communication)
+  useEffect(() => {
+    const footerEl = document.getElementById('site-footer') || document.querySelector('footer');
+    if (!footerEl) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        setIsNearFooter(entry.isIntersecting);
+      },
+      {
+        root: null,
+        threshold: 0.05
+      }
+    );
+
+    observer.observe(footerEl);
+    return () => observer.disconnect();
+  }, []);
+
+  // Smart Auto-Hide on scroll down, smooth reveal on scroll up
+  useEffect(() => {
+    let lastY = window.scrollY;
+    let ticking = false;
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentY = window.scrollY;
+
+          // Always visible at the very top of page (<= 60px)
+          if (currentY <= 60) {
+            setIsVisible(true);
+          } else if (mobileMenuOpen) {
+            setIsVisible(true);
+          } else if (isNearFooter) {
+            // Keep header hidden in footer zone
+            setIsVisible(false);
+          } else if (currentY > lastY + 8) {
+            // Scrolling down -> hide header
+            setIsVisible(false);
+          } else if (currentY < lastY - 8) {
+            // Scrolling up -> reveal header
+            setIsVisible(true);
+          }
+
+          lastY = currentY;
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [mobileMenuOpen, isNearFooter]);
+
   return (
-    <header className="sticky top-0 z-40 bg-[#FAF5EE]/95 backdrop-blur-md border-b border-[#8B0000]/15 shadow-xs">
+    <header
+      className={`sticky top-0 z-40 bg-[#FAF5EE]/95 backdrop-blur-md border-b border-[#8B0000]/15 shadow-xs transition-transform duration-300 ease-in-out will-change-transform ${
+        isVisible ? 'translate-y-0' : '-translate-y-full'
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Brand Logo */}

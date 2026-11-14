@@ -1,12 +1,28 @@
 import React from 'react';
-import { GraduationCap, Heart, Sparkles, Globe, Compass, Briefcase, Award, BookOpen, ShieldCheck, Mail } from 'lucide-react';
+import {
+  GraduationCap,
+  Heart,
+  Sparkles,
+  Globe,
+  Compass,
+  Briefcase,
+  Award,
+  BookOpen,
+  ShieldCheck,
+  Mail,
+  ArrowUp
+} from 'lucide-react';
 import { getTranslation } from '../data/translations';
 
 export default function Footer({ onNavigate, currentLang = 'ru', onOpenLegal }) {
   const t = getTranslation(currentLang);
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <footer className="bg-[#500000] text-[#EFE0CD] pt-14 pb-24 sm:pb-12 border-t-4 border-[#8B0000] text-left">
+    <footer id="site-footer" className="bg-[#500000] text-[#EFE0CD] pt-14 pb-20 sm:pb-12 border-t-4 border-[#8B0000] text-left relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 pb-10 border-b border-[#8B0000]/40">
           {/* Column 1: Brand & Academic Mission */}
@@ -122,6 +138,15 @@ export default function Footer({ onNavigate, currentLang = 'ru', onOpenLegal }) 
               16+
             </span>
             <p>© 2026 {t.footer.copyright}</p>
+
+            <button
+              onClick={scrollToTop}
+              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#8B0000] hover:bg-[#630000] text-[#EFE0CD] border border-[#EFE0CD]/25 text-[11px] font-bold shadow-xs transition-all hover:-translate-y-0.5 cursor-pointer ml-1"
+              title="Вернуться к началу страницы"
+            >
+              <ArrowUp className="w-3 h-3" />
+              <span>{currentLang === 'en' ? 'Back to top' : 'Наверх'}</span>
+            </button>
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[11px] sm:text-xs">

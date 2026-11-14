@@ -20,6 +20,7 @@ export default function FloatingQuickNav({
   currentLang = 'ru'
 }) {
   const [isVisible, setIsVisible] = useState(false);
+  const [isNearFooter, setIsNearFooter] = useState(false);
   const t = getTranslation(currentLang);
 
   useEffect(() => {
@@ -39,18 +40,44 @@ export default function FloatingQuickNav({
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Hide floating dock in footer zone to never overlap footer links or copyright
+  useEffect(() => {
+    const footerEl = document.getElementById('site-footer') || document.querySelector('footer');
+    if (!footerEl) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        setIsNearFooter(entry.isIntersecting);
+      },
+      {
+        root: null,
+        threshold: 0.05
+      }
+    );
+
+    observer.observe(footerEl);
+    return () => observer.disconnect();
+  }, []);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  if (!isVisible) return null;
+  const showNav = isVisible && !isNearFooter;
 
   return (
     <nav
       aria-label="Быстрая плавающая навигация"
-      className="fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-40 w-[calc(100%-1.5rem)] max-w-lg animate-fadeIn select-none pointer-events-none"
+      className={`fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-40 w-[calc(100%-1.5rem)] max-w-lg select-none transition-all duration-300 ease-in-out pointer-events-none ${
+        showNav
+          ? 'opacity-100 translate-y-0'
+          : 'opacity-0 translate-y-8'
+      }`}
     >
-      <div className="pointer-events-auto bg-[#FAF5EE]/95 backdrop-blur-md border-2 border-[#8B0000]/25 rounded-full px-2 sm:px-3 py-1.5 sm:py-2 shadow-2xl shadow-[#8B0000]/20 flex items-center justify-between gap-1 sm:gap-1.5 transition-all">
+      <div className={`bg-[#FAF5EE]/95 backdrop-blur-md border-2 border-[#8B0000]/25 rounded-full px-2 sm:px-3 py-1.5 sm:py-2 shadow-2xl shadow-[#8B0000]/20 flex items-center justify-between gap-1 sm:gap-1.5 transition-all ${
+        showNav ? 'pointer-events-auto' : 'pointer-events-none'
+      }`}>
         {/* 1. Главная */}
         <button
           onClick={() => {
